@@ -1,0 +1,58 @@
+Package: aRchi
+Type: Package
+Title: QSM treatment for tree architecture
+Version: 0.1.0
+Author: Olivier Martin
+Maintainer: Olivier Martin <oli.martin@ntymail.com>
+Description: A package allowing tree architecture, biomass distribution or biomechanical metrics quantification using "Quantitative Structural Model" coming for terrestrial laser scanning (TLS) data. Two QSM format are accepted: TreeQSM and simpletree/simpleforest.
+License: CeCILL
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports: 
+    data.table,
+    dplyr,
+    plyr,
+    nat,
+    rgl,
+    methods,
+    lidR,
+    FNN,
+    DiceKriging, 
+    circular,
+    pkgcond,
+    stringr,
+    utils,
+    stats,
+    progress,
+    gtools
+Collate: 
+    'aRchiClass.R'
+    'BranchAngle.R'
+    'Compute_A0.R'
+    'Compute_Mf.R'
+    'DAI.R'
+    'ForkRate.R'
+    'LeonardoRatio.R'
+    'Make_Node.R'
+    'Make_Path.R'
+    'PathFraction.R'
+    'SelectinQSM_3d.R'
+    'TreeBiomass.R'
+    'Truncate_QSM.R'
+    'WBEparameters.R'
+    'WoodSurface.R'
+    'aRchi.R'
+    'add_pointcloud.R'
+    'angle3d.R'
+    'build_aRchi.R'
+    'clean_QSM.R'
+    'get_QSM.R'
+    'get_nodes.R'
+    'get_operations.R'
+    'get_paths.R'
+    'get_pointcloud.R'
+    'plot.R'
+    'read_QSM.R'
+    'read_aRchi.R'
+    'write_aRchi.R'

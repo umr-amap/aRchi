@@ -1,0 +1,7 @@
+exportPattern("^[[:alpha:]]+")
+import(data.table)
+import(lidR)
+importFrom("methods", "new")
+exportClasses(aRchi); export(aRchi);exportMethods("plot")
+importFrom("stats", "median")
+importFrom("utils", "setTxtProgressBar", "txtProgressBar","tail")

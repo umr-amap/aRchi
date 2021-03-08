@@ -1,0 +1,26 @@
+{
+    "id": "83000880",
+    "path": "~/Dropbox/Olivier/Work/package_AMAP/Test_package_archi_perso/Test_2/aRchi/R/build_aRchi.R",
+    "project_path": "R/build_aRchi.R",
+    "type": "r_source",
+    "hash": "3678446148",
+    "contents": "",
+    "dirty": false,
+    "created": 1614934892137.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "125,61",
+        "scrollLine": "108"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1614935063,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1614935063443,
+    "read_only": false,
+    "read_only_alternatives": []
+}
