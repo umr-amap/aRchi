@@ -3,14 +3,17 @@
 \docType{methods}
 \name{Make_Node}
 \alias{Make_Node}
+\alias{Make_Node,aRchi-method}
 \title{Make Node}
 \usage{
 Make_Node(aRchi, all_combination = F)
+
+\S4method{Make_Node}{aRchi}(aRchi, all_combination = F)
 }
 \arguments{
 \item{aRchi}{a file of class aRchi containing at least a QSM}
 
-\item{all_combination}{logical (default = FALSE). Should the node metrics be computed at each combination of distance from the node ? (see details).}
+\item{all_combination}{logical (default = \code{FALSE}). Should the node metrics be computed at each combination of distance from the node ? (see details).}
 }
 \value{
 The aRchi file with the Nodes slot filled.
@@ -21,23 +24,13 @@ Compute several node metrics (i.e Leonardo's ratio and WBE parameters) from an o
 \details{
 The Nodes slot contains a list of two data.table (Absolute_positions and Relative_positions). Each data.tables contains for each node several values of Leonardo's rule ratio (R_ratio), radius scaling exponent (alpha), length scaling exponent (beta) and the estimated metabolic rate (theta) which are parameters of the West Brown and Enquist metabolic theory (see Bentley et al. 2013, Lau et al 2019 and Martin-Ducup et al. 2020).
 
-They are calculated as follows:
-
-  R_ratio: $$R_ratio=\frac{\sum_{i=1}^n Ad_{i}}{Am}$$ with $Ad_{i}$ the cross section area of the daughter segment $i$ and $Am$ the cross section area of the parent.
-
-  alpha: equation...
-
-  beta: equation...
-
-  theta: equation...
-
-For a given node, each R_ratio and alpha correspond to its value estimated with the branch radius (for alpha) or the cross section area (for R_ratio) at a given position from the node for the parent (pos_parent) and for the daughters (pos_daugthers). The positions (i.e pos_parent and pos_daughters) are the distances in meters (for Absolute_position data.table) or in percentage (for Relative_position data.table) from the node (i.e the ramification point) to the point of radius or cross section area estimation. These positions are given at a 10 cm step and cannot be higher than the length of the shorter segment among the couple daughters/parent for Absolute_position and at a 10% step for the Relative_position.
+For a given node, each R_ratio and alpha correspond to its value estimated with the branch radius (for alpha) or the cross section area (for R_ratio) at a given position from the node for the parent (pos_parent) and for the daughters (pos_daugthers). The positions (i.e pos_parent and pos_daughters) are the distances in meters (for Absolute_position data.table) or in percentage (for Relative_position data.table) from the node (i.e the ramification point) to the point of radius or cross section area estimation. These positions are given at a 10 cm step and cannot be higher than the length of the shorter segment among the couple daughters/parent for Absolute_position and at a 10\% step for the Relative_position.
 
 Kriging models are used to estimate radius (and thus cross section area) along the segment positions. For example pos_parent = 0.2 and pos_daugthers = 0.2 for Absolute_position data.table means that the parameters (i.e R_ratio and alpha) have been estimated at 20cm from the node position for the parent and 20 cm from the node position for the daughters. For the Relative_position data.table, this position is given in proportion to the total length of the segment. For example, pos_parent = 0.5 and pos_daughter = 0.5 means that the parameters are estimated at mid_length of the segments for both the parent and the daughters).
 
 beta values are repeated for each node as it depend on segment length only and not on radius position.
 
-If \code{all_combination = TRUE} all the possible combination for pos_parent and pos_daughter are computed (e.g pos_parent = 0.3 and pos_daughter = 0.5) but note that this processing might take several minutes and is `FALSE` by default.
+If \code{all_combination = TRUE} all the possible combination for pos_parent and pos_daughter are computed (e.g pos_parent = 0.3 and pos_daughter = 0.5) but note that this processing might take several minutes and is \code{FALSE} by default.
 }
 \examples{
 # Read a QSM file
@@ -61,5 +54,5 @@ Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree a
 	Bentley, L. P. et al. An empirical assessment of tree branching networks and implications for plant allometric scaling models. Ecology Letters 16, 1069–1078 (2013).
 }
 \seealso{
-[WBEparameter()] to estimates WBE parameters at different level; [LeonardoRatio()] to estimates Leonardo Da Vinci's ratio  at different level.
+\code{\link{WBEparameters}} to estimates WBE parameters at different level; \code{\link{LeonardoRatio}} to estimates Leonardo Da Vinci's ratio  at different level.
 }

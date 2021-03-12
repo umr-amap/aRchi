@@ -7,21 +7,24 @@
 #' @rdname Truncate_QSM
 #' @param aRchi an object of class aRchi with at least a QSM and a Paths table.
 #' @param threshold numeric. The radius threshold in meter.
-#' @param Keepdaughters logical (default = FALSE). Keep the daughters of the last segment retained even if they are lower than the threshold.
-#' @param plotresult logical (default = FALSE). Show the results in a 3d plot if TRUE
+#' @param Keepdaughters logical (default = \code{FALSE}). Keep the daughters of the last segment retained even if they are lower than the threshold.
+#' @param plotresult logical (default = \code{FALSE}). Show the results in a 3d plot if \code{TRUE}
 #' @return An aRchi file with the QSM truncated
 #' @details The threshold is applied to a whole segments. In other word, if a segment has at least one cylinder lower than the threshold it is removed as well as everything upstream (except the direct daughters if \code{Keepdaughters=TRUE}).
-#' @seealso [Clean_QSM()] to clean a QSM of an object aRchi.
+#' @seealso \code{\link{Clean_QSM}} to clean a QSM of an object aRchi.
 #' @examples
 #' # Read an aRchifile with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
-#' # Truncate the QSM by removing the subtrees lower than 5cm of radius diameter and visualize the results in 3d.
+#' # Truncate the QSM: 5cm radius threshold
 #' Truncated_Tree1_aRchi=Truncate_QSM(Tree1_aRchi,plotresult = TRUE,threshold = 0.05)
 #' @include aRchiClass.R
 setGeneric("Truncate_QSM",
            function(aRchi,threshold=NULL,Keepdaughters=F,plotresult=F){standardGeneric("Truncate_QSM")}
 )
+
+#' @rdname Truncate_QSM
+#' @export
 
 setMethod("Truncate_QSM",
           signature = "aRchi",

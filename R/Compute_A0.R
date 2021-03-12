@@ -10,8 +10,7 @@
 #' @return The aRchi object with the QSM having a new column A0.
 #' @details
 #'
-#' The method used to find the principal axis consist in finding the highest vertical path with consecutive segments of similar diameters and orientations. An index called A0 of the probability of being the principal axis is thus computed for each path of the tree and the path with the highest value is considered as the principal axis.
-#' This A0 index is calculated as follow: A0=(1-ΔAng)+(1-ΔDiam)+H_P+¯Ang where ΔAng and ΔDiam are the mean relative differences of zenithal angles and diameters (last cylinder diameter for parent and first for daughter) between two consecutive segments (i.e the mother and the daughter of the same path), respectively. H_P is the relative height of the path, corresponding to the ratio between the height of the highest segment of the path and total tree height; and ¯Ang is the mean relative zenithal angle of all segments in a path, which varies between 0 (perfectly horizontal) and 1 (perfectly vertical).
+#' The method used to find the principal axis consist in finding the highest vertical path with consecutive segments of similar diameters and orientations. An index called A0 of the probability of being the principal axis is thus computed for each path of the tree and the path with the highest value is considered as the principal axis (see Martin-Ducup et al. 2020 for more information).
 #'
 #' A0 ranges between 0 and 4 with 0 indicating a path with a low probability of being the principal axis and 4 indicating a high probability of being the principal axis, i.e. the highest vertical path with consecutive segments of similar diameters and orientations.The path with the maximum A0 value was selected as the principal axis.
 #'
@@ -21,7 +20,7 @@
 #'
 #' 	Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree architecture with increasingly dominant crown canopy position. Functional Ecology (2020).
 #'
-#' @seealso [DAI())] to compute the dominance of a principal axis index that uses the A0 index.
+#' @seealso \code{\link{DAI}} to compute the dominance of a principal axis index that uses the A0 index.
 #' @include aRchiClass.R
 #'
 #' @examples
@@ -35,6 +34,10 @@ setGeneric("Compute_A0",
 function(aRchi,plotresult=FALSE){standardGeneric("Compute_A0")}
 )
 
+
+#' @rdname Compute_A0
+#' @export
+#'
 setMethod("Compute_A0",
           signature = "aRchi",
 

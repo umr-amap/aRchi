@@ -3,9 +3,12 @@
 \docType{methods}
 \name{add_pointcloud}
 \alias{add_pointcloud}
+\alias{add_pointcloud,aRchi-method}
 \title{Add a point cloud to an object of class aRchi}
 \usage{
 add_pointcloud(aRchi, point_cloud)
+
+\S4method{add_pointcloud}{aRchi}(aRchi, point_cloud)
 }
 \arguments{
 \item{aRchi}{The object of class aRchi}

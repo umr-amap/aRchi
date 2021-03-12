@@ -6,7 +6,7 @@
 #' @docType methods
 #' @rdname WoodSurface
 #' @param aRchi a file of class aRchi
-#' @param level text. The level at which the wood surface is computed. "Tree", "branching_order" or "Axis".
+#' @param level text. The level at which the wood surface is computed. \code{Tree}, \code{branching_order} or \code{Axis}.
 #' @return a numeric or data.table. The wood surface in m2
 #' @include aRchiClass.R
 #' @examples
@@ -20,11 +20,14 @@ setGeneric("WoodSurface",
            function(aRchi,level="Tree"){standardGeneric("WoodSurface")}
 )
 
+#' @rdname WoodSurface
+#' @export
+
 setMethod("WoodSurface",
           signature = "aRchi",
 
           function(aRchi,level){
-            axis_ID=NULL
+            axis_ID=.=NULL
 
 
             if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")

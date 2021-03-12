@@ -11,16 +11,14 @@
 #'
 #' The idea of DAI is to disentangle architectures of trees with a strong apical dominance, i.e. with a central main stem growing more strongly than other side axes (such as in most conifers, for instance), from those having a spread out branching pattern with similar axes and no obvious main stem.
 #'
-#' The higher the index the more dominant the principal axis. DAI is computed based on the indices A0 which is an index of the probability of being the principal axis for each path of the tree (see function [Compute_A0()]).
-#'
-#' DAI is thus computed using the following formula:
-#' DAI = equation with n_p the number of path, A0_i the A0 value of the path i and maxA0 the maximum A0 value (i.e the principal axis A0 value).
+#' The higher the index the more dominant the principal axis. DAI is computed based on the indices A0 which is an index of the probability of being the principal axis for each path of the tree (see function \code{\link{Compute_A0}}).
+#' More information are given in Martin-Ducup et al 2020
 #'
 #' @references
 #'
 #' Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree architecture with increasingly dominant crown canopy position. Functional Ecology (2020).
 #'
-#' @seealso [Compute_A0())] to identify the principal axis (i.e max(A0)).
+#' @seealso \code{\link{Compute_A0}} to identify the principal axis (i.e \code{max(A0)}).
 #'
 #' @include aRchiClass.R
 #'
@@ -34,6 +32,9 @@
 setGeneric("DAI",
            function(aRchi){standardGeneric("DAI")}
 )
+
+#' @rdname DAI
+#' @export
 
 setMethod("DAI",
           signature = "aRchi",

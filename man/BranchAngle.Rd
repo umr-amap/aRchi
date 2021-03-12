@@ -3,18 +3,21 @@
 \docType{methods}
 \name{BranchAngle}
 \alias{BranchAngle}
+\alias{BranchAngle,aRchi-method}
 \title{Estimation of the tree branch angle from an aRchi file}
 \usage{
 BranchAngle(aRchi, method = NULL, A0 = FALSE, level = "Tree")
+
+\S4method{BranchAngle}{aRchi}(aRchi, method = NULL, A0 = FALSE, level = "Tree")
 }
 \arguments{
 \item{aRchi}{an object of class aRchi with at least a QSM and a path table}
 
-\item{method}{character. "SegmentAngle" or "King98"}
+\item{method}{character. \code{SegmentAngle} or code{King98}}
 
-\item{A0}{logical (default = FALsE). If TRUE the main axis to remove from the calculation is re-estimated using the [Compute_A0()] function. If false the default branch order 0 is kept.}
+\item{A0}{logical (default = FALSE). If TRUE the main axis to remove from the calculation is re-estimated using the \code{\link{Compute_A0}} function. If false the default branch order 0 is kept.}
 
-\item{level}{character. The level at which the branch angle is computed. "Tree" for tree level; "branching_order" for branch order level; "Axis" one angle value per axis.}
+\item{level}{character. The level at which the branch angle is computed. \code{Tree} for tree level; \code{branching_order} for branch order level; \code{Axis} one angle value per axis.}
 }
 \value{
 a numeric or data.table. The branch angle in degree at the selected level. with 0 a perfectly vertical branch angle, 90 a perfectly horizontal branch angle and >90 a downward branch angle
@@ -33,9 +36,8 @@ The main axis is always removed.
 # Read an aRchi file with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
-# Compute the branch angle at tree level using the SegmentAngle method.
+# Compute the branch angle at various level
 BranchAngle(Tree1_aRchi,method="SegmentAngle")
-# Compute the branch angle at branch order level using the King98 method by removing the main axis with Compute_A0 method.
 BranchAngle(Tree1_aRchi,level="branching_order",method="SegmentAngle",A0=TRUE)
 
 }

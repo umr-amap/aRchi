@@ -3,9 +3,12 @@
 \docType{methods}
 \name{Make_Path}
 \alias{Make_Path}
+\alias{Make_Path,aRchi-method}
 \title{Make the path of a QSM in an aRchi object}
 \usage{
 Make_Path(aRchi)
+
+\S4method{Make_Path}{aRchi}(aRchi)
 }
 \arguments{
 \item{aRchi}{a file of class aRchi}
@@ -17,7 +20,7 @@ The aRchi object with the table of paths
 Identify and record the paths of a QSM in an object of class aRchi. The path are needed for several tree metrics estimation of the aRchi package.
 }
 \details{
-A path is a continuous succession of cylinders from a terminal segment (i.e a twig) to the trunk base. Thus, there is as many path as terminal segments in a QSM.
+A path is a continuous succession of cylinders from a terminal segment (i.e a branch tip) to the trunk base. Thus, there is as many path as terminal segments in a QSM.
 
 This function fill the slot Paths of an object of class aRchi with a data.table of the paths. This data.table contains the same variables as a classic QSM plus an ID_path column. This table is thus larger than the QSM table as each cylinder is repeated as many times as it appears in a path. For example, the first cylinder of the QSM (i.e the beginning of the trunk) is repeated N path times, with N path the number of path of the QSM.
 
@@ -36,5 +39,5 @@ Tree1_aRchi
 PathFraction(Tree1_aRchi)
 }
 \seealso{
-[BranchAngle()];[Truncate_QSM()]; [Clean_QSM()]; [ForkRate()]; [PathFraction()])
+\code{\link{BranchAngle}};\code{\link{Truncate_QSM}}; \code{\link{Clean_QSM}}; \code{\link{ForkRate}}; \code{\link{PathFraction}}
 }

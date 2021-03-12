@@ -3,9 +3,12 @@
 \docType{methods}
 \name{PathFraction}
 \alias{PathFraction}
+\alias{PathFraction,aRchi-method}
 \title{Compute the path fraction}
 \usage{
 PathFraction(aRchi)
+
+\S4method{PathFraction}{aRchi}(aRchi)
 }
 \arguments{
 \item{aRchi}{an object of class aRchi with at least the QSM and the Paths table}
@@ -33,5 +36,5 @@ Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree a
 Smith, D. D. et al. Deviation from symmetrically self-similar branching in trees predicts altered hydraulics, mechanics, light interception and metabolic scaling. New Phytologist 201, 217–229 (2014).
 }
 \seealso{
-[Make_Path())] to compute the paths table.
+\code{\link{Make_Path}} to compute the paths table.
 }

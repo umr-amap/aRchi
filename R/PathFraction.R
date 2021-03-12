@@ -13,7 +13,7 @@
 #'
 #' Smith, D. D. et al. Deviation from symmetrically self-similar branching in trees predicts altered hydraulics, mechanics, light interception and metabolic scaling. New Phytologist 201, 217–229 (2014).
 #'
-#' @seealso [Make_Path())] to compute the paths table.
+#' @seealso \code{\link{Make_Path}} to compute the paths table.
 #' @include aRchiClass.R
 #' @examples
 #' # Read an aRchi file with at least the QSM and the paths table
@@ -25,6 +25,9 @@
 setGeneric("PathFraction",
            function(aRchi){standardGeneric("PathFraction")}
 )
+
+#' @rdname PathFraction
+#' @export
 
 setMethod("PathFraction",
           signature = "aRchi",

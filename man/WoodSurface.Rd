@@ -3,14 +3,17 @@
 \docType{methods}
 \name{WoodSurface}
 \alias{WoodSurface}
+\alias{WoodSurface,aRchi-method}
 \title{Estimate the unrolled wood surface from a QSM}
 \usage{
 WoodSurface(aRchi, level = "Tree")
+
+\S4method{WoodSurface}{aRchi}(aRchi, level = "Tree")
 }
 \arguments{
 \item{aRchi}{a file of class aRchi}
 
-\item{level}{text. The level at which the wood surface is computed. "Tree", "branching_order" or "Axis".}
+\item{level}{text. The level at which the wood surface is computed. \code{Tree}, \code{branching_order} or \code{Axis}.}
 }
 \value{
 a numeric or data.table. The wood surface in m2

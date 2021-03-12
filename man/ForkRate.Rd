@@ -3,9 +3,12 @@
 \docType{methods}
 \name{ForkRate}
 \alias{ForkRate}
+\alias{ForkRate,aRchi-method}
 \title{Compute the fork rate of a tree}
 \usage{
 ForkRate(aRchi)
+
+\S4method{ForkRate}{aRchi}(aRchi)
 }
 \arguments{
 \item{aRchi}{a file of class aRchi with at least a QSM and a Path table.}
@@ -30,5 +33,5 @@ ForkRate(Tree1_aRchi)
 Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree architecture with increasingly dominant crown canopy position. Functional Ecology (2020).
 }
 \seealso{
-[Clean_QSM())] to clean a QSM based on a threshold of percentage of largest daughter's diameter.
+\code{\link{Clean_QSM}} to clean a QSM based on a threshold of percentage of largest daughter's diameter.
 }

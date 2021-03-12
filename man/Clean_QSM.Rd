@@ -3,36 +3,39 @@
 \docType{methods}
 \name{Clean_QSM}
 \alias{Clean_QSM}
+\alias{Clean_QSM,aRchi-method}
 \title{Cleans a QSM}
 \usage{
 Clean_QSM(aRchi, threshold = NULL, plotresult = F)
+
+\S4method{Clean_QSM}{aRchi}(aRchi, threshold = NULL, plotresult = F)
 }
 \arguments{
-\item{aRchi}{an object of class `aRchi` with at least a QSM and a Paths table.}
+\item{aRchi}{an object of class \code{aRchi} with at least a QSM and a Paths table.}
 
 \item{threshold}{numeric. The proportion of the largest daughter diameter (between 0 and 1) under which a branch is removed.}
 
-\item{plotresult}{logical (default = FALSE). Show the results in a 3d plot if `TRUE`}
+\item{plotresult}{logical (default = FALSE). Show the results in a 3d plot if \code{TRUE}}
 }
 \value{
-An object of class `aRchi` with the cleaned QSM.
+An object of class \code{aRchi} with the cleaned QSM.
 }
 \description{
-Cleans the QSM in an object of class `aRchi` by removing branches that have a disproportionate lower radius than their siblings.
+Cleans the QSM in an object of class \code{aRchi} by removing branches that have a disproportionate lower radius than their siblings.
 }
 \details{
-This cleaning is done by browsing the tree QSM from the base to the top. Each time a ramification point is encountered a daughter branch is removed if its radius is lower than a selected (i.e `threshold`) proportion of radius of the largest daughter. This allows removing small branches on large branches that can be for example traumatic or epicormic shoots or false branches due to noise in QSM. In [Forkrate())] function the same approach is used with a `threshold` of 75% (i.e 0.75) to count the number of fork and compute the fork rate.
+This cleaning is done by browsing the tree QSM from the base to the top. Each time a ramification point is encountered a daughter branch is removed if its radius is lower than a selected (i.e \code{threshold}) proportion of radius of the largest daughter. This allows removing small branches on large branches that can be for example traumatic or epicormic shoots or false branches due to noise in QSM. In \code{\link{ForkRate}} function the same approach is used with a \code{threshold} of 75% (i.e 0.75) to count the number of fork and compute the fork rate.
 }
 \examples{
 # Read an aRchi file with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
-# Clean the QSM by removing the branches with a diameter lower than 50\% of the diameter of its largest sibling and visualize the results in 3d.
+# Clean the QSM: threshold of 50\%
 Cleaned_Tree1_aRchi=Clean_QSM(Tree1_aRchi,threshold = 0.5,plotresult = TRUE)
 # show the cleaned QSM data.table
 get_QSM(Cleaned_Tree1_aRchi)
 
 }
 \seealso{
-[Forkrate())] to compute the fork rate; [Truncate_QSM()] to truncate a QSM at a specific diameter threshold
+\code{\link{ForkRate}} to compute the fork rate; \code{\link{Truncate_QSM}} to truncate a QSM at a specific diameter threshold
 }

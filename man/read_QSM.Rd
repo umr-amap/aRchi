@@ -9,10 +9,10 @@ read_QSM(file, model)
 \arguments{
 \item{file}{The directory to the QSM file path}
 
-\item{model}{`treeQSM`, `simpletree`, `simpleforest` or `pypetree` depending on the algorithm used to generate the QSM}
+\item{model}{\code{treeQSM}, \code{simpletree}, \code{simpleforest} or \code{pypetree} depending on the algorithm used to generate the QSM}
 }
 \value{
-a data.table that can be used to build an aRchi object (see function [build_aRchi())])
+a list containing a data.table with the QSM and a character with the model name. This list can be used to build an aRchi object (see function \code{\link{build_aRchi}})
 }
 \description{
 Read a QSM file generated with treeQSM, simpletree, simpleforest or pypetree.
@@ -22,5 +22,5 @@ file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 QSM=read_QSM(file,model="treeQSM")
 }
 \seealso{
-[aRchi()] the aRchi class;[build_aRchi())] to build an object of class `aRchi`; [skeletonize())]; to make a QSM from a point cloud in an aRchi object.
+\code{\link{aRchi}} the aRchi class;\code{\link{build_aRchi}} to build an object of class \code{aRchi}
 }

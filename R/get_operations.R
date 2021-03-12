@@ -5,7 +5,7 @@
 #' @description Show a list with all the operations (and their parameters) that have been performed on an object of class aRchi
 #' @param aRchi The object of class aRchi
 #' @include aRchiClass.R
-#' @seealso [get_QSM()]; [get_pointcloud()]; [get_paths()];
+#' @seealso \code{\link{get_QSM}}; \code{\link{get_pointcloud}}; \code{\link{get_paths}}
 #' @examples
 #' # Read an aRchi file with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
@@ -23,7 +23,8 @@
 setGeneric("get_operations",
            function(aRchi){standardGeneric("get_operations")}
 )
-
+#' @rdname get_operations
+#' @export
 setMethod("get_operations",
           signature = "aRchi",
           function(aRchi){

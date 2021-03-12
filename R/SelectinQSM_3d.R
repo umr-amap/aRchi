@@ -5,8 +5,8 @@
 #' @rdname SelectinQSM_3d
 #' @description Select interactively a sub-part of a QSM (cylinder, segment, node, axis, branch, subtree) in a 3d device and return its characteristics.
 #' @param aRchi An object of class aRchi
-#' @param skeleton logical. Display the skeleton only. Default is TRUE. Faster than displaying the QSM with the fleshed cylinders.
-#' @param level character. "cylinder" (default), "segment", "node", "axis", "branch", "subtree".
+#' @param skeleton logical. Display the skeleton only. Default is \code{TRUE}. Faster than displaying the QSM with the fleshed cylinders.
+#' @param level character. \code{cylinder} (default), \code{segment}, \code{node}, \code{axis}, \code{branch}, \code{subtree}.
 #' @return a data.table with the cylinders characteristics at the requested level (i.e sub-part of the original QSM).
 #' @details
 #'
@@ -35,8 +35,9 @@
 #' # Same with the fleshed cylinder and keep the branch QSM in an object
 #' My_branch=SelectinQSM_3d(Tree1_aRchi,level="branch",skeleton=FALSE)
 #' My_branch
-#' # Compute the moment of force (mechanical constrains due to gravity) of all cylinders of a QSM and return the moment of force for a specific cylinder.
+#' # Compute the moment of force
 #' Tree1_aRchi=Compute_Mf(Tree1_aRchi,WoodDensity=550)
+#' #Select a cylinder to return the moment of force at his position
 #' SelectinQSM_3d(Tree1_aRchi,skeleton=FALSE)
 #'}
 #' @include aRchiClass.R
@@ -44,9 +45,13 @@ setGeneric("SelectinQSM_3d",
            function(aRchi,skeleton=T,level="cylinder"){standardGeneric("SelectinQSM_3d")}
 )
 
+#' @rdname SelectinQSM_3d
+#' @export
+
 setMethod("SelectinQSM_3d",
           signature = "aRchi",
           function(aRchi,skeleton,level){
+            axis_ID=cyl_ID=startX=endX=endY=startY=startZ=endZ=segment_ID=node_ID=parent_ID=radius=axis_ID=ID_Path=NULL
 
             QSM=aRchi@QSM
             if(level%in%c("branch","subtree")){

@@ -5,7 +5,7 @@
 #' @description Get the pointcloud from an object of class aRchi
 #' @param aRchi The object of class aRchi
 #' @include aRchiClass.R
-#' @seealso [get_QSM()]; [get_paths()]; [get_nodes()];
+#' @seealso \code{\link{get_QSM}}; \code{\link{get_paths}}; \code{\link{get_nodes}}
 #' @examples
 #' # Read an aRchi file with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
@@ -17,6 +17,10 @@
 setGeneric("get_pointcloud",
            function(aRchi){standardGeneric("get_pointcloud")}
 )
+
+#' @rdname get_pointcloud
+#' @export
+
 
 setMethod("get_pointcloud",
           signature = "aRchi",

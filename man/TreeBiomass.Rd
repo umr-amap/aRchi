@@ -3,16 +3,19 @@
 \docType{methods}
 \name{TreeBiomass}
 \alias{TreeBiomass}
+\alias{TreeBiomass,aRchi-method}
 \title{Tree biomass estimation of the woody part}
 \usage{
 TreeBiomass(aRchi, WoodDensity, level = "Tree")
+
+\S4method{TreeBiomass}{aRchi}(aRchi, WoodDensity = NULL, level = "Tree")
 }
 \arguments{
 \item{aRchi}{an object of class aRchi with at least a QSM}
 
-\item{WoodDensity}{a numeric or a data.table. A single wood density value for the whole tree or one value per cylinder in kg/m3. If wood density is given for each cylinder a data.table with two column (i.e cyl_ID and WoodDensity) must be given. T}
+\item{WoodDensity}{a numeric or a data.table. A single wood density value for the whole tree or one value per cylinder in kg/m3. If wood density is given for each cylinder a data.table with two column (i.e cyl_ID and WoodDensity) must be given.}
 
-\item{level}{character. The level at which the wood biomass is computed. "Tree", "branching_order" or "Axis".}
+\item{level}{character. The level at which the wood biomass is computed. \code{Tree}, \code{branching_order} or \code{Axis}.}
 }
 \value{
 a numeric or data.table. The wood biomass in Kg at the requested level

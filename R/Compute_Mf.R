@@ -7,17 +7,15 @@
 #' @rdname Compute_Mf
 #' @param aRchi an object of class aRchi with at least the QSM and the paths table.
 #' @param WoodDensity a numeric or a data.table. A single wood density value for the whole tree or one value per cylinder in kg/m3. If wood density is given for each cylinder a data.table with two column (i.e cyl_ID and WoodDensity) must be given.
-#' @return The aRchi file with the QSM slot having three new columns: the biomass upstream the cylinder `sub_tree_biomass`, the moment of gravity force `Mf` and the moment of gravity force relative to cylinder radius `Mf_r`.
+#' @return The aRchi file with the QSM slot having three new columns: the biomass upstream the cylinder \code{sub_tree_biomass}, the moment of gravity force \code{Mf} and the moment of gravity force relative to cylinder radius \code{Mf_r}.
 #' @details
 #'
-#' The moment of gravity force (`Mf`) is calculated at each cylinder position. the moment of gravity force (`Mf`) can be seen as a proxy of the mechanical loading history due to gravity at a given position of a tree.
-#' This quantity is defined by the following the equation: Mf=rxF where `r` is the lever arm, which is the norm of the horizontal vector between the position where `Mf` is measured (i.e a cylinder) and the position where the force is applied (i.e., the center of mass, `G`, of the whole structure upstream a cylinder: a subtree).
+#' The moment of gravity force (i.e \code{Mf}) is calculated at each cylinder position. \code{Mf} can be seen as a proxy of the mechanical loading history due to gravity at a given position of a tree.
+#' This quantity is defined by the following the equation: Mf=R*F where R is the lever arm, which is the norm of the horizontal vector between the position where \code{Mf} is measured (i.e a cylinder) and the position where the force is applied (i.e., the center of mass, G, of the whole structure upstream a cylinder: a subtree).
 #'
-#' The coordinates of the center of mass G was calculated following the equation : G=(∑_(i=1)^n▒〖m_ix c_i 〗)/M	where m_i is the mass (in Kg) of the cylinder i of the sub-tree, c_i the coordinates (x_i, y_i, z_i) of its center (i.e., the center of mass of the cylinder i) and M the mass of the whole sub-tree (i.e. sum of m_i or `sub_tree_biomass` column in the new QSM).
+#' The mass of the cylinders are needed to calculate the center of mass and are estimated using their volume and the wood density provided in argument \code{WoodDensity}. Finally, F is the weight of the subtree: F=g*M	with g the standard acceleration due to gravity (9.81 m.s-²).
 #'
-#' The mass of the cylinders is estimated using its volume and the wood density provided in argument `WoodDensity.` Finally, F is the weight of the subtree: F=g*M	with g the standard acceleration due to gravity (9.81 m.s-²).
-#'
-#' The moment of gravity force relative to cylinder radius (Mf_r) is also computed following the formula $Mf_r = Mf/r^{3}$
+#' The moment of gravity force relative (i.e \code{Mf_r}) to cylinder radius r is also computed following the formula: Mf_r = Mf/r^3
 #'
 #'
 #' @include aRchiClass.R
@@ -30,12 +28,15 @@
 #' # Compute the moment of force for each cylinder
 #' Tree1_aRchi=Compute_Mf(Tree1_aRchi,WoodDensity=550)
 #'
-#' # show the QSM data.table with the three new columns (`sub_tree_biomass`, `MF` and `Mf_r`)
+#' # show the QSM data.table with the three new columns sub_tree_biomass, MF and Mf_r)
 #' get_QSM(Tree1_aRchi)
 #'
 setGeneric("Compute_Mf",
            function(aRchi,WoodDensity){standardGeneric("Compute_Mf")}
 )
+
+#' @rdname Compute_Mf
+#' @export
 
 setMethod("Compute_Mf",
           signature = "aRchi",

@@ -1,21 +1,21 @@
-#' @name aRchi
 #' @title aRchi
 #' @description Class containing files to compute and display in three dimensions tree architectural metrics at different level of organization
 #' @docType class
-#' @slot QSM a data.table containing QSM information according to read_QSM function format
-#' @slot pointcloud a data.table containing the point cloud used to generated the QSM
-#' @slot Paths a data.table of Paths according to Make_Path function (see [Make_Path()])
-#' @slot Nodes Metrics computed at the node scale (see [Make_node()])
-#' @slot operations Record all the operations realized on the object.
-
-setClassUnion("nullOrDatatable", c("NULL", "data.table"))
-setClassUnion("nullOrLASOrDatatable", c("NULL", "LAS", "data.table"))
-setClassUnion("nullOrlist", c("NULL", "list"))
-setClassUnion("nullOrnumeric", c("NULL", "numeric"))
+#' @field QSM a data.table containing QSM information according to read_QSM function format
+#' @field pointcloud a data.table containing the point cloud used to generated the QSM
+#' @field Paths a data.table of Paths according to Make_Path function (see \code{\link{Make_Path}})
+#' @field Nodes Metrics computed at the node scale (see \code{\link{Make_Node}}
+#' @field operations Record all the operations realized on the object.
+#' @include nullOrDatatable.R
+#' @include nullOrLASOrDatatable.R
+#' @include nullOrlist.R
+#' @include nullOrnumeric.R
+#' @name aRchi-class
+#' @rdname aRchi-class
+#' @export
 aRchi=setClass("aRchi",slots=c(QSM = "nullOrDatatable",
                                Paths="nullOrDatatable",
                                pointcloud = "nullOrLASOrDatatable",
-                               foliage = "nullOrDatatable",
                                Nodes = "nullOrlist",
                                operations = "nullOrlist"
                                ))

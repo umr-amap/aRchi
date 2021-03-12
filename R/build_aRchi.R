@@ -1,21 +1,24 @@
-#' Read an aRchi file
+#' Build a an object of class aRchi
 #'
-
-#' @description Read an aRchi file
-#' @param QSM A data.table obtained from [read_QSM()] function
+#' @description Build an object of class aRchi
+#' @param QSM A data.table obtained from \code{\link{read_QSM}} function
 #' @param point_cloud A point cloud. Either a LAS or a data.table with at least three columns with 3d coordinates (i.e X,Y,Z)
 #' @param keep_original logical (Default = FALSE). Should the original branching order and axis be kept ? Otherwise, it is re-estimated.
 #' @include aRchiClass.R
-#' @seealso [write_aRchi()]; [read_aRchi()]
+#' @seealso \code{\link{aRchi}}; \code{\link{write_aRchi}}; \code{\link{read_aRchi}}
 #' @examples
-#' # Create an empty object of class aRchi
-#'  empty_aRchi=aRchi()
-#'  # Write the aRchi object
-#' write_aRchi(empty_aRchi,file="my_empty_aRchi_file.aRchi")
-#' read_aRchi(file = "my_empty_aRchi_file.aRchi")
-#'
+#' file_QSM=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
+#' file_pc=system.file("extdata","Tree_1_point_cloud.las",package = "aRchi")
+#' QSM=read_QSM(file_QSM,model="treeQSM")
+#' pc=lidR::readLAS(file_pc)
+#' # Make an object of class aRchi
+#' Tree1_aRchi=build_aRchi(QSM=QSM,point_cloud=pc)
+
 
 build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
+  branching_order=axis_ID=cyl_ID=parent_ID=extension_ID=startX=endX=endY=startY=startZ=endZ=bear_length=segment_ID=node_ID=parentID=radius=rad1=rad2=axis_ID=NULL
+
+
 
             ###############################
             # create the aRchi class file #
@@ -45,15 +48,19 @@ build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
             ##################
             # import the QSM #
             ##################
+
             if(!missing(QSM)){
               # check the QSM
-              if(ncol(QSM) < 7){
+              if(ncol(QSM$QSM) < 7){
                 stop("the provided QSM does not contains enought fields: must contain at least
            stratX | startY | startZ | endX | endY | endZ | radius")
               }
+              if(QSM$model=="treeQSM"){
+                aRchi@QSM = data.table::data.table(QSM$QSM)
+              }else{
 
               # QSM is a data.table
-              QSM = data.table::data.table(QSM)
+              QSM = data.table::data.table(QSM$QSM)
 
               # does the axis_ID and branchind order must be computed by the finction ?
               compute_axis = TRUE
@@ -243,6 +250,7 @@ build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
               QSM=QSM[,c("startX","startY","startZ", "endX","endY","endZ","cyl_ID","parent_ID","extension_ID","radius_cyl","length","volume","axis_ID","segment_ID","node_ID","branching_order")]
 
               aRchi@QSM = QSM
+              }
             }
 
             return(aRchi)

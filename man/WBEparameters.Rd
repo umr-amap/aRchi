@@ -3,16 +3,19 @@
 \docType{methods}
 \name{WBEparameters}
 \alias{WBEparameters}
+\alias{WBEparameters,aRchi-method}
 \title{Compute WBE parameters}
 \usage{
 WBEparameters(aRchi, level = "Tree", position = 10)
+
+\S4method{WBEparameters}{aRchi}(aRchi, level = "Tree", position = 10)
 }
 \arguments{
-\item{aRchi}{an object of class aRchi with at least a QSM and the Nodes table (see function [Make_Node()])}
+\item{aRchi}{an object of class aRchi with at least a QSM and the Nodes table (see function \code{\link{Make_Node}})}
 
-\item{level}{characters. At which level R_ratio has to be estimated. "Node" for node level, "Axis" for branch level, "branching_order" for branch order level and "Tree" for tree level (default).}
+\item{level}{characters. At which level R_ratio has to be estimated. \code{Node} for node level, \code{Axis} for axis level, \code{branching_order} for branch order level and \code{Tree} for tree level (default).}
 
-\item{position}{At which position from the node WBE parameters have to be estimated. Either a numeric or a character. Use a numeric multiple of ten to select the distance from the node in cm where R ratio has to be estimated (e.g 10 for 10cm from the node). Use the % sign after a multiple of ten to select the distance from the node in percentage of the length of the parent and daughters segments (e.g "50%" for an estimation at mid-length of the segments). Note that 0 is accepted and correspond to the closest position from the node.}
+\item{position}{At which position from the node WBE parameters have to be estimated. Either a numeric or a character. Use a numeric multiple of ten to select the distance from the node in cm where R ratio has to be estimated (e.g 10 for 10cm from the node). Use the \% sign after a multiple of ten to select the distance from the node in percentage of the length of the parent and daughters segments (e.g 50\% for an estimation at mid-length of the segments). Note that 0 is accepted and correspond to the closest position from the node.}
 }
 \value{
 Data.table of the summary (median and mean) of WBE parameters at the selected level. The median should be used according to Bentley et al. 2013.
@@ -21,15 +24,15 @@ Data.table of the summary (median and mean) of WBE parameters at the selected le
 Compute from an object of class aRchi the West, Brown and Enquist (WBE) scaling exponent (alpha and beta) and the subsequent estimated metabolic rate (theta) at node, branch, branch order or tree level.
 }
 \details{
-Details for WBE parameters calculation are given in the details part of function [Make_Node()].
+Details for WBE parameters calculation are given in the details part of function \code{\link{Make_Node}}.
 }
 \examples{
 # Read an aRchifile with a QSM and node tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
-WBE parameters at the branching order level estimated at midlength of the segments
+# WBE parameters at the branching order level estimated at midlength of the segments
 LeonardoRatio(Tree1_aRchi,level="Tree", position="50\%")
-WBE parameters at the tree level estimated at 10 cm from the node
+# WBE parameters at the tree level estimated at 10 cm from the node
 LeonardoRatio(Tree1_aRchi)
 
 }
@@ -41,5 +44,5 @@ Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree a
 	Bentley, L. P. et al. An empirical assessment of tree branching networks and implications for plant allometric scaling models. Ecology Letters 16, 1069–1078 (2013).
 }
 \seealso{
-[Make_Node()] for node metrics estimation; [LeonardoRatio()] to estimates Leonardo Da Vinci's ratio at different level.
+\code{\link{Make_Node}} for node metrics estimation; \code{\link{LeonardoRatio}} to estimates Leonardo Da Vinci's ratio at different level.
 }

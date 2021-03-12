@@ -3,12 +3,15 @@
 \docType{methods}
 \name{LeonardoRatio}
 \alias{LeonardoRatio}
+\alias{LeonardoRatio,aRchi-method}
 \title{Compute Leonardo's ratio}
 \usage{
 LeonardoRatio(aRchi, level = "Tree", position = 10)
+
+\S4method{LeonardoRatio}{aRchi}(aRchi, level = "Tree", position = 10)
 }
 \arguments{
-\item{aRchi}{an object of class aRchi with at least a QSM and the Nodes table (see function [Make_Node()])}
+\item{aRchi}{an object of class aRchi with at least a QSM and the Nodes table (see function \code{\link{Make_Node}})}
 
 \item{level}{characters. At which level R_ratio has to be estimated. "Node" for node level, "Axis" for the axis level, "branching_order" for branch order level and "Tree" for tree level (default).}
 
@@ -18,10 +21,10 @@ LeonardoRatio(aRchi, level = "Tree", position = 10)
 Data.table of the summary of R_ratio for the selected level.
 }
 \description{
-Compute from an object of class aRchi the Leonardo's ratio (R_ratio) at node, axis, branch order or tree level.
+Compute from an object of class aRchi the Leonardo's ratio (i.e R_ratio) at node, axis, branch order or tree level.
 }
 \details{
-Details for Leonardo Da Vinci's ratio calculation are given in the details part of function [Make_Node()].
+Details for Leonardo Da Vinci's ratio calculation are given in the details part of function \code{\link{Make_Node}}.
 }
 \examples{
 # Read an aRchifile with a QSM and node tables.
@@ -33,5 +36,5 @@ LeonardoRatio(Tree1_aRchi,level="Tree", position="50\%")
 LeonardoRatio(Tree1_aRchi,level="Node", position=30)
 }
 \seealso{
-[Make_Node()] for node metrics estimation; [WBEparameter()] to estimates WBE parameters at different level;
+\code{\link{Make_Node}} for node metrics estimation; \code{\link{WBEparameters}} to estimates WBE parameters at different level;
 }

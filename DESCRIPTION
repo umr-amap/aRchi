@@ -27,6 +27,10 @@ Imports:
     progress,
     gtools
 Collate: 
+    'nullOrnumeric.R'
+    'nullOrlist.R'
+    'nullOrLASOrDatatable.R'
+    'nullOrDatatable.R'
     'aRchiClass.R'
     'BranchAngle.R'
     'Compute_A0.R'

@@ -9,12 +9,12 @@
 #' @return The aRchi object with the table of paths
 #' @details
 #'
-#' A path is a continuous succession of cylinders from a terminal segment (i.e a twig) to the trunk base. Thus, there is as many path as terminal segments in a QSM.
+#' A path is a continuous succession of cylinders from a terminal segment (i.e a branch tip) to the trunk base. Thus, there is as many path as terminal segments in a QSM.
 #'
 #' This function fill the slot Paths of an object of class aRchi with a data.table of the paths. This data.table contains the same variables as a classic QSM plus an ID_path column. This table is thus larger than the QSM table as each cylinder is repeated as many times as it appears in a path. For example, the first cylinder of the QSM (i.e the beginning of the trunk) is repeated N path times, with N path the number of path of the QSM.
 #'
 #' Many function of the aRchi packages request a path table (check see also).
-#' @seealso [BranchAngle()];[Truncate_QSM()]; [Clean_QSM()]; [ForkRate()]; [PathFraction()])
+#' @seealso \code{\link{BranchAngle}};\code{\link{Truncate_QSM}}; \code{\link{Clean_QSM}}; \code{\link{ForkRate}}; \code{\link{PathFraction}}
 #'
 #' @include aRchiClass.R
 #' @examples
@@ -33,6 +33,10 @@
 setGeneric("Make_Path",
            function(aRchi){standardGeneric("Make_Path")}
 )
+
+#' @rdname Make_Path
+#' @export
+
 
 setMethod("Make_Path",
           signature = "aRchi",

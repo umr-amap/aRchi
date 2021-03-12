@@ -16,7 +16,7 @@
 #' 	Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree architecture with increasingly dominant crown canopy position. Functional Ecology (2020).
 #'
 #' @include aRchiClass.R
-#' @seealso [Clean_QSM())] to clean a QSM based on a threshold of percentage of largest daughter's diameter.
+#' @seealso \code{\link{Clean_QSM}} to clean a QSM based on a threshold of percentage of largest daughter's diameter.
 #' @examples
 #' # Read an aRchi file with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
@@ -26,6 +26,10 @@
 setGeneric("ForkRate",
            function(aRchi){standardGeneric("ForkRate")}
 )
+
+#' @rdname ForkRate
+#' @export
+
 
 setMethod("ForkRate",
           signature = "aRchi",

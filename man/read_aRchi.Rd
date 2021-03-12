@@ -3,24 +3,19 @@
 \docType{methods}
 \name{read_aRchi}
 \alias{read_aRchi}
+\alias{read_aRchi,character-method}
 \title{Read an aRchi file}
 \usage{
 read_aRchi(file)
+
+\S4method{read_aRchi}{character}(file)
 }
 \arguments{
-\item{file}{The directory to the `.aRchi` file.}
+\item{file}{The directory to the .aRchi file.}
 }
 \description{
 Read an aRchi file
 }
-\examples{
-# Create an empty object of class aRchi
- empty_aRchi=aRchi()
- # Write the aRchi object
-write_aRchi(empty_aRchi,file="my_empty_aRchi_file.aRchi")
-read_aRchi(file = "my_empty_aRchi_file.aRchi")
-
-}
 \seealso{
-[write_aRchi()]
+\code{\link{write_aRchi}}
 }

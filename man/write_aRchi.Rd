@@ -3,25 +3,21 @@
 \docType{methods}
 \name{write_aRchi}
 \alias{write_aRchi}
+\alias{write_aRchi,aRchi,character-method}
 \title{Write an aRchi file}
 \usage{
-write_aRchi(x, file)
+write_aRchi(aRchi, file)
+
+\S4method{write_aRchi}{aRchi,character}(aRchi, file)
 }
 \arguments{
-\item{file}{The directory where to write the `.aRchi` file.}
-
 \item{aRchi}{the object of class aRchi to write}
+
+\item{file}{The directory where to write the .aRchi file.}
 }
 \description{
 write an aRchi file
 }
-\examples{
-# Create an empty object of class aRchi
- empty_aRchi=aRchi()
- # Write the aRchi object
-write_aRchi(empty_aRchi,file="my_empty_aRchi_file.aRchi")
-read_aRchi(file = "my_empty_aRchi_file.aRchi")
-}
 \seealso{
-[read_aRchi()]
+\code{\link{read_aRchi}}
 }

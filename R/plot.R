@@ -8,12 +8,13 @@
 #' @description Plot an object of class aRchi.
 #' @param x An aRchi object
 #' @param y Unused (inherited from R base)
-#' @param skeleton logical (Default is `TRUE`). Display the skeleton only (i.e segments). Faster than displaying the whole QSM with the fleshed cylinders.
+#' @param skeleton logical (Default is \code{TRUE}). Display the skeleton only (i.e segments). Faster than displaying the whole QSM with the fleshed cylinders.
 #' @param color The color of the cylinders. Can be either a single color or a level of organization:
-#' "branching_order" for branching branching_order, "cylinder" to coloryze each cylinder independently, "segment" to coloryze the branch segments, "axis" to coloryze the axis, "A0" to colorize only the main axis from [Compute_A0()] function
+#' "branching_order" for branching branching_order, "cylinder" to coloryze each cylinder independently, "segment" to coloryze the branch segments, "axis" to coloryze the axis, "A0" to colorize only the main axis from \code{\link{Compute_A0}} function
+#' @param lwd line width of the skeleton
 #' @param transparency The transparency of the cylinders
 #' @param bg The background color
-#' @param show_point_cloud logical (Default = FALSE). Display the point cloud ?
+#' @param show_point_cloud logical (Default = \code{FALSE}). Display the point cloud ?
 #' @include aRchiClass.R
 #' @examples
 #' # Read an aRchi file with at least a QSM
@@ -26,7 +27,10 @@
 #'
 setMethod("plot",
           "aRchi",
-          function(x,transparency=1,color = "white",bg="black",lwd = 3,show_point_cloud = FALSE,skeleton=T){
+          function(x,y,transparency=1,color = "white",bg="black",lwd = 3,show_point_cloud = FALSE,skeleton=T){
+
+            pc_col=startX=endX=endY=startY=startZ=endZ=segment_ID=node_ID=parent_ID=radius=axis_ID=ID_Path=NULL
+
 
             # make sure the data is an aRchi file and contains a QSM
             if(class(x) != "aRchi") stop("The provided data is not of class aRchi")

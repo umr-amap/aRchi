@@ -1,18 +1,18 @@
 #' Compute Leonardo's ratio
 #'
-#' Compute from an object of class aRchi the Leonardo's ratio (R_ratio) at node, axis, branch order or tree level.
+#' Compute from an object of class aRchi the Leonardo's ratio (i.e R_ratio) at node, axis, branch order or tree level.
 #'
 #' @export
 #' @docType methods
 #' @rdname LeonardoRatio
-#' @param aRchi an object of class aRchi with at least a QSM and the Nodes table (see function [Make_Node()])
+#' @param aRchi an object of class aRchi with at least a QSM and the Nodes table (see function \code{\link{Make_Node}})
 #' @param level characters. At which level R_ratio has to be estimated. "Node" for node level, "Axis" for the axis level, "branching_order" for branch order level and "Tree" for tree level (default).
 #' @param position At which position from the node R_ratio had to be estimated. Either a numeric or a character. Use a numeric multiple of ten to select the distance from the node in cm where R ratio has to be estimated (e.g 10 for 10cm from the node). Use the \% sign after a multiple of ten to select the distance from the node in percentage of the length of the parent and daughters segments (e.g "50\%" for an estimation at mid-length of the segments). Note that 0 is accepted and correspond to the closest position from the node.
 #' @return Data.table of the summary of R_ratio for the selected level.
 #' @details
-#' Details for Leonardo Da Vinci's ratio calculation are given in the details part of function [Make_Node()].
+#' Details for Leonardo Da Vinci's ratio calculation are given in the details part of function \code{\link{Make_Node}}.
 #' @include aRchiClass.R
-#' @seealso [Make_Node()] for node metrics estimation; [WBEparameter()] to estimates WBE parameters at different level;
+#' @seealso \code{\link{Make_Node}} for node metrics estimation; \code{\link{WBEparameters}} to estimates WBE parameters at different level;
 #' @include aRchiClass.R
 #' @examples
 #' # Read an aRchifile with a QSM and node tables.
@@ -25,6 +25,9 @@
 setGeneric("LeonardoRatio",
            function(aRchi,level="Tree", position=10){standardGeneric("LeonardoRatio")}
 )
+
+#' @rdname LeonardoRatio
+#' @export
 
 setMethod("LeonardoRatio",
           signature = "aRchi",

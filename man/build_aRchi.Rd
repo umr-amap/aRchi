@@ -2,28 +2,28 @@
 % Please edit documentation in R/build_aRchi.R
 \name{build_aRchi}
 \alias{build_aRchi}
-\title{Read an aRchi file}
+\title{Build a an object of class aRchi}
 \usage{
 build_aRchi(QSM, point_cloud, keep_original = FALSE)
 }
 \arguments{
-\item{QSM}{A data.table obtained from [read_QSM()] function}
+\item{QSM}{A data.table obtained from \code{\link{read_QSM}} function}
 
 \item{point_cloud}{A point cloud. Either a LAS or a data.table with at least three columns with 3d coordinates (i.e X,Y,Z)}
 
 \item{keep_original}{logical (Default = FALSE). Should the original branching order and axis be kept ? Otherwise, it is re-estimated.}
 }
 \description{
-Read an aRchi file
+Build an object of class aRchi
 }
 \examples{
-# Create an empty object of class aRchi
- empty_aRchi=aRchi()
- # Write the aRchi object
-write_aRchi(empty_aRchi,file="my_empty_aRchi_file.aRchi")
-read_aRchi(file = "my_empty_aRchi_file.aRchi")
-
+file_QSM=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
+file_pc=system.file("extdata","Tree_1_point_cloud.las",package = "aRchi")
+QSM=read_QSM(file_QSM,model="treeQSM")
+pc=lidR::readLAS(file_pc)
+# Make an object of class aRchi
+Tree1_aRchi=build_aRchi(QSM=QSM,point_cloud=pc)
 }
 \seealso{
-[write_aRchi()]; [read_aRchi()]
+\code{\link{aRchi}}; \code{\link{write_aRchi}}; \code{\link{read_aRchi}}
 }

@@ -10,6 +10,9 @@
 setGeneric("add_pointcloud",
            function(aRchi,point_cloud){standardGeneric("add_pointcloud")}
 )
+#' @rdname add_pointcloud
+#' @export
+
 
 setMethod("add_pointcloud",
           signature = "aRchi",

@@ -3,16 +3,19 @@
 \docType{methods}
 \name{SelectinQSM_3d}
 \alias{SelectinQSM_3d}
+\alias{SelectinQSM_3d,aRchi-method}
 \title{SelectinQSM_3d}
 \usage{
 SelectinQSM_3d(aRchi, skeleton = T, level = "cylinder")
+
+\S4method{SelectinQSM_3d}{aRchi}(aRchi, skeleton = T, level = "cylinder")
 }
 \arguments{
 \item{aRchi}{An object of class aRchi}
 
-\item{skeleton}{logical. Display the skeleton only. Default is TRUE. Faster than displaying the QSM with the fleshed cylinders.}
+\item{skeleton}{logical. Display the skeleton only. Default is \code{TRUE}. Faster than displaying the QSM with the fleshed cylinders.}
 
-\item{level}{character. "cylinder" (default), "segment", "node", "axis", "branch", "subtree".}
+\item{level}{character. \code{cylinder} (default), \code{segment}, \code{node}, \code{axis}, \code{branch}, \code{subtree}.}
 }
 \value{
 a data.table with the cylinders characteristics at the requested level (i.e sub-part of the original QSM).
@@ -47,8 +50,9 @@ SelectinQSM_3d(Tree1_aRchi,level="branch")
 # Same with the fleshed cylinder and keep the branch QSM in an object
 My_branch=SelectinQSM_3d(Tree1_aRchi,level="branch",skeleton=FALSE)
 My_branch
-# Compute the moment of force (mechanical constrains due to gravity) of all cylinders of a QSM and return the moment of force for a specific cylinder.
+# Compute the moment of force
 Tree1_aRchi=Compute_Mf(Tree1_aRchi,WoodDensity=550)
+#Select a cylinder to return the moment of force at his position
 SelectinQSM_3d(Tree1_aRchi,skeleton=FALSE)
 }
 }

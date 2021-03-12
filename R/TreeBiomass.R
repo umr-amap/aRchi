@@ -6,8 +6,8 @@
 #' @docType methods
 #' @rdname TreeBiomass
 #' @param aRchi an object of class aRchi with at least a QSM
-#' @param WoodDensity a numeric or a data.table. A single wood density value for the whole tree or one value per cylinder in kg/m3. If wood density is given for each cylinder a data.table with two column (i.e cyl_ID and WoodDensity) must be given. T
-#' @param level character. The level at which the wood biomass is computed. "Tree", "branching_order" or "Axis".
+#' @param WoodDensity a numeric or a data.table. A single wood density value for the whole tree or one value per cylinder in kg/m3. If wood density is given for each cylinder a data.table with two column (i.e cyl_ID and WoodDensity) must be given.
+#' @param level character. The level at which the wood biomass is computed. \code{Tree}, \code{branching_order} or \code{Axis}.
 #' @return a numeric or data.table. The wood biomass in Kg at the requested level
 #' @include aRchiClass.R
 #' @examples
@@ -21,11 +21,14 @@ setGeneric("TreeBiomass",
            function(aRchi,WoodDensity,level="Tree"){standardGeneric("TreeBiomass")}
 )
 
+#' @rdname TreeBiomass
+#' @export
+#'
 setMethod("TreeBiomass",
           signature = "aRchi",
 
           function(aRchi,WoodDensity=NULL,level){
-            Biomass=axis_ID=NULL
+            Biomass=axis_ID=.=NULL
 
 
             if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")

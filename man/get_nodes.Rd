@@ -3,9 +3,12 @@
 \docType{methods}
 \name{get_nodes}
 \alias{get_nodes}
+\alias{get_nodes,aRchi-method}
 \title{Get the nodes from an object of class aRchi}
 \usage{
 get_nodes(aRchi)
+
+\S4method{get_nodes}{aRchi}(aRchi)
 }
 \arguments{
 \item{aRchi}{The object of class aRchi}
@@ -23,5 +26,5 @@ get_nodes(Tree1_aRchi)
 
 }
 \seealso{
-[get_QSM()]; [get_pointcloud()]; [get_paths()];
+\code{\link{get_QSM}}; \code{\link{get_pointcloud}}; \code{\link{get_paths}}
 }
