@@ -1,13 +1,14 @@
 Package: aRchi
 Type: Package
 Title: QSM treatment for tree architecture
-Version: 0.1.0
+Version: 1.0.0
 Author: Olivier Martin
 Maintainer: Olivier Martin <oli.martin@ntymail.com>
 Description: A package allowing tree architecture, biomass distribution or biomechanical metrics quantification using "Quantitative Structural Model" coming for terrestrial laser scanning (TLS) data. Two QSM format are accepted: TreeQSM and simpletree/simpleforest.
 License: CeCILL
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/umr-amap/aRchi
 RoxygenNote: 7.1.1
 Imports: 
     data.table,
