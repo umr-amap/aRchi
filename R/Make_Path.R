@@ -18,6 +18,7 @@
 #'
 #' @include aRchiClass.R
 #' @examples
+#' \dontrun{
 #' # Read a QSM file
 #' file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 #' QSM=read_QSM(file,model="treeQSM")
@@ -28,6 +29,7 @@
 #' Tree1_aRchi<-Make_Path(Tree1_aRchi)
 #' Tree1_aRchi
 #' PathFraction(Tree1_aRchi)
+#' }
 
 
 setGeneric("Make_Path",

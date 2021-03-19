@@ -24,13 +24,14 @@
 #'
 #' @include aRchiClass.R
 #' @examples
+#' \dontrun{
 #' # Read an aRchi file with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
 #' # Compute the branch angle at various level
 #' BranchAngle(Tree1_aRchi,method="SegmentAngle")
 #' BranchAngle(Tree1_aRchi,level="branching_order",method="SegmentAngle",A0=TRUE)
-#'
+#'}
 setGeneric("BranchAngle",
 function(aRchi,method=NULL,A0=FALSE,level="Tree"){standardGeneric("BranchAngle")}
 )

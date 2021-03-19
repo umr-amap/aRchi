@@ -27,6 +27,7 @@ This function fill the slot Paths of an object of class aRchi with a data.table 
 Many function of the aRchi packages request a path table (check see also).
 }
 \examples{
+\dontrun{
 # Read a QSM file
 file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 QSM=read_QSM(file,model="treeQSM")
@@ -37,6 +38,7 @@ Tree1_aRchi
 Tree1_aRchi<-Make_Path(Tree1_aRchi)
 Tree1_aRchi
 PathFraction(Tree1_aRchi)
+}
 }
 \seealso{
 \code{\link{BranchAngle}};\code{\link{Truncate_QSM}}; \code{\link{Clean_QSM}}; \code{\link{ForkRate}}; \code{\link{PathFraction}}

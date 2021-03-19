@@ -13,11 +13,13 @@
 #' @details The threshold is applied to a whole segments. In other word, if a segment has at least one cylinder lower than the threshold it is removed as well as everything upstream (except the direct daughters if \code{Keepdaughters=TRUE}).
 #' @seealso \code{\link{Clean_QSM}} to clean a QSM of an object aRchi.
 #' @examples
+#' \dontrun{
 #' # Read an aRchifile with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
 #' # Truncate the QSM: 5cm radius threshold
 #' Truncated_Tree1_aRchi=Truncate_QSM(Tree1_aRchi,plotresult = TRUE,threshold = 0.05)
+#' }
 #' @include aRchiClass.R
 setGeneric("Truncate_QSM",
            function(aRchi,threshold=NULL,Keepdaughters=F,plotresult=F){standardGeneric("Truncate_QSM")}
@@ -137,6 +139,7 @@ setMethod("Truncate_QSM",
               rest_of_QSM=QSM[!cyl_ID%in%cyl_ID_subSample_tree]
               ls_cyl=plyr::alply(rest_of_QSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
               rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=T,lit=T) # plot the list
+              rgl::bbox3d(color="white")
 
             }
             aRchi@operations$Truncate_QSM=c(threshold=threshold,Keepdaughters=Keepdaughters)

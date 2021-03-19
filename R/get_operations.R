@@ -7,6 +7,7 @@
 #' @include aRchiClass.R
 #' @seealso \code{\link{get_QSM}}; \code{\link{get_pointcloud}}; \code{\link{get_paths}}
 #' @examples
+#' \dontrun{
 #' # Read an aRchi file with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
@@ -19,7 +20,7 @@
 #'
 #' # Show the oprations and their parameters
 #' get_operations(Tree1_aRchi)
-#'
+#'}
 setGeneric("get_operations",
            function(aRchi){standardGeneric("get_operations")}
 )

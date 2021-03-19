@@ -17,6 +17,7 @@
 #' @param show_point_cloud logical (Default = \code{FALSE}). Display the point cloud ?
 #' @include aRchiClass.R
 #' @examples
+#' \dontrun{
 #' # Read an aRchi file with at least a QSM
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
@@ -24,7 +25,7 @@
 #' plot(Tree1_aRchi,color="branching_order")
 #' # Same with the fleshed cylinder and the point cloud
 #' plot(Tree1_aRchi,color="branching_order",skeleton=FALSE,show_point_cloud=TRUE)
-#'
+#'}
 setMethod("plot",
           "aRchi",
           function(x,y,transparency=1,color = "white",bg="black",lwd = 3,show_point_cloud = FALSE,skeleton=T){
@@ -71,6 +72,7 @@ setMethod("plot",
               }
 
               rgl::segments3d(dat_plot,lwd=lwd,col=col,add=T)
+              rgl::bbox3d(color="white")
             }
             if(skeleton==F){
             QSM=x@QSM
@@ -96,6 +98,7 @@ setMethod("plot",
               lidR::plot(pc,bg=bg,colorPalette=bg,size=0,clear_artifacts=F)
             }
             rgl::shapelist3d(ls_cyl,color=col,alpha=transparency,add=T,lit=T) # plot the list
+            rgl::bbox3d(color="white")
             }
           }
 )

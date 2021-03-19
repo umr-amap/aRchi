@@ -1,10 +1,10 @@
 Package: aRchi
 Type: Package
-Title: QSM treatment for tree architecture
+Title: Quantitative Structural Model ('QSM') Treatment for Tree Architecture
 Version: 1.0.1
 Author: Olivier Martin
 Maintainer: Olivier Martin <oli.martin@ntymail.com>
-Description: The aRchi package provides a set of tools to manipulate, visualize and compute metrics from quantitative structural model of trees (i.e the so-called QSM) . It can be used in various context of forest ecology (i.e biomass estimation) and tree architecture (i.e architectural metrics). The package is based on a new S4 class called aRchi.
+Description: The 'aRchi' package provides a set of tools to manipulate, visualize and compute metrics from quantitative structural model of trees (i.e the so-called 'QSM') . It can be used in various context of forest ecology (i.e biomass estimation) and tree architecture (i.e architectural metrics). The package is based on a new S4 class called 'aRchi'.
 License: CeCILL
 Encoding: UTF-8
 LazyData: true

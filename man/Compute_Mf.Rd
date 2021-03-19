@@ -30,6 +30,7 @@ The mass of the cylinders are needed to calculate the center of mass and are est
 The moment of gravity force relative (i.e \code{Mf_r}) to cylinder radius r is also computed following the formula: Mf_r = Mf/r^3
 }
 \examples{
+\dontrun{
 # Read an aRchi file with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
@@ -39,5 +40,6 @@ Tree1_aRchi=Compute_Mf(Tree1_aRchi,WoodDensity=550)
 
 # show the QSM data.table with the three new columns sub_tree_biomass, MF and Mf_r)
 get_QSM(Tree1_aRchi)
+}
 
 }

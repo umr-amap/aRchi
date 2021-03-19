@@ -13,6 +13,7 @@
 #' @seealso \code{\link{ForkRate}} to compute the fork rate; \code{\link{Truncate_QSM}} to truncate a QSM at a specific diameter threshold
 #' @include aRchiClass.R
 #' @examples
+#' \dontrun{
 #' # Read an aRchi file with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
@@ -20,7 +21,7 @@
 #' Cleaned_Tree1_aRchi=Clean_QSM(Tree1_aRchi,threshold = 0.5,plotresult = TRUE)
 #' # show the cleaned QSM data.table
 #' get_QSM(Cleaned_Tree1_aRchi)
-#'
+#'}
 setGeneric("Clean_QSM",
            function(aRchi,threshold=NULL,plotresult=F){standardGeneric("Clean_QSM")}
 )
@@ -110,7 +111,7 @@ setMethod("Clean_QSM",
               lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=F)
 
               ls_cyl=plyr::alply(cleanedQSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
-              rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=T,lit=T) # plot the list
+              rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=T,lit=T,show.bbox=T) # plot the list
 
               rest_of_QSM=QSM[!segment_ID%in%Perenial_structure_table$segment_ID]
               if(nrow(rest_of_QSM)==0){
@@ -119,7 +120,7 @@ setMethod("Clean_QSM",
               }
               ls_cyl=plyr::alply(rest_of_QSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
               rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=T,lit=T) # plot the list
-
+              rgl::bbox3d(color="white")
             }
             aRchi@operations$Clean_QSM = c(threshold = threshold)
             return(aRchi)

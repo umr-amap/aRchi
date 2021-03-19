@@ -17,6 +17,9 @@ a list containing a data.table with the QSM and a character with the model name.
 \description{
 Read a QSM file generated with treeQSM, simpletree, simpleforest or pypetree.
 }
+\details{
+For \code{treeQSM} model, please respect the format with column order provided in the last version <https://github.com/InverseTampere/TreeQSM/blob/master/README.md>
+}
 \examples{
 file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 QSM=read_QSM(file,model="treeQSM")

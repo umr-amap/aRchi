@@ -17,6 +17,7 @@ get_operations(aRchi)
 Show a list with all the operations (and their parameters) that have been performed on an object of class aRchi
 }
 \examples{
+\dontrun{
 # Read an aRchi file with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
@@ -29,7 +30,7 @@ Tree1_aRchi=Clean_QSM(Tree1_aRchi,threshold = 0.5)
 
 # Show the oprations and their parameters
 get_operations(Tree1_aRchi)
-
+}
 }
 \seealso{
 \code{\link{get_QSM}}; \code{\link{get_pointcloud}}; \code{\link{get_paths}}

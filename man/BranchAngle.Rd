@@ -33,13 +33,14 @@ The method "King98" compute the angle by considering the first and the last cyli
 The main axis is always removed.
 }
 \examples{
+\dontrun{
 # Read an aRchi file with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
 # Compute the branch angle at various level
 BranchAngle(Tree1_aRchi,method="SegmentAngle")
 BranchAngle(Tree1_aRchi,level="branching_order",method="SegmentAngle",A0=TRUE)
-
+}
 }
 \references{
 Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree architecture with increasingly dominant crown canopy position. Functional Ecology (2020).

@@ -27,6 +27,7 @@ Cleans the QSM in an object of class \code{aRchi} by removing branches that have
 This cleaning is done by browsing the tree QSM from the base to the top. Each time a ramification point is encountered a daughter branch is removed if its radius is lower than a selected (i.e \code{threshold}) proportion of radius of the largest daughter. This allows removing small branches on large branches that can be for example traumatic or epicormic shoots or false branches due to noise in QSM. In \code{\link{ForkRate}} function the same approach is used with a \code{threshold} of 75% (i.e 0.75) to count the number of fork and compute the fork rate.
 }
 \examples{
+\dontrun{
 # Read an aRchi file with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
@@ -34,7 +35,7 @@ Tree1_aRchi=read_aRchi(file)
 Cleaned_Tree1_aRchi=Clean_QSM(Tree1_aRchi,threshold = 0.5,plotresult = TRUE)
 # show the cleaned QSM data.table
 get_QSM(Cleaned_Tree1_aRchi)
-
+}
 }
 \seealso{
 \code{\link{ForkRate}} to compute the fork rate; \code{\link{Truncate_QSM}} to truncate a QSM at a specific diameter threshold

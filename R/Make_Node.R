@@ -29,6 +29,7 @@
 #' @seealso \code{\link{WBEparameters}} to estimates WBE parameters at different level; \code{\link{LeonardoRatio}} to estimates Leonardo Da Vinci's ratio  at different level.
 #' @include aRchiClass.R
 #' @examples
+#' \dontrun{
 #' # Read a QSM file
 #' file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 #' QSM=read_QSM(file,model="treeQSM")
@@ -40,6 +41,7 @@
 #' Tree1_aRchi
 #' # WBE parameters at the tree level
 #' LeonardoRatio(Tree1_aRchi)
+#' }
 #'
 setGeneric("Make_Node",
            function(aRchi,all_combination=F){standardGeneric("Make_Node")}
@@ -106,9 +108,9 @@ setMethod("Make_Node",
                   if(it>10000) stop("kriging model for diameter estimation at absolute position did not converge.")
                   lower=0.20
                   if(all(tab_Krig$x<0.20)){lower=0}
-                  sink(paste0(tempdir(),"\\sink-examp.txt"))
-                  model <- try(model <- DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig$x), response=data.frame(y=tab_Krig$y),covtype="matern5_2",lower=lower),silent=T)
-                  sink()
+                   sink(paste0(tempdir(),"\\sink-examp.txt"))
+                  try(model <- pkgcond::suppress_messages(DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig$x), response=data.frame(y=tab_Krig$y),covtype="matern5_2",lower=lower)),silent=T)
+                   sink()
                 }
 
                 # Absolute distance from the node
@@ -155,9 +157,9 @@ setMethod("Make_Node",
                 if(it>10000) stop("kriging model for diameter estimation at regular position did not converge.")
                 lower=0.20
                 if(all(tab_Krig_par$x<0.20)){lower=0}
-                sink(paste0(tempdir(),"\\sink-examp.txt"))
-                model <- try(model<-DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig_par$x), response=data.frame(y=tab_Krig_par$y),covtype="matern5_2",lower=lower),silent=T)
-                sink()
+                 sink(paste0(tempdir(),"\\sink-examp.txt"))
+                 try(model<-pkgcond::suppress_messages(DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig_par$x), response=data.frame(y=tab_Krig_par$y),covtype="matern5_2",lower=lower)),silent=T)
+                 sink()
               }
 
 

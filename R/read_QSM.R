@@ -5,6 +5,8 @@
 #' @param model \code{treeQSM}, \code{simpletree}, \code{simpleforest} or \code{pypetree} depending on the algorithm used to generate the QSM
 #' @return  a list containing a data.table with the QSM and a character with the model name. This list can be used to build an aRchi object (see function \code{\link{build_aRchi}})
 #' @seealso \code{\link{aRchi}} the aRchi class;\code{\link{build_aRchi}} to build an object of class \code{aRchi}
+#' @details
+#' For \code{treeQSM} model, please respect the format with column order provided in the last version <https://github.com/InverseTampere/TreeQSM/blob/master/README.md>
 #' @include aRchiClass.R
 #' @examples
 #' file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
@@ -176,7 +178,7 @@ read_QSM=function(file,model){
       rad1 = NULL,
       rad2 = NULL
     )]
-    out=list(out,model)
+    out=list(QSM=out,model=model)
   }
 
   if(model == "simpletree"){
@@ -200,7 +202,7 @@ read_QSM=function(file,model){
 
     warning("Using the SimpleTree axis_ID might lead to problems when using the
           functions of the aRchi package")
-    out=list(out,model)
+    out=list(QSM=out,model=model)
 
   }
 
@@ -225,8 +227,8 @@ read_QSM=function(file,model){
 
     warning("Using the SimpleTree axis_ID might lead to problems when using the
           functions of the aRchi package")
-    out=list(out,model)
 
+    out=list(QSM=out,model=model)
   }
   return(out)
 }

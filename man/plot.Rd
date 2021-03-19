@@ -41,6 +41,7 @@ Plot an object of class aRchi.
 Plot an object of class aRchi in a 3d device. The QSM can be plotted according to different level of organization and the point cloud can be displayed if available.
 }
 \examples{
+\dontrun{
 # Read an aRchi file with at least a QSM
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
@@ -48,5 +49,5 @@ Tree1_aRchi=read_aRchi(file)
 plot(Tree1_aRchi,color="branching_order")
 # Same with the fleshed cylinder and the point cloud
 plot(Tree1_aRchi,color="branching_order",skeleton=FALSE,show_point_cloud=TRUE)
-
+}
 }

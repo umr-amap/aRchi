@@ -21,6 +21,7 @@
 #' @include aRchiClass.R
 #'
 #' @examples
+#' \dontrun{
 #' # Read an aRchi file with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
@@ -30,6 +31,7 @@
 #'
 #' # show the QSM data.table with the three new columns sub_tree_biomass, MF and Mf_r)
 #' get_QSM(Tree1_aRchi)
+#' }
 #'
 setGeneric("Compute_Mf",
            function(aRchi,WoodDensity){standardGeneric("Compute_Mf")}

@@ -24,12 +24,13 @@
 #' @include aRchiClass.R
 #'
 #' @examples
+#' \dontrun{
 #' # Read an aRchi file with at least the QSM and the paths table
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
 #'
 #' Tree1_aRchi=Compute_A0(Tree1_aRchi,plotresult=TRUE)
-#'
+#'}
 setGeneric("Compute_A0",
 function(aRchi,plotresult=FALSE){standardGeneric("Compute_A0")}
 )
@@ -112,6 +113,7 @@ setMethod("Compute_A0",
 
               ls_cyl=plyr::alply(QSM[A0==1],1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
               rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=T,lit=T) # plot the list
+              rgl::bbox3d(color="white")
 
             }
 

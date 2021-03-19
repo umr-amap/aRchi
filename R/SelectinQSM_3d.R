@@ -78,6 +78,7 @@ setMethod("SelectinQSM_3d",
               pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
               lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=F)
               ifelse(skeleton,rgl::segments3d(dat_plot,lwd=3,col="white",add=T), rgl::shapelist3d(dat_plot,color="white",alpha=1,add=T,lit=T))
+              rgl::bbox3d(color="white")
               valid=gtools::ask("Find and Zoom into the zone of interest, then, hit Enter:\n")
               cat("Now select the zone of interest by drawing a rectangle.\n")
               f <- rgl::select3d()
@@ -133,6 +134,7 @@ setMethod("SelectinQSM_3d",
                   rgl::clear3d()
                   rgl::segments3d(ls_keep,lwd=3,col="red",add=T)
                   rgl::segments3d(ls_noKeep,lwd=3,col="white",add=T)
+                  rgl::bbox3d()
 
                 }
                 if (skeleton==F){
@@ -172,8 +174,11 @@ setMethod("SelectinQSM_3d",
 
                   rgl::clear3d()
                   rgl::shapelist3d(ls_keep,color="red",alpha=1,add=T,lit=T)
+
                   if(length(ls_noKeep)!=0){
                   rgl::shapelist3d(ls_noKeep,color="white",alpha=1,add=T,lit=T)}
+                  rgl::bbox3d()
+
                 }
 
               }
