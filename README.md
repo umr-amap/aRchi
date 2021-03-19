@@ -42,8 +42,7 @@ organization such as branch order, segment or cylinder can be colorized.
 
 3d plot with Branch order colorized or the QSM with point cloud:
 
-<img width="30%" src="141_plot_branch_order.JPG"/>
-<img width="30%" src="141_plot_pc.JPG"/>
+<img width="50%" src="141_plot_branch_order_pc.JPG"/>
 
 Some function allows modifying the QSM (e.g *cleanQSM()*,
 *TruncateQSM()*) and propose a visualization of the results.
@@ -65,8 +64,7 @@ the cylinders/segments/node… selected.
 Select a part of the QSM by following *selectinQSM\_3d()* function
 instruction:
 
-<img width="30%" src="select_in3d_1.JPG"/>
-<img width="30%" src="select_in3d_2.JPG"/>
+<img width="50%" src="selectin3d.jpg"/>
 
 All the characteristics of the selected part are returns:
 
