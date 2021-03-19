@@ -38,14 +38,15 @@ It is possible to visualize the QSM with or without the point cloud and showing 
 
 3d plot with Branch order colorized or the QSM with point cloud:
 
-<img width="40%" src="141_plot_branch_order.JPG"/>
-<img width="40%" src="141_plot_pc.JPG"/>
+<img width="30%" src="141_plot_branch_order.JPG"/>
+<img width="30%" src="141_plot_pc.JPG"/>
 
 
 Some function allows modifying the QSM (e.g *cleanQSM()*, *TruncateQSM()*) and propose a visualization of the results.
 
 
 The kept part in red and the removed part in white obtained with *TruncateQSM()*:
+
 <img width="40%" src="141_truncate_QSM.JPG"/>
 
 It is also possible to select a part of the QSM in a 3D interactive window by following the instruction of the function *selectinQSM_3d()*. It allows selecting different level of organization (cylinder, branch, segment, node....) and return a table of the selected part of the QSM with all the informations available. For example, If the biomass and mechanical constrains have been computed using *Compute_mf()* function, the returned table will contains the biomass and moment of force of all the cylinders/segments/node... selected.
@@ -53,8 +54,8 @@ It is also possible to select a part of the QSM in a 3D interactive window by fo
 
 Select a part of the QSM by following *selectinQSM_3d()* function instruction:
 
-<img width="40%" src="select_in3d_1.JPG"/>
-<img width="40%" src="select_in3d_2.JPG"/>
+<img width="30%" src="select_in3d_1.JPG"/>
+<img width="30%" src="select_in3d_2.JPG"/>
 
 
 All the characteristics of the selected part are returns:
