@@ -42,8 +42,8 @@ organization such as branch order, segment or cylinder can be colorized.
 
 3d plot with Branch order colorized or the QSM with point cloud:
 
-<img width="45%" src="141_plot_branch_order.JPG"/>
-<img width="45%" src="141_plot_pc.JPG"/>
+<img width="40%" src="141_plot_branch_order.JPG"/>
+<img width="40%" src="141_plot_pc.JPG"/>
 
 Some function allows modifying the QSM (e.g *cleanQSM()*,
 *TruncateQSM()*) and propose a visualization of the results.
@@ -61,10 +61,13 @@ the returned table will contains the biomass and moment of force of all
 the cylinders/segments/node… selected.
 
 Select a part of the QSM by following *selectinQSM\_3d()* function
-instruction: <img width="40%" src="select_in3d_1.JPG"/>
+instruction:
+
+<img width="40%" src="select_in3d_1.JPG"/>
 <img width="40%" src="select_in3d_2.JPG"/>
 
 All the characteristics of the selected part are returns:
+
 <img width="100%" src="select_in3d_3.JPG"/>
 
 For more information on some metrics such as WBE parameters
