@@ -2,8 +2,8 @@
 ^\.Rproj\.user$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
-^README.Rmd$
-^select_in3d_3$
-^selectin3d.jpg$
-^141_truncate_QSM.JPG$
-^141_plot_branch_order_pc.JPG$
+^README.Rmd
+^select_in3d_3
+^selectin3d.jpg
+^141_truncate_QSM.JPG
+^141_plot_branch_order_pc.JPG
