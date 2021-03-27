@@ -88,9 +88,9 @@ setMethod("DAI",
             # relative path height
             Identification_trunk_table$H_path_rel=Identification_trunk_table$H_path/max_H_path
             # A1 index (added) per path
-            Index_A1_add=data.table::data.table(plyr::ddply(Identification_trunk_table,("ID_Path"),function(x){mean(x$AS_angle+x$AS_diam+x$vert_angle+x$H_path_rel,na.rm=T)}))
+            Index_A1_add=data.table::data.table(plyr::ddply(Identification_trunk_table,("ID_Path"),function(x){mean(x$AS_angle+x$AS_diam+x$vert_angle+x$H_path_rel,na.rm=TRUE)}))
             # A1 index (multiplied) per path
-            Index_A1_mult=data.table::data.table(plyr::ddply(Identification_trunk_table,("ID_Path"),function(x){mean(x$AS_angle*x$AS_diam*x$vert_angle*x$H_path_rel,na.rm=T)}))
+            Index_A1_mult=data.table::data.table(plyr::ddply(Identification_trunk_table,("ID_Path"),function(x){mean(x$AS_angle*x$AS_diam*x$vert_angle*x$H_path_rel,na.rm=TRUE)}))
 
             # Index of dominacne of the principal axis.
             DA=max(Index_A1_add$V1)-mean(Index_A1_add$V1)

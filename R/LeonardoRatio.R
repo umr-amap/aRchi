@@ -6,8 +6,8 @@
 #' @docType methods
 #' @rdname LeonardoRatio
 #' @param aRchi an object of class aRchi with at least a QSM and the Nodes table (see function \code{\link{Make_Node}})
-#' @param level characters. At which level R_ratio has to be estimated. "Node" for node level, "Axis" for the axis level, "branching_order" for branch order level and "Tree" for tree level (default).
-#' @param position At which position from the node R_ratio had to be estimated. Either a numeric or a character. Use a numeric multiple of ten to select the distance from the node in cm where R ratio has to be estimated (e.g 10 for 10cm from the node). Use the \% sign after a multiple of ten to select the distance from the node in percentage of the length of the parent and daughters segments (e.g "50\%" for an estimation at mid-length of the segments). Note that 0 is accepted and correspond to the closest position from the node.
+#' @param level characters. At which level R_ratio has to be estimated. \code{Node} for node level, \code{Axis} for the axis level, \code{branching_orde} for branch order level and \code{Tree} for tree level (default).
+#' @param position At which position from the node R_ratio had to be estimated. Either a numeric or a character. Use a numeric multiple of ten to select the distance from the node in cm where R ratio has to be estimated (e.g 10 for 10cm from the node). Use the \% sign after a multiple of ten to select the distance from the node in percentage of the length of the parent and daughters segments (e.g 50\% for an estimation at mid-length of the segments). Note that 0 is accepted and correspond to the closest position from the node.
 #' @return Data.table of the summary of R_ratio for the selected level.
 #' @details
 #' Details for Leonardo Da Vinci's ratio calculation are given in the details part of function \code{\link{Make_Node}}.
@@ -38,7 +38,7 @@ setMethod("LeonardoRatio",
             if(is.null(aRchi@Nodes)) stop("The archi file does not contains node tables. Please use the MakeNode function")
             test_position=as.numeric(stringr::str_extract_all(position, "\\d+"))
             if((test_position/10)%%1!=0) stop("position should be a multiple of 10 (e.g 10) or a multiple of 10 and a % sign (e.g 50%)")
-            if(level %in% c("Tree","branching_order","Node","Axis")==F) stop("Incorrect level argument")
+            if(level %in% c("Tree","branching_order","Node","Axis")==FALSE) stop("Incorrect level argument")
             if(is.numeric(position)){
               NodeTable=aRchi@Nodes$Absolute_positions
             }else{
@@ -53,13 +53,13 @@ setMethod("LeonardoRatio",
             }
 
             if(level=="Axis"){
-              summary_table=plyr::ddply(aRchi@QSM[node_ID%in%NodeTable_pos$node_ID],("axis_ID"),function(x){cbind(t(as.matrix(summary(NodeTable_pos[node_ID%in%unique(x$node_ID)]$R_ratio))),N_node=length(unique(x$node_ID)))})
+              summary_table=plyr::ddply(aRchi@QSM[node_ID%in%NodeTable_pos$node_ID],("axis_ID"),function(x){cbind(TRUE(as.matrix(summary(NodeTable_pos[node_ID%in%unique(x$node_ID)]$R_ratio))),N_node=length(unique(x$node_ID)))})
               return(data.table::data.table(summary_table))
             }
 
 
             if(level=="branching_order"){
-              summary_table=plyr::ddply(aRchi@QSM[node_ID%in%NodeTable_pos$node_ID],("branching_order"),function(x){cbind(t(as.matrix(summary(NodeTable_pos[node_ID%in%unique(x$node_ID)]$R_ratio))),N_node=length(unique(x$node_ID)))})
+              summary_table=plyr::ddply(aRchi@QSM[node_ID%in%NodeTable_pos$node_ID],("branching_order"),function(x){cbind(TRUE(as.matrix(summary(NodeTable_pos[node_ID%in%unique(x$node_ID)]$R_ratio))),N_node=length(unique(x$node_ID)))})
               return(data.table::data.table(summary_table))
             }
 

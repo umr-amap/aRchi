@@ -16,7 +16,7 @@
 #'
 #' The new column A0 of the QSM slot take the value 2 if the cylinder is part of the principal axis or 1 if not.
 #'
-#' #'@references
+#' @references
 #'
 #' 	Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree architecture with increasingly dominant crown canopy position. Functional Ecology (2020).
 #'
@@ -92,9 +92,9 @@ setMethod("Compute_A0",
             # relative path height
             Identification_trunk_table$H_path_rel=Identification_trunk_table$H_path/max_H_path
             # A0 index (added) per path
-            Index_A1_add=data.table::data.table(plyr::ddply(Identification_trunk_table,("ID_Path"),function(x){mean(x$AS_angle+x$AS_diam+x$vert_angle+x$H_path_rel,na.rm=T)}))
+            Index_A1_add=data.table::data.table(plyr::ddply(Identification_trunk_table,("ID_Path"),function(x){mean(x$AS_angle+x$AS_diam+x$vert_angle+x$H_path_rel,na.rm=TRUE)}))
             # A0 index (multiplied) per path
-            Index_A1_mult=data.table::data.table(plyr::ddply(Identification_trunk_table,("ID_Path"),function(x){mean(x$AS_angle*x$AS_diam*x$vert_angle*x$H_path_rel,na.rm=T)}))
+            Index_A1_mult=data.table::data.table(plyr::ddply(Identification_trunk_table,("ID_Path"),function(x){mean(x$AS_angle*x$AS_diam*x$vert_angle*x$H_path_rel,na.rm=TRUE)}))
 
             # A0 cylinder ID
             A1_cyl_ID=Paths[ID_Path==Index_A1_add[V1==max(V1)]$ID_Path]$cyl_ID
@@ -106,13 +106,13 @@ setMethod("Compute_A0",
             if(plotresult){
 
               pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=F)
+              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE)
 
               ls_cyl=plyr::alply(QSM[A0==2],1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
-              rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=T,lit=T) # plot the list
+              rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=TRUE,lit=TRUE) # plot the list
 
               ls_cyl=plyr::alply(QSM[A0==1],1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
-              rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=T,lit=T) # plot the list
+              rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=TRUE,lit=TRUE) # plot the list
               rgl::bbox3d(color="white")
 
             }

@@ -6,9 +6,9 @@
 \alias{SelectinQSM_3d,aRchi-method}
 \title{SelectinQSM_3d}
 \usage{
-SelectinQSM_3d(aRchi, skeleton = T, level = "cylinder")
+SelectinQSM_3d(aRchi, skeleton = TRUE, level = "cylinder")
 
-\S4method{SelectinQSM_3d}{aRchi}(aRchi, skeleton = T, level = "cylinder")
+\S4method{SelectinQSM_3d}{aRchi}(aRchi, skeleton = TRUE, level = "cylinder")
 }
 \arguments{
 \item{aRchi}{An object of class aRchi}

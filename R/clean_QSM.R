@@ -9,7 +9,7 @@
 #' @param threshold numeric. The proportion of the largest daughter diameter (between 0 and 1) under which a branch is removed.
 #' @param plotresult logical (default = FALSE). Show the results in a 3d plot if \code{TRUE}
 #' @return An object of class \code{aRchi} with the cleaned QSM.
-#' @details This cleaning is done by browsing the tree QSM from the base to the top. Each time a ramification point is encountered a daughter branch is removed if its radius is lower than a selected (i.e \code{threshold}) proportion of radius of the largest daughter. This allows removing small branches on large branches that can be for example traumatic or epicormic shoots or false branches due to noise in QSM. In \code{\link{ForkRate}} function the same approach is used with a \code{threshold} of 75% (i.e 0.75) to count the number of fork and compute the fork rate.
+#' @details This cleaning is done by browsing the tree QSM from the base to the top. Each time a ramification point is encountered a daughter branch is removed if its radius is lower than a selected (i.e \code{threshold}) proportion of radius of the largest daughter. This allows removing small branches on large branches that can be for example traumatic or epicormic shoots or false branches due to noise in QSM. In \code{\link{ForkRate}} function the same approach is used with a \code{threshold} of 75\% (i.e 0.75) to count the number of fork and compute the fork rate.
 #' @seealso \code{\link{ForkRate}} to compute the fork rate; \code{\link{Truncate_QSM}} to truncate a QSM at a specific diameter threshold
 #' @include aRchiClass.R
 #' @examples
@@ -17,13 +17,13 @@
 #' # Read an aRchi file with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
-#' # Clean the QSM: threshold of 50%
+#' # Clean the QSM: threshold of 0.5
 #' Cleaned_Tree1_aRchi=Clean_QSM(Tree1_aRchi,threshold = 0.5,plotresult = TRUE)
 #' # show the cleaned QSM data.table
 #' get_QSM(Cleaned_Tree1_aRchi)
 #'}
 setGeneric("Clean_QSM",
-           function(aRchi,threshold=NULL,plotresult=F){standardGeneric("Clean_QSM")}
+           function(aRchi,threshold=NULL,plotresult=FALSE){standardGeneric("Clean_QSM")}
 )
 
 #' @rdname Clean_QSM
@@ -93,12 +93,12 @@ setMethod("Clean_QSM",
 
             }
             # Remove sub_treebiomass Mf and Mf_r from QSM because they are obsolete with the new QSM
-            if(is.null(cleanedQSM$Mf)==F){cleanedQSM=cleanedQSM[,-c("sub_tree_biomass","Mf","Mf_r")]}
+            if(is.null(cleanedQSM$Mf)==FALSE){cleanedQSM=cleanedQSM[,-c("sub_tree_biomass","Mf","Mf_r")]}
 
             aRchi@QSM=cleanedQSM
             aRchi=Make_Path(aRchi)
             message("\nPaths table has been re-estimated according to the new cleaned QSM")
-            if(is.null(aRchi@Nodes)==F){
+            if(is.null(aRchi@Nodes)==FALSE){
               Make_Node(aRchi)
 
               message("\nNodes table has been re-estimated according to the new cleaned QSM")
@@ -108,10 +108,10 @@ setMethod("Clean_QSM",
             if(plotresult){
 
               pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=F)
+              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE)
 
               ls_cyl=plyr::alply(cleanedQSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
-              rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=T,lit=T,show.bbox=T) # plot the list
+              rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=TRUE,lit=TRUE,show.bbox=TRUE) # plot the list
 
               rest_of_QSM=QSM[!segment_ID%in%Perenial_structure_table$segment_ID]
               if(nrow(rest_of_QSM)==0){
@@ -119,7 +119,7 @@ setMethod("Clean_QSM",
                 return(aRchi)
               }
               ls_cyl=plyr::alply(rest_of_QSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
-              rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=T,lit=T) # plot the list
+              rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=TRUE,lit=TRUE) # plot the list
               rgl::bbox3d(color="white")
             }
             aRchi@operations$Clean_QSM = c(threshold = threshold)

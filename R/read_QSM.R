@@ -49,12 +49,12 @@ read_QSM=function(file,model){
     segment_ID=rep(max(data$cyl_ID),nrow(data))
     Node_ID=rep(0,nrow(data))
     data=cbind(data,segment_ID,Node_ID)
-    print("This data is only a trunk: no ramification")
+    message("This data is only a trunk: no ramification")
     return(data)
   } # In case of only one branch = a trunk.
   if(nrow(sub_table_cyl_error)!=0){
 
-    sub_table_cyl_error_no_dup=sub_table_cyl_error[duplicated(sub_table_cyl_error$parent_ID)==F] # same table but only one child branch is selected when two or more children (the first one)
+    sub_table_cyl_error_no_dup=sub_table_cyl_error[duplicated(sub_table_cyl_error$parent_ID)==FALSE] # same table but only one child branch is selected when two or more children (the first one)
     data[extension_ID==0][cyl_ID%in%data$parent_ID]$extension_ID=sub_table_cyl_error_no_dup$cyl_ID # correction of the problem by assigning the good extension ID to the parent
 
     branch_ID_to_replace=sub_table_cyl_error_no_dup$branch_ID # This vector is the branch ID that should not exist as they follow a branch without any ramification. This second problem comes directly from the same treeQSM incoherence deteted and corrected above

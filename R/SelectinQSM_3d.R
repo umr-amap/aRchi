@@ -42,7 +42,7 @@
 #'}
 #' @include aRchiClass.R
 setGeneric("SelectinQSM_3d",
-           function(aRchi,skeleton=T,level="cylinder"){standardGeneric("SelectinQSM_3d")}
+           function(aRchi,skeleton=TRUE,level="cylinder"){standardGeneric("SelectinQSM_3d")}
 )
 
 #' @rdname SelectinQSM_3d
@@ -58,11 +58,11 @@ setMethod("SelectinQSM_3d",
               Paths=aRchi@Paths
               if(is.null(Paths)){stop("Paths are needed for branch or subtree level. Please run Make_Path() on your object aRchi before selecting a branch or subtree in 3d.")}
             }
-            if (skeleton==F){
+            if (skeleton==FALSE){
               dat_plot=plyr::alply(QSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
             }
 
-            if (skeleton==T){
+            if (skeleton==TRUE){
               # build the data for segment ploting
               dat_plot = data.frame(matrix(ncol=8,nrow=2*nrow(QSM)))
               dat_plot[seq(1,nrow(dat_plot)-1,2),] = QSM[,c(startX,startY,startZ,cyl_ID,segment_ID,node_ID,axis_ID,parent_ID)]
@@ -76,8 +76,8 @@ setMethod("SelectinQSM_3d",
 
             if (interactive()) {
               pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=F)
-              ifelse(skeleton,rgl::segments3d(dat_plot,lwd=3,col="white",add=T), rgl::shapelist3d(dat_plot,color="white",alpha=1,add=T,lit=T))
+              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE)
+              ifelse(skeleton,rgl::segments3d(dat_plot,lwd=3,col="white",add=TRUE), rgl::shapelist3d(dat_plot,color="white",alpha=1,add=TRUE,lit=TRUE))
               rgl::bbox3d(color="white")
               valid=gtools::ask("Find and Zoom into the zone of interest, then, hit Enter:\n")
               cat("Now select the zone of interest by drawing a rectangle.\n")
@@ -101,7 +101,7 @@ setMethod("SelectinQSM_3d",
                   }
                 }
 
-                if (skeleton==T){
+                if (skeleton==TRUE){
                   if(level=="cylinder"){
                   ls_keep=dat_plot[cyl_ID%in%QSM[keep]$cyl_ID]
                   ls_noKeep=dat_plot[!cyl_ID%in%QSM[keep]$cyl_ID]
@@ -132,12 +132,12 @@ setMethod("SelectinQSM_3d",
                     ls_noKeep=dplyr::anti_join(dat_plot,ls_keep, by = c("X", "Y", "Z", "cyl_ID", "segment_ID", "node_ID", "axis_ID", "parent_ID"))
                   }
                   rgl::clear3d()
-                  rgl::segments3d(ls_keep,lwd=3,col="red",add=T)
-                  rgl::segments3d(ls_noKeep,lwd=3,col="white",add=T)
+                  rgl::segments3d(ls_keep,lwd=3,col="red",add=TRUE)
+                  rgl::segments3d(ls_noKeep,lwd=3,col="white",add=TRUE)
                   rgl::bbox3d()
 
                 }
-                if (skeleton==F){
+                if (skeleton==FALSE){
                   if(level=="cylinder"){
                     cyl=QSM[keep]
                     ls_keep=dat_plot[which(QSM$cyl_ID%in%cyl$cyl_ID)]
@@ -173,10 +173,10 @@ setMethod("SelectinQSM_3d",
                     }
 
                   rgl::clear3d()
-                  rgl::shapelist3d(ls_keep,color="red",alpha=1,add=T,lit=T)
+                  rgl::shapelist3d(ls_keep,color="red",alpha=1,add=TRUE,lit=TRUE)
 
                   if(length(ls_noKeep)!=0){
-                  rgl::shapelist3d(ls_noKeep,color="white",alpha=1,add=T,lit=T)}
+                  rgl::shapelist3d(ls_noKeep,color="white",alpha=1,add=TRUE,lit=TRUE)}
                   rgl::bbox3d()
 
                 }

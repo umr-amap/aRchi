@@ -34,8 +34,8 @@ setMethod("TreeBiomass",
             if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(WoodDensity)) stop("Incorrect WooDensity argument. Please fill the WoodDensity argument with a single wood density value or with a data.table with two column (i.e cyl_ID and WoodDensity).")
-            if(is.numeric(WoodDensity)==F&is.data.frame(WoodDensity)==F) stop("Incorrect WoodDensity argument. Please provide a WoodDensity argument with a single wood density value or with a data.table with two column (i.e cyl_ID and WoodDensity).")
-            if(level %in% c("Tree","branching_order","Axis")==F) stop("Incorrect level argument")
+            if(is.numeric(WoodDensity)==FALSE&is.data.frame(WoodDensity)==FALSE) stop("Incorrect WoodDensity argument. Please provide a WoodDensity argument with a single wood density value or with a data.table with two column (i.e cyl_ID and WoodDensity).")
+            if(level %in% c("Tree","branching_order","Axis")==FALSE) stop("Incorrect level argument")
 
             QSM=aRchi@QSM
             if(is.numeric(WoodDensity)){

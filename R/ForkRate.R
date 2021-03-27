@@ -9,7 +9,7 @@
 #' @return a vector with two numeric value. The number of Fork and the fork rate.
 #' @details
 #'
-#' The fork rate is the mean number of forks per meter of tree height. This metric is computed by browsing tree QSM from the base to the top. Each time a ramification point is encountered it is evaluated as a fork if at least one daughter had a radius not less than 75% of the diameter of the largest daughter. This threshold was chosen in order to exclude non-perennial structures, such as traumatic or epicormic shoots, or branches that will not last on the tree. If the ramification point is a fork, all retained daughter branches are browsed through until the next ramification point and further until the path end. If a daughter is rejected, it is removed as well as all the paths passing through it.
+#' The fork rate is the mean number of forks per meter of tree height. This metric is computed by browsing tree QSM from the base to the top. Each time a ramification point is encountered it is evaluated as a fork if at least one daughter had a radius not less than 75\% of the diameter of the largest daughter. This threshold was chosen in order to exclude non-perennial structures, such as traumatic or epicormic shoots, or branches that will not last on the tree. If the ramification point is a fork, all retained daughter branches are browsed through until the next ramification point and further until the path end. If a daughter is rejected, it is removed as well as all the paths passing through it.
 #'
 #'@references
 #'

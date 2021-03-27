@@ -13,7 +13,7 @@
   bg = "black",
   lwd = 3,
   show_point_cloud = FALSE,
-  skeleton = T
+  skeleton = TRUE
 )
 }
 \arguments{

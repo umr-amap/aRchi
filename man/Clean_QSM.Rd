@@ -6,9 +6,9 @@
 \alias{Clean_QSM,aRchi-method}
 \title{Cleans a QSM}
 \usage{
-Clean_QSM(aRchi, threshold = NULL, plotresult = F)
+Clean_QSM(aRchi, threshold = NULL, plotresult = FALSE)
 
-\S4method{Clean_QSM}{aRchi}(aRchi, threshold = NULL, plotresult = F)
+\S4method{Clean_QSM}{aRchi}(aRchi, threshold = NULL, plotresult = FALSE)
 }
 \arguments{
 \item{aRchi}{an object of class \code{aRchi} with at least a QSM and a Paths table.}
@@ -24,14 +24,14 @@ An object of class \code{aRchi} with the cleaned QSM.
 Cleans the QSM in an object of class \code{aRchi} by removing branches that have a disproportionate lower radius than their siblings.
 }
 \details{
-This cleaning is done by browsing the tree QSM from the base to the top. Each time a ramification point is encountered a daughter branch is removed if its radius is lower than a selected (i.e \code{threshold}) proportion of radius of the largest daughter. This allows removing small branches on large branches that can be for example traumatic or epicormic shoots or false branches due to noise in QSM. In \code{\link{ForkRate}} function the same approach is used with a \code{threshold} of 75% (i.e 0.75) to count the number of fork and compute the fork rate.
+This cleaning is done by browsing the tree QSM from the base to the top. Each time a ramification point is encountered a daughter branch is removed if its radius is lower than a selected (i.e \code{threshold}) proportion of radius of the largest daughter. This allows removing small branches on large branches that can be for example traumatic or epicormic shoots or false branches due to noise in QSM. In \code{\link{ForkRate}} function the same approach is used with a \code{threshold} of 75\% (i.e 0.75) to count the number of fork and compute the fork rate.
 }
 \examples{
 \dontrun{
 # Read an aRchi file with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)
-# Clean the QSM: threshold of 50\%
+# Clean the QSM: threshold of 0.5
 Cleaned_Tree1_aRchi=Clean_QSM(Tree1_aRchi,threshold = 0.5,plotresult = TRUE)
 # show the cleaned QSM data.table
 get_QSM(Cleaned_Tree1_aRchi)

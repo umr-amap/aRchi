@@ -49,7 +49,7 @@ setMethod("WBEparameters",
             if(is.null(aRchi@Nodes)) stop("The archi file does not contains node tables. Please use the MakeNode function")
             test_position=as.numeric(stringr::str_extract_all(position, "\\d+"))
             if((test_position/10)%%1!=0) stop("position should be a multiple of 10 (e.g 10) or a multiple of 10 and a % sign (e.g 50%)")
-            if(level %in% c("Tree","branching_order","Node","Axis")==F) stop("Incorrect level argument")
+            if(level %in% c("Tree","branching_order","Node","Axis")==FALSE) stop("Incorrect level argument")
 
             if(is.numeric(position)){
               NodeTable=aRchi@Nodes$Absolute_positions

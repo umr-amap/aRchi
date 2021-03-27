@@ -11,9 +11,9 @@
 #' @details
 #'
 #' The moment of gravity force (i.e \code{Mf}) is calculated at each cylinder position. \code{Mf} can be seen as a proxy of the mechanical loading history due to gravity at a given position of a tree.
-#' This quantity is defined by the following the equation: Mf=R*F where R is the lever arm, which is the norm of the horizontal vector between the position where \code{Mf} is measured (i.e a cylinder) and the position where the force is applied (i.e., the center of mass, G, of the whole structure upstream a cylinder: a subtree).
+#' This quantity is defined by the following the equation: Mf=R*FALSE where R is the lever arm, which is the norm of the horizontal vector between the position where \code{Mf} is measured (i.e a cylinder) and the position where the force is applied (i.e., the center of mass, G, of the whole structure upstream a cylinder: a subtree).
 #'
-#' The mass of the cylinders are needed to calculate the center of mass and are estimated using their volume and the wood density provided in argument \code{WoodDensity}. Finally, F is the weight of the subtree: F=g*M	with g the standard acceleration due to gravity (9.81 m.s-²).
+#' The mass of the cylinders are needed to calculate the center of mass and are estimated using their volume and the wood density provided in argument \code{WoodDensity}. Finally, FALSE is the weight of the subtree: FALSE=g*M	with g the standard acceleration due to gravity (9.81 m.s-²).
 #'
 #' The moment of gravity force relative (i.e \code{Mf_r}) to cylinder radius r is also computed following the formula: Mf_r = Mf/r^3
 #'
@@ -50,7 +50,7 @@ setMethod("Compute_Mf",
             if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(WoodDensity)) stop("Incorrect WooDensity argument. Please fill the WoodDensity argument with a single wood density value or with a data.table with two column (i.e cyl_ID and WoodDensity).")
-            if(is.numeric(WoodDensity)==F&is.data.frame(WoodDensity)==F) stop("Incorrect WoodDensity argument. Please fill the WoodDensity argument with a single wood density value or with a data.table with two column (i.e cyl_ID and WoodDensity).")
+            if(is.numeric(WoodDensity)==FALSE&is.data.frame(WoodDensity)==FALSE) stop("Incorrect WoodDensity argument. Please fill the WoodDensity argument with a single wood density value or with a data.table with two column (i.e cyl_ID and WoodDensity).")
             if(is.null(aRchi@Paths)) stop("The archi file does not contains Paths")
 
             QSM=aRchi@QSM

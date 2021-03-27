@@ -32,7 +32,7 @@ setMethod("WoodSurface",
 
             if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
-            if(level %in% c("Tree","branching_order","Branch")==F) stop("Incorrect level argument")
+            if(level %in% c("Tree","branching_order","Branch")==FALSE) stop("Incorrect level argument")
             QSM=aRchi@QSM
 
             # Compute the Wood Surface

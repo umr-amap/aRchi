@@ -6,9 +6,19 @@
 \alias{Truncate_QSM,aRchi-method}
 \title{Truncate a QSM}
 \usage{
-Truncate_QSM(aRchi, threshold = NULL, Keepdaughters = F, plotresult = F)
+Truncate_QSM(
+  aRchi,
+  threshold = NULL,
+  Keepdaughters = FALSE,
+  plotresult = FALSE
+)
 
-\S4method{Truncate_QSM}{aRchi}(aRchi, threshold = NULL, Keepdaughters = F, plotresult = F)
+\S4method{Truncate_QSM}{aRchi}(
+  aRchi,
+  threshold = NULL,
+  Keepdaughters = FALSE,
+  plotresult = FALSE
+)
 }
 \arguments{
 \item{aRchi}{an object of class aRchi with at least a QSM and a Paths table.}

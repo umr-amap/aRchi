@@ -27,10 +27,6 @@ The method used to find the principal axis consist in finding the highest vertic
 A0 ranges between 0 and 4 with 0 indicating a path with a low probability of being the principal axis and 4 indicating a high probability of being the principal axis, i.e. the highest vertical path with consecutive segments of similar diameters and orientations.The path with the maximum A0 value was selected as the principal axis.
 
 The new column A0 of the QSM slot take the value 2 if the cylinder is part of the principal axis or 1 if not.
-
-#'@references
-
-	Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree architecture with increasingly dominant crown canopy position. Functional Ecology (2020).
 }
 \examples{
 \dontrun{
@@ -40,6 +36,9 @@ Tree1_aRchi=read_aRchi(file)
 
 Tree1_aRchi=Compute_A0(Tree1_aRchi,plotresult=TRUE)
 }
+}
+\references{
+Martin-Ducup, O. et al. Terrestrial laser scanning reveals convergence of tree architecture with increasingly dominant crown canopy position. Functional Ecology (2020).
 }
 \seealso{
 \code{\link{DAI}} to compute the dominance of a principal axis index that uses the A0 index.

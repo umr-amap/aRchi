@@ -50,10 +50,10 @@ setMethod("BranchAngle",
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(aRchi@Paths)) stop("The archi file does not contains Paths")
             if(is.null(method)) stop("Please choose a method, either SegmentAngle or King98")
-            if(method %in% c("SegmentAngle","King98")==F) stop("Incorrect method argument")
-            if(level %in% c("Tree","branching_order","Branch")==F) stop("Incorrect level argument")
+            if(method %in% c("SegmentAngle","King98")==FALSE) stop("Incorrect method argument")
+            if(level %in% c("Tree","branching_order","Branch")==FALSE) stop("Incorrect level argument")
             if(A0==TRUE){
-              aRchi=Compute_A0(aRchi,plotresult=F)
+              aRchi=Compute_A0(aRchi,plotresult=FALSE)
               QSM=aRchi@QSM
               cyl_ID_A1=dplyr::anti_join(QSM[A0==2],QSM[branching_order==0],by="cyl_ID")$cyl_ID
               QSM[cyl_ID%in%cyl_ID_A1]$branching_order=0

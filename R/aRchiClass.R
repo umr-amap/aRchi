@@ -10,6 +10,7 @@
 #' @include nullOrLASOrDatatable.R
 #' @include nullOrlist.R
 #' @include nullOrnumeric.R
+#' @return An object of class aRchi
 #' @name aRchi-class
 #' @rdname aRchi-class
 #' @export
@@ -36,7 +37,7 @@ setMethod("show",
             }
             if(!is.null(object@pointcloud)){
               if(is.data.frame(object@pointcloud)){cat("Point cloud:", nrow(object@pointcloud),"points \n")}
-              if(is.data.frame(object@pointcloud)==F){cat("Point cloud:", nrow(object@pointcloud@data),"points \n")}
+              if(is.data.frame(object@pointcloud)==FALSE){cat("Point cloud:", nrow(object@pointcloud@data),"points \n")}
             }else{
               cat("Point cloud is empty\n")
             }

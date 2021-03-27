@@ -44,7 +44,7 @@
 #' }
 #'
 setGeneric("Make_Node",
-           function(aRchi,all_combination=F){standardGeneric("Make_Node")}
+           function(aRchi,all_combination=FALSE){standardGeneric("Make_Node")}
 )
 
 #' @rdname Make_Node
@@ -109,7 +109,7 @@ setMethod("Make_Node",
                   lower=0.20
                   if(all(tab_Krig$x<0.20)){lower=0}
                    sink(paste0(tempdir(),"\\sink-examp.txt"))
-                  try(model <- pkgcond::suppress_messages(DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig$x), response=data.frame(y=tab_Krig$y),covtype="matern5_2",lower=lower)),silent=T)
+                  try(model <- pkgcond::suppress_messages(DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig$x), response=data.frame(y=tab_Krig$y),covtype="matern5_2",lower=lower)),silent=TRUE)
                    sink()
                 }
 
@@ -158,7 +158,7 @@ setMethod("Make_Node",
                 lower=0.20
                 if(all(tab_Krig_par$x<0.20)){lower=0}
                  sink(paste0(tempdir(),"\\sink-examp.txt"))
-                 try(model<-pkgcond::suppress_messages(DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig_par$x), response=data.frame(y=tab_Krig_par$y),covtype="matern5_2",lower=lower)),silent=T)
+                 try(model<-pkgcond::suppress_messages(DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig_par$x), response=data.frame(y=tab_Krig_par$y),covtype="matern5_2",lower=lower)),silent=TRUE)
                  sink()
               }
 

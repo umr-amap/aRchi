@@ -34,7 +34,7 @@ build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
               }else{
                 if(!is.data.frame(point_cloud)) stop("point_cloud must be a data.frame, data.table or LAS")
                 if(ncol(point_cloud)<3) stop("point_cloud must have at least 3 columns")
-                if(ncol(point_cloud)>3) cat("the point cloud contains more than three columns, three first used")
+                if(ncol(point_cloud)>3) warning("the point cloud contains more than three columns, three first used")
 
                 # ensure the point cloud is a data.table with three columns and with the right columns names
                 point_cloud = data.table::data.table(point_cloud[,1:3])

@@ -5,6 +5,9 @@
 \alias{aRchi-class}
 \alias{aRchi}
 \title{aRchi}
+\value{
+An object of class aRchi
+}
 \description{
 Class containing files to compute and display in three dimensions tree architectural metrics at different level of organization
 }

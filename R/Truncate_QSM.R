@@ -22,7 +22,7 @@
 #' }
 #' @include aRchiClass.R
 setGeneric("Truncate_QSM",
-           function(aRchi,threshold=NULL,Keepdaughters=F,plotresult=F){standardGeneric("Truncate_QSM")}
+           function(aRchi,threshold=NULL,Keepdaughters=FALSE,plotresult=FALSE){standardGeneric("Truncate_QSM")}
 )
 
 #' @rdname Truncate_QSM
@@ -117,12 +117,12 @@ setMethod("Truncate_QSM",
               TruncatedQSM[node_ID==i]$node_ID=unique(TruncatedQSM[segment_ID==i]$node_ID)
               TruncatedQSM[segment_ID==i]$segment_ID=new_segm_ID
             }
-            if(is.null(aRchi@QSM$Mf)==F){TruncatedQSM=TruncatedQSM[,-c("sub_tree_biomass","Mf","Mf_r")]}
+            if(is.null(aRchi@QSM$Mf)==FALSE){TruncatedQSM=TruncatedQSM[,-c("sub_tree_biomass","Mf","Mf_r")]}
 
             aRchi@QSM=TruncatedQSM
             aRchi=Make_Path(aRchi)
             message("\nPaths table has been re-estimated according to the new truncated QSM")
-            if(is.null(aRchi@Nodes)==F){
+            if(is.null(aRchi@Nodes)==FALSE){
               Make_Node(aRchi)
 
               message("\nNodes table has been re-estimated according to the new truncated QSM")
@@ -131,14 +131,14 @@ setMethod("Truncate_QSM",
             if(plotresult){
 
               pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=F)
+              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE)
 
               ls_cyl=plyr::alply(TruncatedQSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
-              rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=T,lit=T) # plot the list
+              rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=TRUE,lit=TRUE) # plot the list
 
               rest_of_QSM=QSM[!cyl_ID%in%cyl_ID_subSample_tree]
               ls_cyl=plyr::alply(rest_of_QSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
-              rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=T,lit=T) # plot the list
+              rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=TRUE,lit=TRUE) # plot the list
               rgl::bbox3d(color="white")
 
             }

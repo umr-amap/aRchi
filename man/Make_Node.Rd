@@ -6,9 +6,9 @@
 \alias{Make_Node,aRchi-method}
 \title{Make Node}
 \usage{
-Make_Node(aRchi, all_combination = F)
+Make_Node(aRchi, all_combination = FALSE)
 
-\S4method{Make_Node}{aRchi}(aRchi, all_combination = F)
+\S4method{Make_Node}{aRchi}(aRchi, all_combination = FALSE)
 }
 \arguments{
 \item{aRchi}{a file of class aRchi containing at least a QSM}
