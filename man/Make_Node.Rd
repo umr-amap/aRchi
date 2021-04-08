@@ -33,7 +33,7 @@ beta values are repeated for each node as it depend on segment length only and n
 If \code{all_combination = TRUE} all the possible combination for pos_parent and pos_daughter are computed (e.g pos_parent = 0.3 and pos_daughter = 0.5) but note that this processing might take several minutes and is \code{FALSE} by default.
 }
 \examples{
-\dontrun{
+\donttest{
 # Read a QSM file
 file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 QSM=read_QSM(file,model="treeQSM")

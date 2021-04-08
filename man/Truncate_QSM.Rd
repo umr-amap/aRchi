@@ -39,7 +39,7 @@ Truncate a QSM at a radius threshold
 The threshold is applied to a whole segments. In other word, if a segment has at least one cylinder lower than the threshold it is removed as well as everything upstream (except the direct daughters if \code{Keepdaughters=TRUE}).
 }
 \examples{
-\dontrun{
+\donttest{
 # Read an aRchifile with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)

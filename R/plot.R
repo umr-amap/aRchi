@@ -17,7 +17,7 @@
 #' @param show_point_cloud logical (Default = \code{FALSE}). Display the point cloud ?
 #' @include aRchiClass.R
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Read an aRchi file with at least a QSM
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
@@ -62,17 +62,19 @@ setMethod("plot",
 
               if(show_point_cloud){
                 if(is.null(x@pointcloud)){warning("There is no point cloud to plot")}
-                lidR::plot(x@pointcloud,bg=bg,clear_artifacts=FALSE,colorPalette = pc_col)
+                lidR::plot(x@pointcloud,bg=bg,clear_artifacts=FALSE,colorPalette = pc_col,axis=T)
               }else{
                 # translate the data for ploting with lidR tools
                 #  dat_plot[,':='(X = X-min(X),Y = Y - min(Y),Z = Z-min(Z))]
                 # empty window
-                pc = pkgcond::suppress_messages(lidR::LAS(data.frame(X=mean(dat_plot$X),Y=mean(dat_plot$Y),Z=mean(dat_plot$Z))))
-                lidR::plot(pc,bg=bg,clear_artifacts=FALSE,colorPalette = bg)
+                pc=skel[startX==min(startX)|startX==max(endX)|startY==min(startY)|startY==max(endY)|startZ==min(startZ)|startZ==max(endZ),1:3]
+                names(pc)=c("X","Y","Z")
+                pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
+                lidR::plot(pc,bg=bg,clear_artifacts=FALSE,colorPalette = bg,axis=T)
               }
 
               rgl::segments3d(dat_plot,lwd=lwd,col=col,add=TRUE)
-              rgl::bbox3d(color="white")
+
             }
             if(skeleton==FALSE){
             QSM=x@QSM
@@ -91,11 +93,13 @@ setMethod("plot",
 
             if(show_point_cloud){
               if(is.null(x@pointcloud)){warning("There is no point cloud to plot")}
-              lidR::plot(x@pointcloud,bg=bg,clear_artifacts=FALSE) #plot the point cloud
+              lidR::plot(x@pointcloud,bg=bg,clear_artifacts=FALSE,axis=T) #plot the point cloud
             }else{
               # empty window
-              pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg=bg,colorPalette=bg,size=0,clear_artifacts=FALSE)
+              pc=QSM[startX==min(startX)|startX==max(startX)|startY==min(startY)|startY==max(startY)|startZ==min(startZ)|startZ==max(startZ)]
+              names(pc)=c("X","Y","Z")
+              pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
+              lidR::plot(pc,bg=bg,colorPalette=bg,size=0,clear_artifacts=FALSE,axis=T)
             }
             rgl::shapelist3d(ls_cyl,color=col,alpha=transparency,add=TRUE,lit=TRUE) # plot the list
             rgl::bbox3d(color="white")

@@ -51,7 +51,7 @@ setGeneric("SelectinQSM_3d",
 setMethod("SelectinQSM_3d",
           signature = "aRchi",
           function(aRchi,skeleton,level){
-            axis_ID=cyl_ID=startX=endX=endY=startY=startZ=endZ=segment_ID=node_ID=parent_ID=radius=axis_ID=ID_Path=NULL
+            axis_ID=cyl_ID=startX=startY=startZ=endX=endY=endZ=segment_ID=node_ID=parent_ID=radius=axis_ID=ID_Path=NULL
 
             QSM=aRchi@QSM
             if(level%in%c("branch","subtree")){
@@ -75,10 +75,12 @@ setMethod("SelectinQSM_3d",
 
 
             if (interactive()) {
-              pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE)
+              pc=QSM[startX==min(startX)|startX==max(endX)|startY==min(startY)|startY==max(endY)|startZ==min(startZ)|startZ==max(endZ),1:3]
+              names(pc)=c("X","Y","Z")
+              pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
+              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE,axis=T)
               ifelse(skeleton,rgl::segments3d(dat_plot,lwd=3,col="white",add=TRUE), rgl::shapelist3d(dat_plot,color="white",alpha=1,add=TRUE,lit=TRUE))
-              rgl::bbox3d(color="white")
+
               valid=gtools::ask("Find and Zoom into the zone of interest, then, hit Enter:\n")
               cat("Now select the zone of interest by drawing a rectangle.\n")
               f <- rgl::select3d()
@@ -134,7 +136,7 @@ setMethod("SelectinQSM_3d",
                   rgl::clear3d()
                   rgl::segments3d(ls_keep,lwd=3,col="red",add=TRUE)
                   rgl::segments3d(ls_noKeep,lwd=3,col="white",add=TRUE)
-                  rgl::bbox3d()
+
 
                 }
                 if (skeleton==FALSE){
@@ -177,7 +179,7 @@ setMethod("SelectinQSM_3d",
 
                   if(length(ls_noKeep)!=0){
                   rgl::shapelist3d(ls_noKeep,color="white",alpha=1,add=TRUE,lit=TRUE)}
-                  rgl::bbox3d()
+
 
                 }
 

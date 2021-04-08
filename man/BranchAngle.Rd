@@ -33,7 +33,7 @@ The method "King98" compute the angle by considering the first and the last cyli
 The main axis is always removed.
 }
 \examples{
-\dontrun{
+\donttest{
 # Read an aRchi file with a QSM and paths tables.
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)

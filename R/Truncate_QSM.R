@@ -13,7 +13,7 @@
 #' @details The threshold is applied to a whole segments. In other word, if a segment has at least one cylinder lower than the threshold it is removed as well as everything upstream (except the direct daughters if \code{Keepdaughters=TRUE}).
 #' @seealso \code{\link{Clean_QSM}} to clean a QSM of an object aRchi.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Read an aRchifile with a QSM and paths tables.
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
@@ -31,7 +31,7 @@ setGeneric("Truncate_QSM",
 setMethod("Truncate_QSM",
           signature = "aRchi",
           function(aRchi,threshold,Keepdaughters,plotresult){
-            ID_Path=radius_cyl=segment_ID=cyl_ID=node_ID=axis_ID=V1=NULL
+            ID_Path=radius_cyl=segment_ID=cyl_ID=node_ID=axis_ID=V1=startX=startY=startZ=endX=endY=endZ=NULL
 
             if(is.null(threshold)) stop("Please provide a threshold")
             if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
@@ -47,7 +47,7 @@ setMethod("Truncate_QSM",
             pb <- progress::progress_bar$new(total =length(unique(Paths$ID_Path)),width = 60,
                                              format = " Browsing paths [:bar] :percent",clear=FALSE)
             for (j in unique(Paths$ID_Path)) {
-              options(warn=2)
+
               # Path j
               pb$tick()
               Path_j=Paths[ID_Path==j]
@@ -130,8 +130,11 @@ setMethod("Truncate_QSM",
 
             if(plotresult){
 
-              pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE)
+              pc=QSM[startX==min(startX)|startX==max(endX)|startY==min(startY)|startY==max(endY)|startZ==min(startZ)|startZ==max(endZ),1:3]
+              names(pc)=c("X","Y","Z")
+              pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
+
+              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE,axis=T)
 
               ls_cyl=plyr::alply(TruncatedQSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
               rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=TRUE,lit=TRUE) # plot the list

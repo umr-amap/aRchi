@@ -29,7 +29,7 @@
 #' @seealso \code{\link{WBEparameters}} to estimates WBE parameters at different level; \code{\link{LeonardoRatio}} to estimates Leonardo Da Vinci's ratio  at different level.
 #' @include aRchiClass.R
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Read a QSM file
 #' file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 #' QSM=read_QSM(file,model="treeQSM")

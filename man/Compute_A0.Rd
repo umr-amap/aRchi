@@ -29,7 +29,7 @@ A0 ranges between 0 and 4 with 0 indicating a path with a low probability of bei
 The new column A0 of the QSM slot take the value 2 if the cylinder is part of the principal axis or 1 if not.
 }
 \examples{
-\dontrun{
+\donttest{
 # Read an aRchi file with at least the QSM and the paths table
 file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 Tree1_aRchi=read_aRchi(file)

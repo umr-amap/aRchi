@@ -24,7 +24,7 @@
 #' @include aRchiClass.R
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Read an aRchi file with at least the QSM and the paths table
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
@@ -43,7 +43,7 @@ setMethod("Compute_A0",
           signature = "aRchi",
 
           function(aRchi,plotresult){
-            segment_ID=ID_Path=V1=cyl_ID=A0=H_segment_rel=NULL
+            segment_ID=ID_Path=V1=cyl_ID=A0=H_segment_rel=startX=startY=startZ=endX=endY=endZ=NULL
 
 
             if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
@@ -105,15 +105,18 @@ setMethod("Compute_A0",
 
             if(plotresult){
 
-              pc = pkgcond::suppress_messages( lidR::LAS(data.frame(X=mean(QSM$startX),Y=mean(QSM$startY),Z=mean(QSM$startZ)))) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE)
+              pc=QSM[startX==min(startX)|startX==max(endX)|startY==min(startY)|startY==max(endY)|startZ==min(startZ)|startZ==max(endZ),1:3]
+              names(pc)=c("X","Y","Z")
+              pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
+
+              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE,axis=T)
 
               ls_cyl=plyr::alply(QSM[A0==2],1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
               rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=TRUE,lit=TRUE) # plot the list
 
               ls_cyl=plyr::alply(QSM[A0==1],1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
               rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=TRUE,lit=TRUE) # plot the list
-              rgl::bbox3d(color="white")
+
 
             }
 
