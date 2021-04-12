@@ -79,7 +79,9 @@ For more information on some metrics such as WBE parameters
 
 The latest released version from CRAN:
 
-*to come up*
+``` r
+install.packages("aRchi")
+```
 
 The latest version from Github (in development):
 
