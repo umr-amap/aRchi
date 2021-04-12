@@ -1,4 +1,7 @@
-* version 1.0.3
+* version 1.0.4
+A major error in segment_ID detectiom in read_QSM for treeQSM format corrected.
+
+* version 1.0.3 (Accepted in Cran)
 Update for CRAN submission after rejection
 
 * version 1.0.2

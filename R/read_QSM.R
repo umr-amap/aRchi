@@ -102,7 +102,7 @@ read_QSM=function(file,model){
       if(i==nrow(tab_segm_lim_b)+1){
         cyl_position_min=tab_segm_lim_b[i-1,]$PositionInBranch_ID
         cyl_position_max=max(data[branch_ID==b,]$PositionInBranch_ID)
-        cyl_segm_max=max(data[branch_ID==b,])
+        cyl_segm_max=max(data[branch_ID==b,]$cyl_ID)
         vec_segment_ID_i=rep(cyl_segm_max,cyl_position_max-cyl_position_min)
       }
       if(length(vec_segment_ID_i)==0){break}
