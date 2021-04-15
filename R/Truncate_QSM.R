@@ -142,7 +142,6 @@ setMethod("Truncate_QSM",
               rest_of_QSM=QSM[!cyl_ID%in%cyl_ID_subSample_tree]
               ls_cyl=plyr::alply(rest_of_QSM,1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
               rgl::shapelist3d(ls_cyl,color="white",alpha=1,add=TRUE,lit=TRUE) # plot the list
-              rgl::bbox3d(color="white")
 
             }
             aRchi@operations$Truncate_QSM=c(threshold=threshold,Keepdaughters=Keepdaughters)

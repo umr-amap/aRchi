@@ -108,7 +108,7 @@ setMethod("Make_Node",
                   if(it>10000) stop("kriging model for diameter estimation at absolute position did not converge.")
                   lower=0.20
                   if(all(tab_Krig$x<0.20)){lower=0}
-                   sink(paste0(tempdir(),"\\sink-examp.txt"))
+                   sink(tempfile())
                   try(model <- pkgcond::suppress_messages(DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig$x), response=data.frame(y=tab_Krig$y),covtype="matern5_2",lower=lower)),silent=TRUE)
                    sink()
                 }
@@ -157,7 +157,7 @@ setMethod("Make_Node",
                 if(it>10000) stop("kriging model for diameter estimation at regular position did not converge.")
                 lower=0.20
                 if(all(tab_Krig_par$x<0.20)){lower=0}
-                 sink(paste0(tempdir(),"\\sink-examp.txt"))
+                 sink(tempfile())
                  try(model<-pkgcond::suppress_messages(DiceKriging::km(formula=~x,design=data.frame(x=tab_Krig_par$x), response=data.frame(y=tab_Krig_par$y),covtype="matern5_2",lower=lower)),silent=TRUE)
                  sink()
               }

@@ -41,7 +41,7 @@ setMethod("plot",
 
               if(color %in% c("cylinder","segment","axis","reconstructed","node","annual_shoots","physiological_age","branching_order","A0")){
                 if (color=="cylinder") col = rep(skel$cyl_ID,each=2)
-                if (color=="axis") col = rep(skel$axis_ID,each=2)
+                if (color=="axis") col = rep(skel$axis_ID+1,each=2)
                 if (color=="reconstructed") color = rep(skel$reconstructed,each=2)
                 if (color=="segment") col = rep(skel$cyl_ID,each=2)
                 if (color=="node") col = rep(skel$node_ID,each=2)+1
@@ -82,6 +82,7 @@ setMethod("plot",
             if(color %in% c("branching_order","cylinder","segment","node","A0")){
               if (color=="branching_order"){col=QSM$branching_order+2}
               if (color=="cylinder"){col=QSM$cyl_ID}
+              if (color=="axis") {col = QSM$axis_ID+1}
               if (color=="segment"){col=QSM$segment_ID+1}
               if (color=="node"){col=QSM$node+1}
               if (color=="A0"){col=ifelse(QSM$A0==1,"white","red")}
@@ -96,13 +97,12 @@ setMethod("plot",
               lidR::plot(x@pointcloud,bg=bg,clear_artifacts=FALSE,axis=T) #plot the point cloud
             }else{
               # empty window
-              pc=QSM[startX==min(startX)|startX==max(startX)|startY==min(startY)|startY==max(startY)|startZ==min(startZ)|startZ==max(startZ)]
+              pc=QSM[startX==min(startX)|startX==max(startX)|startY==min(startY)|startY==max(startY)|startZ==min(startZ)|startZ==max(startZ),1:3]
               names(pc)=c("X","Y","Z")
               pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
               lidR::plot(pc,bg=bg,colorPalette=bg,size=0,clear_artifacts=FALSE,axis=T)
             }
             rgl::shapelist3d(ls_cyl,color=col,alpha=transparency,add=TRUE,lit=TRUE) # plot the list
-            rgl::bbox3d(color="white")
             }
           }
 )

@@ -1,3 +1,9 @@
+* version 1.0.5
+CRAN asked for a correction: Done
+  - remove package nat that is not used anymore
+  - correct sink output with file.path function (function Make_node)
+Other corrections were made for vizualization function (axis3d, +1 for axis_ID to avoid black)
+
 * version 1.0.4
 A major error in segment_ID detectiom in read_QSM for treeQSM format corrected.
 

@@ -136,7 +136,9 @@ setMethod("SelectinQSM_3d",
                   rgl::clear3d()
                   rgl::segments3d(ls_keep,lwd=3,col="red",add=TRUE)
                   rgl::segments3d(ls_noKeep,lwd=3,col="white",add=TRUE)
-
+                  rgl::axis3d('x', col = "white")
+                  rgl::axis3d('y', col = "white")
+                  rgl::axis3d('z', col = "white")
 
                 }
                 if (skeleton==FALSE){
@@ -179,6 +181,9 @@ setMethod("SelectinQSM_3d",
 
                   if(length(ls_noKeep)!=0){
                   rgl::shapelist3d(ls_noKeep,color="white",alpha=1,add=TRUE,lit=TRUE)}
+                  rgl::axis3d('x', col = "white")
+                  rgl::axis3d('y', col = "white")
+                  rgl::axis3d('z', col = "white")
 
 
                 }
