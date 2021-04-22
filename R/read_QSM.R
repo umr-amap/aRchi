@@ -50,7 +50,12 @@ read_QSM=function(file,model){
     Node_ID=rep(0,nrow(data))
     data=cbind(data,segment_ID,Node_ID)
     message("This data is only a trunk: no ramification")
-    return(data)
+    data$volume=(pi*(data$radius_cyl)^2)*data$length
+    data$node_ID=0
+    data=data[,c("startX","startY","startZ", "endX","endY","endZ","cyl_ID","parent_ID","extension_ID","radius_cyl","length","volume","branch_ID","segment_ID","node_ID","BranchOrder")]
+    names(data)[c(13,16)]=c("axis_ID","branching_order")
+    out=list(QSM=data,model=model)
+    return(out)
   } # In case of only one branch = a trunk.
   if(nrow(sub_table_cyl_error)!=0){
 
