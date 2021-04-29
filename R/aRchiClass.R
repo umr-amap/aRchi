@@ -4,7 +4,7 @@
 #' @field QSM a data.table containing QSM information according to read_QSM function format
 #' @field pointcloud a data.table containing the point cloud used to generated the QSM
 #' @field Paths a data.table of Paths according to Make_Path function (see \code{\link{Make_Path}})
-#' @field Nodes Metrics computed at the node scale (see \code{\link{Make_Node}}
+#' @field Nodes Metrics computed at the node scale (see \code{\link{Make_Node}})
 #' @field operations Record all the operations realized on the object.
 #' @include nullOrDatatable.R
 #' @include nullOrLASOrDatatable.R

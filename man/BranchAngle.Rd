@@ -13,14 +13,14 @@ BranchAngle(aRchi, method = NULL, A0 = FALSE, level = "Tree")
 \arguments{
 \item{aRchi}{an object of class aRchi with at least a QSM and a path table}
 
-\item{method}{character. \code{SegmentAngle} or code{King98}}
+\item{method}{character. \code{SegmentAngle} or \code{King98}}
 
 \item{A0}{logical (default = FALSE). If TRUE the main axis to remove from the calculation is re-estimated using the \code{\link{Compute_A0}} function. If false the default branch order 0 is kept.}
 
 \item{level}{character. The level at which the branch angle is computed. \code{Tree} for tree level; \code{branching_order} for branch order level; \code{Axis} one angle value per axis.}
 }
 \value{
-a numeric or data.table. The branch angle in degree at the selected level. with 0 a perfectly vertical branch angle, 90 a perfectly horizontal branch angle and >90 a downward branch angle
+a numeric or data.table. The branch angle in degree at the selected level. with 0 a perfectly vertical branch angle, 90 a perfectly horizontal branch angle and > 90 a downward branch angle
 }
 \description{
 Estimate the branch angle of a QSM. Two methods are possible (see method argument)

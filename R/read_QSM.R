@@ -44,7 +44,7 @@ read_QSM=function(file,model){
 
 
   # Correcting a treeQSM output error: some cylinder have no extension ID (i.e 0) but they exist as parents ID => incoherence
-  sub_table_cyl_error=data[parent_ID%in%data[extension_ID==0][cyl_ID%in%data$parent_ID]$cyl_ID] # a table with the first cylinder of branches that are not connected to their parents (i.e the parent extension is 0)
+  sub_table_cyl_error=data[parent_ID%in%data[extension_ID==0][cyl_ID%in%data$parent_ID]$cyl_ID] # a table with the last cylinder of branches that are not connected to their parents (i.e the parent extension is 0)
   if(length(unique(data$branch_ID))==1){
     segment_ID=rep(max(data$cyl_ID),nrow(data))
     Node_ID=rep(0,nrow(data))
@@ -65,9 +65,12 @@ read_QSM=function(file,model){
     branch_ID_to_replace=sub_table_cyl_error_no_dup$branch_ID # This vector is the branch ID that should not exist as they follow a branch without any ramification. This second problem comes directly from the same treeQSM incoherence deteted and corrected above
     branch_ID_who_replace=data[cyl_ID%in%sub_table_cyl_error_no_dup$parent_ID]$branch_ID # this is the vector with the good branch ID that should replace the previous one. the loop below make this replacement.
     for (i in 1:length(branch_ID_to_replace)){
+
+
       if(all(is.na(match(unique(data$branch_ID),branch_ID_who_replace[i])))){
-        data[branch_ID==branch_ID_to_replace[i]]$branch_ID=rep(branch_ID_who_replace[i-1],nrow(data[branch_ID==branch_ID_to_replace[i]]))
-        data[branch_ID==branch_ID_who_replace[i-1]]$PositionInBranch_ID=seq(1,nrow(data[branch_ID==branch_ID_who_replace[i-1]]))
+        new_branch_ID=data[cyl_ID==data[branch_ID==branch_ID_to_replace[i]]$parent_ID[1]]$branch_ID # This is the branch_ID of the parent. if the branch_ID which is supposed to replace does not exist in the branch ID of the whole QSM, it means that it has already been replaced and thus the branch_ID of the parent ID can be used.
+        data[branch_ID==branch_ID_to_replace[i]]$branch_ID=rep(new_branch_ID,nrow(data[branch_ID==branch_ID_to_replace[i]]))
+        data[branch_ID==new_branch_ID]$PositionInBranch_ID=seq(1,nrow(data[branch_ID==new_branch_ID]))
         next()
       }
       data[branch_ID==branch_ID_to_replace[i]]$branch_ID=rep(branch_ID_who_replace[i],nrow(data[branch_ID==branch_ID_to_replace[i]]))

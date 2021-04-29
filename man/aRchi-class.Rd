@@ -20,7 +20,7 @@ Class containing files to compute and display in three dimensions tree architect
 
 \item{\code{Paths}}{a data.table of Paths according to Make_Path function (see \code{\link{Make_Path}})}
 
-\item{\code{Nodes}}{Metrics computed at the node scale (see \code{\link{Make_Node}}}
+\item{\code{Nodes}}{Metrics computed at the node scale (see \code{\link{Make_Node}})}
 
 \item{\code{operations}}{Record all the operations realized on the object.}
 }}

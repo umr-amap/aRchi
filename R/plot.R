@@ -43,7 +43,7 @@ setMethod("plot",
                 if (color=="cylinder") col = rep(skel$cyl_ID,each=2)
                 if (color=="axis") col = rep(skel$axis_ID+1,each=2)
                 if (color=="reconstructed") color = rep(skel$reconstructed,each=2)
-                if (color=="segment") col = rep(skel$cyl_ID,each=2)
+                if (color=="segment") col = rep(skel$segment_ID,each=2)
                 if (color=="node") col = rep(skel$node_ID,each=2)+1
                 if (color=="annual_shoots") col = rep(skel$AS,each=2)
                 if (color=="branching_order") col = rep(skel$branching_order+2,each=2)

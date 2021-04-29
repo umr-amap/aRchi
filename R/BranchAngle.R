@@ -6,10 +6,10 @@
 #' @docType methods
 #' @rdname BranchAngle
 #' @param aRchi an object of class aRchi with at least a QSM and a path table
-#' @param method character. \code{SegmentAngle} or code{King98}
+#' @param method character. \code{SegmentAngle} or \code{King98}
 #' @param level character. The level at which the branch angle is computed. \code{Tree} for tree level; \code{branching_order} for branch order level; \code{Axis} one angle value per axis.
 #' @param A0 logical (default = FALSE). If TRUE the main axis to remove from the calculation is re-estimated using the \code{\link{Compute_A0}} function. If false the default branch order 0 is kept.
-#' @return a numeric or data.table. The branch angle in degree at the selected level. with 0 a perfectly vertical branch angle, 90 a perfectly horizontal branch angle and >90 a downward branch angle
+#' @return a numeric or data.table. The branch angle in degree at the selected level. with 0 a perfectly vertical branch angle, 90 a perfectly horizontal branch angle and > 90 a downward branch angle
 #' @details
 #'
 #' The method "SegmentAngle" compute the angle by considering the first and the last cylinder or each segment, mean is then used for the level of organization selected.
