@@ -75,7 +75,7 @@ setMethod("SelectinQSM_3d",
 
 
             if (interactive()) {
-              pc=QSM[startX==min(startX)|startX==max(endX)|startY==min(startY)|startY==max(endY)|startZ==min(startZ)|startZ==max(endZ),1:3]
+              pc=QSM[startX==min(startX)|startX==max(endX)|startY==min(startY)|startY==max(endY)|startZ==min(startZ)|startZ==max(endZ),c("startX","startY","startZ")]
               names(pc)=c("X","Y","Z")
               pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
               lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE,axis=T)
@@ -85,7 +85,7 @@ setMethod("SelectinQSM_3d",
               cat("Now select the zone of interest by drawing a rectangle.\n")
               f <- rgl::select3d()
               if (!is.null(f)) {
-                keep <- which(f(QSM[,1:3]))
+                keep <- which(f(QSM[,c("startX","startY","startZ")]))
                 if(length(keep)==0){
                   QSM$axisX=QSM$endX-QSM$startX
                   QSM$axisY=QSM$endY-QSM$startY
