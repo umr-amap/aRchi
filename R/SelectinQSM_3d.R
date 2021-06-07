@@ -54,7 +54,11 @@ setMethod("SelectinQSM_3d",
             axis_ID=cyl_ID=startX=startY=startZ=endX=endY=endZ=segment_ID=node_ID=parent_ID=radius=axis_ID=ID_Path=NULL
 
             QSM=aRchi@QSM
-            if(level%in%c("branch","subtree")){
+            if(level %in% c("Subtree","Branch", "cylinder","segment","node","axis")==FALSE) stop("Incorrect level argument")
+            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
+
+            if(level%in%c("branch","Subtree")){
               Paths=aRchi@Paths
               if(is.null(Paths)){stop("Paths are needed for branch or subtree level. Please run Make_Path() on your object aRchi before selecting a branch or subtree in 3d.")}
             }
@@ -127,7 +131,7 @@ setMethod("SelectinQSM_3d",
                     ls_keep=dat_plot[cyl_ID%in%branch_cyl$cyl_ID]
                     ls_noKeep=dplyr::anti_join(dat_plot,ls_keep, by = c("X", "Y", "Z", "cyl_ID", "segment_ID", "node_ID", "axis_ID", "parent_ID"))
                   }
-                  if(level=="subtree"){
+                  if(level=="Subtree"){
                     Cyl_ID_start=min(unique(QSM[keep]$cyl_ID))
                     subtree_cyl=QSM[cyl_ID%in%unique(Paths[ID_Path%in%Paths[cyl_ID==Cyl_ID_start]$ID_Path&cyl_ID>=Cyl_ID_start]$cyl_ID)]
                     ls_keep=dat_plot[cyl_ID%in%subtree_cyl$cyl_ID]
@@ -169,7 +173,7 @@ setMethod("SelectinQSM_3d",
                     ls_keep=dat_plot[which(QSM$cyl_ID%in%branch_cyl$cyl_ID)]
                     ls_noKeep=dat_plot[-which(QSM$cyl_ID%in%branch_cyl$cyl_ID)]
                   }
-                  if(level=="subtree"){
+                  if(level=="Subtree"){
                     Cyl_ID_start=min(unique(QSM[keep]$cyl_ID))
                     subtree_cyl=QSM[cyl_ID%in%unique(Paths[ID_Path%in%Paths[cyl_ID==Cyl_ID_start]$ID_Path&cyl_ID>=Cyl_ID_start]$cyl_ID)]
                     ls_keep=dat_plot[which(QSM$cyl_ID%in%subtree_cyl$cyl_ID)]
@@ -196,7 +200,7 @@ setMethod("SelectinQSM_3d",
             if(level=="node"){return(node_cyl)}
             if(level=="axis"){return(QSM[axis_ID%in%unique(QSM[keep]$axis_ID)])}
             if(level=="branch"){return(branch_cyl)}
-            if(level=="subtree"){return(subtree_cyl)}
+            if(level=="Subtree"){return(subtree_cyl)}
           }
 )
 
