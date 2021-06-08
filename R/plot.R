@@ -83,7 +83,7 @@ setMethod("plot",
               if (color=="branching_order"){col=QSM$branching_order+2}
               if (color=="cylinder"){col=QSM$cyl_ID}
               if (color=="axis") {col = QSM$axis_ID+1}
-              if (color=="segment"){col=QSM$segment_ID+1}
+              if (color=="segment"){col=QSM$segment_ID+2}
               if (color=="node"){col=QSM$node+1}
               if (color=="A0"){col=ifelse(QSM$A0==1,"white","red")}
             }else{
