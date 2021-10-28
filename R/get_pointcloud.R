@@ -25,7 +25,13 @@ setGeneric("get_pointcloud",
 setMethod("get_pointcloud",
           signature = "aRchi",
           function(aRchi){
-            return(aRchi@pointcloud)
+            if (utils::packageVersion("lidR") < "4.0.0")
+              return(aRchi@pointcloud)
+            else
+              return(suppressWarnings(lidR::LAS(aRchi@pointcloud@data,
+                                                aRchi@pointcloud@header@PHB,
+                                                proj4string = aRchi@pointcloud@proj4string,
+                                                check = FALSE)))
           }
 )
 
