@@ -25,13 +25,19 @@ setGeneric("get_pointcloud",
 setMethod("get_pointcloud",
           signature = "aRchi",
           function(aRchi){
-            if (utils::packageVersion("lidR") < "4.0.0")
-              return(aRchi@pointcloud)
-            else
-              return(suppressWarnings(lidR::LAS(aRchi@pointcloud@data,
-                                                aRchi@pointcloud@header@PHB,
-                                                proj4string = aRchi@pointcloud@proj4string,
-                                                check = FALSE)))
+            # Transparent backward compatibility with lidR 3 and lidR 4
+            if (is(aRchi@pointcloud, "LAS"))
+            {
+              if (!.hasSlot(aRchi@pointcloud, "crs"))
+              {
+                pts <- aRchi@pointcloud@data
+                phb <- aRchi@pointcloud@header@PHB
+                crs <- aRchi@pointcloud@proj4string
+                return(suppressWarnings(lidR::LAS(pts, phb, proj4string = crs, check = FALSE)))
+              }
+            }
+
+            return(aRchi@pointcloud)
           }
 )
 

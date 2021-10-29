@@ -1,5 +1,5 @@
 * version 1.0.7
-- correction of the LAS format for lidR 4.0.0
+- correction of the formal LAS class for lidR 4.0.0
 
 * version 1.0.6
 - Correction axis_ID problems -> When two successive segments had the error step 1 in read_QSM for treeQSM format
