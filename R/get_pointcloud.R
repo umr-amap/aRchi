@@ -28,7 +28,7 @@ setMethod("get_pointcloud",
             # Transparent backward compatibility with lidR 3 and lidR 4
             if (is(aRchi@pointcloud, "LAS"))
             {
-              if (!.hasSlot(aRchi@pointcloud, "crs"))
+              if (!methods::.hasSlot(aRchi@pointcloud, "crs"))
               {
                 pts <- aRchi@pointcloud@data
                 phb <- aRchi@pointcloud@header@PHB
