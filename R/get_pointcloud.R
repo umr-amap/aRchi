@@ -35,8 +35,9 @@ setMethod("get_pointcloud",
               {
                 pts <- aRchi@pointcloud@data
                 phb <- aRchi@pointcloud@header@PHB
+                vlr <- aRchi@pointcloud@header@VLR
                 crs <- aRchi@pointcloud@proj4string
-                return(suppressWarnings(lidR::LAS(pts, phb, proj4string = crs, check = FALSE)))
+                return(suppressWarnings(lidR::LAS(pts, c(phb, vlr), proj4string = crs, check = FALSE)))
               }
             }
 
