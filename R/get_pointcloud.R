@@ -25,7 +25,10 @@ setGeneric("get_pointcloud",
 setMethod("get_pointcloud",
           signature = "aRchi",
           function(aRchi){
-            # Transparent backward compatibility with lidR 3 and lidR 4
+            # Transparent backward compatibility with lidR v3 and lidR v4
+            # If the aRchi stores a LASv3 object it is converted
+            # into LASv4 but only if the lidR package installed is v4. Otherwise the
+            # LASv3 is preserved.
             if (is(aRchi@pointcloud, "LAS"))
             {
               if (!methods::.hasSlot(aRchi@pointcloud, "crs"))
