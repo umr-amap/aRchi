@@ -55,7 +55,7 @@ build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
                 stop("the provided QSM does not contains enought fields: must contain at least
            stratX | startY | startZ | endX | endY | endZ | radius")
               }
-              if(QSM$model=="treeQSM"){
+              if(QSM$model=="aaa"){
                 aRchi@QSM = data.table::data.table(QSM$QSM)
               }else{
 
@@ -81,7 +81,7 @@ build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
                   if(colnames(QSM)[8] == "branching_order"){
                     branching_orders = QSM$branching_order
                     QSM[,branching_order := NULL] # remove from table
-                    cimpute_BO = FALSE
+                    compute_BO = FALSE
                   }
                   if(colnames(QSM)[8] == "axis_ID"){
                     axis_IDs = QSM$axis_ID # remove from table

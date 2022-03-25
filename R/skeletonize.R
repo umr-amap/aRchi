@@ -16,7 +16,7 @@
 #' details. Default = 100.
 #'
 #' @description The skeletonization algorithm works in four steps. At STEP 1 the
-#' point cloud is devided in layers of regular tickness (defined by parameter
+#' point cloud is divided in layers of regular thickness (defined by parameter
 #' \code{D}). To do so, the tree base is fisrt defined as first layer and all the points
 #' of the point cloud that are within \code{D} of any points of the layer are defined
 #' as the next layer. This process continues until that no more points are found.

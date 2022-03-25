@@ -43,7 +43,7 @@ Tree1_aRchi
 # Make the node table
 Tree1_aRchi<-Make_Node(Tree1_aRchi)
 Tree1_aRchi
-# WBE parameters at the tree level
+# Leonardo ratio at the tree level
 LeonardoRatio(Tree1_aRchi)
 }
 

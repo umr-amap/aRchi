@@ -18,13 +18,18 @@ Imports:
     lidR,
     FNN,
     DiceKriging, 
-    circular,
-    pkgcond,
     stringr,
     utils,
     stats,
     progress,
-    gtools
+    gtools,
+    Rfast,
+    VoxR,
+    fastcluster,
+    pracma,
+    pkgcond,
+    svMisc,
+    circular
 Collate: 
     'nullOrnumeric.R'
     'nullOrlist.R'
@@ -40,16 +45,24 @@ Collate:
     'Make_Node.R'
     'Make_Path.R'
     'PathFraction.R'
+    'QSM2mesh.R'
     'SelectinQSM_3d.R'
     'TreeBiomass.R'
     'Truncate_QSM.R'
     'WBEparameters.R'
     'WoodSurface.R'
     'aRchi.R'
+    'add_diameter.R'
+    'add_leaves.R'
+    'add_non_reconstructed.R'
+    'add_physiological_ages.R'
     'add_pointcloud.R'
     'angle3d.R'
     'build_aRchi.R'
     'clean_QSM.R'
+    'clean_point_cloud.R'
+    'cross_prod_3d.R'
+    'dist2line.R'
     'get_QSM.R'
     'get_nodes.R'
     'get_operations.R'
@@ -58,4 +71,8 @@ Collate:
     'plot.R'
     'read_QSM.R'
     'read_aRchi.R'
+    'segment_annual_shoots.R'
+    'simplify_skeleton.R'
+    'skeletonize.R'
+    'smooth_skeleton.R'
     'write_aRchi.R'

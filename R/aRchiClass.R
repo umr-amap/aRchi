@@ -18,6 +18,7 @@ aRchi=setClass("aRchi",slots=c(QSM = "nullOrDatatable",
                                Paths="nullOrDatatable",
                                pointcloud = "nullOrLASOrDatatable",
                                Nodes = "nullOrlist",
+                               leaves= "nullOrlist",
                                operations = "nullOrlist"
                                ))
 
@@ -45,6 +46,11 @@ setMethod("show",
               cat("List with two elements: Relative and Absolute nodes tables\n")
             }else{
               cat("Node table is empty\n")
+            }
+            if(!is.null(object@leaves)){
+              cat("Leaves computed\n")
+            }else{
+              cat("Leaves is empty\n")
             }
             if(!is.null(object@operations)){
               cat("Operations: ", paste(names(object@operations),collapse="; "))

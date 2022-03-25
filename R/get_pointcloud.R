@@ -25,7 +25,7 @@ setGeneric("get_pointcloud",
 setMethod("get_pointcloud",
           signature = "aRchi",
           function(aRchi){
-            return(aRchi@pointcloud)
+            return(aRchi@pointcloud@data)
           }
 )
 
