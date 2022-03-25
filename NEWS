@@ -1,3 +1,18 @@
+* version 2.0.0
+- Update lidR and dependencies
+- add Bastien's functions:
+  -add_non_reconstructed
+  -add_physiological_age
+  -clean_point_cloud
+  -cross_prod_3d
+  -dist2line
+  -QSM2mesh
+  -segment_annual_shoots
+  -simplify_skeleton
+  -skeletonize
+  -smooth_skeleton
+
+
 * version 1.0.6
 - Correction axis_ID problems -> When two successive segments had the error step 1 in read_QSM for treeQSM format
 - Correction of some typos in the help files
