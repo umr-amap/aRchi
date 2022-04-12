@@ -2,37 +2,42 @@
 #' Detect and add the axes that were not reconstructed by the QSM method
 #'
 #' @param aRchi a file of class aRchi.
-#' @param max_dist numeric. The maximum distance of a point to the skeleton to be considered in the computation. Default = 9999.
+#' @param max_dist numeric. The maximum distance of a point to the skeleton to be considered in the computation.
 #' @param sec_length numeric. The length of an axis section to compute the average distance used in the computation of the point
 #'                   relative distance to skeleton.
 #' @param method character. Defines the method to use to identify the non reconstructed portions of the point cloud, see details.
 #' @param th numeric. The threshold to use to identify the non reconstructed portions of the point cloud. See details.
 #' @param d_clust numeric. The distance to use for axes clustering from the identifyed non reconstructed portions of the point cloud.
 #'
-#' @details  This function detects the non reconstructed axes by comparing the skeleton to the point cloud.
+#' @details  This function detects the non reconstructed axes by analyzing the point cloud distance to the skeleton.
 #'           In a first step, the distance of each point to the skeleton is computed. At this step, the
 #'           points that are too far from the skeleton can be removed with the parameter \code{max_dist}.
 #'           The relative distance of the points is then computed by dividing their respective distance by
-#'           the distance of all the points within axes sections of a given length (\code{sec_length}). The
+#'           the average distance of all the points within axes sections of a given length (\code{sec_length}). The
 #'           points that are far from the skeleton (in terms of relative distance) are then considered as
 #'           being part of a non reconstructed axis (NR). To do so two parameters are available. First, the
 #'           \code{method} parameter defines which method should be used to identify the NR points and \code{th}
 #'           sets the threshold to use. If \code{method = "absolute"} then \code{th} is a cut-off distance
 #'           for the relative distance (1 being the average distance). If \code{method = "statistical"} then
 #'           \code{th} is a multiplier of the standard deviation so that the points further than th*sd (sd = the
-#'           standard distribution of the relative distances) are considered are NR points. NR axes are then
-#'           recovered by clustering the NR points based of distance. To do that, the \code{d_clust} parameter
+#'           standard deviation of the distribution of relative distances) are considered as NR points. NR axes are then
+#'           segmented by clustering the NR points based on distance. To do so, the \code{d_clust} parameter
 #'           sets the minimal distance between two points to be considered as part of two different axes. The
 #'           NR axes are then reconstructed as a single segment.
 #'
 #' @note The tree topology is fully recomputed. Therefore any existing topology will be lost. It is thus recommended
 #'       to use this function at the beginning of the processing pipeline.
 #'
+#' @references Lecigne, B., Delagrange, S., Lauri, P. É., & Messier, C. (2022). Trimming influences tree light interception
+#'             and space exploration: contrasted responses of two cultivars of Fraxinus pennsylvanica at various scales of
+#'             their architecture. Trees, 1-17. https://doi.org/10.1007/s00468-022-02273-5
+#'
 #' @return the aRchi file with reconstructed axes added to the skeleton with a field "reconstructed".
 #'
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' # import aRchi file
 #' aRchi=system.file("extdata","Tree_2.aRchi",package = "aRchi")
 #' aRchi = aRchi::read_aRchi(aRchi)
@@ -48,13 +53,14 @@
 #'
 #' # plot the skeleton with reconstructed axes in red
 #' plot(aRchi,color="reconstructed",show_point_cloud = TRUE)
+#' }
 
 setGeneric("add_non_reconstructed",
            function(aRchi,max_dist = 99999,sec_length = 0.2,method = "statistical",th = 2.5,d_clust = 0.02){standardGeneric("add_non_reconstructed")}
 )
-
 #' @rdname add_non_reconstructed
 #' @export
+
 setMethod("add_non_reconstructed",
           signature = "aRchi",
 

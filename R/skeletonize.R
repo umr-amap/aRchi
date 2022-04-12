@@ -1,47 +1,53 @@
 
 #' Build the skeleton of a tree point cloud
 #'
-#' @param aRchi an object of class aRchi containing at least a point cloud
+#' @param aRchi an object of class aRchi containing at least a point cloud.
 #' @param D numeric. The distance of research for point neighborhood. Sets the
-#' layer tickness. See description for details. Default = 0.02
+#' layer thickness. See description for details.
 #' @param progressive logical. Should the clustering distance be progressive ?
-#' See description for details. Default = TRUE.
+#' See description for details.
 #' @param cl_dist numeric. The clustering distance. If \code{pregressive = FALSE}
 #' sets the clustering distance for all the point cloud. If \code{pregressive = TRUE}
 #' sets the minimum clustering distance to be used. See description for details.
-#' Default = 0.02.
 #' @param max_d The maximum searching distance for skeleton building. See
-#' description for details.Default = 0.05.
-#' @param K The number of points for neighboor searching. See description for
-#' details. Default = 100.
+#' description for details.
 #'
-#' @description The skeletonization algorithm works in four steps. At STEP 1 the
+#' @details The skeletonization algorithm works in four steps. At STEP 1 the
 #' point cloud is divided in layers of regular thickness (defined by parameter
-#' \code{D}). To do so, the tree base is fisrt defined as first layer and all the points
-#' of the point cloud that are within \code{D} of any points of the layer are defined
-#' as the next layer. This process continues until that no more points are found.
+#' \code{D}). To do so, the tree base is first defined as the first layer. Then, all the points
+#' that are within \code{D} of any points of the layer \emph{N}  belong to the layer
+#' \emph{N+1}. This process continues until no more points are found within \code{D}.
 #' If there are some remaining points (that are further than \code{D} to any
-#' classifyed points),a new layer is defined as the point that is the closer of
-#' the already classified point within the layer produced at earliest iteration.
-#' This continues until no more points remain unclassified. at STEP 2, the layers
-#' are devided into clusters based on point distance: two point that are further
-#' than a given distance are considered as being part of two different objects.
+#' already classified points), a new layer is defined as the point that is the closest of
+#' the already classified point. This continues until no more points remain unclassified.
+#' At STEP 2, the layers are divided into clusters based on point distance: two point that
+#' are further than a given distance are considered as being part of two different objects.
 #' Two possibilities are available to define the clustering distance. First, it
 #' remains constant and is defined by \code{cl_dist}. Second, the distance is
 #' defined as the average distance of the points of the previous layer to the
-#' center of their corresponding layer (this is achieved by setting
-#' \code{progressive = TRUE}). In this case, \code{cl_dist} defines the minimal
+#' center of their corresponding cluster (this is achieved by setting
+#' \code{progressive = TRUE}). In this latter case, \code{cl_dist} defines the minimal
 #' clustering distance that can be used. This option helps to adapt the clustering
-#' distance to the size of the actual obtects (i.e. branch sections) to cluster.
+#' distance to the size of the actual objects (i.e. branch sections) that have to be to clustered.
 #' By default the first layer is assumed as being part of a single cluster. At
-#' STEP 3, the cluster centers are combined to build the skeleton. To do so, an
-#' iterative and hierarchical process starting with a starting point defined as
-#' the cluster center with the smallest Z value is used. A cluster is automatically
-#' conected to its nearest neighbor located within \code{max_d}. If no neighbour is
-#' detected (because the cluster is a branch tip or due to occlusion), the process
-#' restarts with the cluster located in the earliest layer that is the closer to
-#' an already used cluster as new starting point. This process ends once all cluster
-#' centers are connected.
+#' STEP 3, the cluster centers are used as node of the skeleton and are combined
+#' to iteratively build the skeleton. At first iteration, the node with the
+#' smallest Z value is used as the root node. At subsequent iterations, the node
+#' located within \code{max_d} and that is the closest to the root node
+#' is integrated into the skeleton and is selected as new root node. This process
+#' continues until no node is found within \code{max_d} to the root node
+#' (either because the cluster is a branch tip or because there is a gap in the point cloud).
+#' In this case, the node that belong to the layer that was produced at earliest
+#' iteration of STEP 1 and that is the closer to a skeleton node is selected as new root node.
+#' This process ends once all nodes are integrated into the skeleton. At STEP 4, a basic
+#' tree topology is computed. First, an unique ID is assigned to all segments of the skeleton
+#' (i.e. the segment that link two nodes) and its parent segment ID is retrieved.
+#' The segments are then classified into axes. An axis being defined as a continuous set of
+#' segments that always follow the segment that support the longest portion of the skeleton.
+#' Axes are then partitioned into axes segments defined as the portion of an axis
+#' located between two branching point or between a branching point and an extremity of
+#' the axis. The axis branching order is then computed as the number of branching point
+#' observed between the tree base and the axis first segment + 1.
 #'
 #'
 #' @return an aRchi file containing the original point cloud and the corresponding skeleton
@@ -49,7 +55,11 @@
 #'
 #' @examples
 #' \donttest{
-#' # import a point cloud
+#' #################################################################
+#' # Example with a small high quality point cloud : using default #
+#' # default parameters to detect fine architectural details       #
+#' #################################################################
+#'# import a point cloud
 #' tls=system.file("extdata","Tree_2_point_cloud.las",package = "aRchi")
 #' tls = lidR::readLAS(tls)
 #'
@@ -68,18 +78,42 @@
 #'
 #' # plot the skeleton
 #' plot(aRchi,show_point_cloud = TRUE)
+#'
+#'
+#' ##############################################################
+#' # Example with a large point cloud with a lot of occlusion : #
+#' # parameters selected for speed                              #
+#' ##############################################################
+#' # import a point cloud
+#' tls=system.file("extdata","Tree_1_point_cloud.las",package = "aRchi")
+#' tls = lidR::readLAS(tls)
+#'
+#' # build an empty aRchi file and add the point cloud
+#' aRchi = aRchi::build_aRchi()
+#' aRchi = aRchi::add_pointcloud(aRchi,point_cloud = tls)
+#'
+#' # plot the point cloud
+#' plot(aRchi@pointcloud)
+#'
+#' # build a skeleton from the point cloud
+#' aRchi = skeletonize_pc(aRchi, D = 0.5, cl_dist = 0.2, max_d = 1)
+#'
+#' # smooth the skeleton
+#' aRchi = smooth_skeleton(aRchi)
+#'
+#' # plot the skeleton
+#' plot(aRchi,show_point_cloud = TRUE)
 #' }
 
 setGeneric("skeletonize_pc",
-           function(aRchi,D = 0.03,progressive = TRUE,cl_dist = 0.02,max_d = 0.05,K=100){standardGeneric("skeletonize_pc")}
+           function(aRchi,D = 0.03,progressive = TRUE,cl_dist = 0.02,max_d = 0.05){standardGeneric("skeletonize_pc")}
 )
-
 #' @rdname skeletonize_pc
 #' @export
 
 setMethod("skeletonize_pc",
           signature = "aRchi",
-          function(aRchi,D = 0.03,progressive = TRUE,cl_dist = 0.02,max_d = 0.05,K=100){
+          function(aRchi,D = 0.03,progressive = TRUE,cl_dist = 0.02,max_d = 0.05){
 
             # to pass CRAN check
             .=ID=X=Y=Z=axis_ID=bear_length=bearer_ID=branching_order=cluster=cyl_ID=dist=endX=endY=endZ=iter=node_ID=parent_ID=radius=
@@ -110,9 +144,6 @@ setMethod("skeletonize_pc",
             pb <- progress::progress_bar$new(total = nrow(data),width = 60,
                                              format = " (1/4) Computing layers    [:bar] :percent",clear=FALSE)
             while(nrow(dat2)>0){
-
-              # adjust K if there are not enough remaining points
-              if(nrow(dat2)< K){k = nrow(dat2)}else{k = K}
 
               # compute the distance maximum distance of each point in the data to the
               # points in the layer
@@ -417,7 +448,7 @@ setMethod("skeletonize_pc",
             aRchi@QSM[! cyl_ID %in% parent_ID, extension_ID := 0]
 
             # keep the operation in memory
-            aRchi@operations$skeletonize = list(D=D,progressive=progressive,cl_dist=cl_dist,max_d=max_d,K=K)
+            aRchi@operations$skeletonize = list(D=D,progressive=progressive,cl_dist=cl_dist,max_d=max_d)
 
             return(aRchi)
           }

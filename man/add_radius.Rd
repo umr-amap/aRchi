@@ -15,10 +15,10 @@ add_radius(aRchi, sec_length = 0.5, by_axis = TRUE, method = "median")
 \item{sec_length}{numeric. The length of the section to compute the radius. See details.}
 
 \item{by_axis}{logical. If \code{TRUE} the radius is calculated for each section within each axis, if \code{FALSE}
-the radius is calculated within section for all axes simultaneously. Default = TRUE.}
+the radius is calculated within section for all axes simultaneously.}
 
 \item{method}{character. The axis radius can be either the mean (\code{method = "mean"}) or the
-median (\code{method = "median"}) distance to the skeleton. Default = "median".}
+median (\code{method = "median"}) distance to the skeleton.}
 }
 \value{
 The aRchi file with an updated radius in the QSM slot.

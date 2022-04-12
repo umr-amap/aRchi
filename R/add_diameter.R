@@ -3,9 +3,9 @@
 #' @param aRchi an object of class aRchi containing at least a point cloud and a QSM.
 #' @param sec_length numeric. The length of the section to compute the radius. See details.
 #' @param by_axis logical. If \code{TRUE} the radius is calculated for each section within each axis, if \code{FALSE}
-#'                the radius is calculated within section for all axes simultaneously. Default = TRUE.
+#'                the radius is calculated within section for all axes simultaneously.
 #' @param method character. The axis radius can be either the mean (\code{method = "mean"}) or the
-#'               median (\code{method = "median"}) distance to the skeleton. Default = "median".
+#'               median (\code{method = "median"}) distance to the skeleton.
 #'
 #' @details The point distance to skeleton is likely to vary considerably over short
 #'          distances (e.g. at a branching point). Therefore, the radius is computed
@@ -39,7 +39,6 @@
 setGeneric("add_radius",
            function(aRchi,sec_length = 0.5,by_axis = TRUE,method = "median"){standardGeneric("add_radius")}
 )
-
 #' @rdname add_radius
 #' @export
 

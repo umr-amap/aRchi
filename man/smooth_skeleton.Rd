@@ -10,11 +10,11 @@ smooth_skeleton(aRchi, niter = 1, th = 0)
 \S4method{smooth_skeleton}{aRchi}(aRchi, niter = 1, th = 0)
 }
 \arguments{
-\item{aRchi}{a file of class aRchi containing at least a skeleton}
+\item{aRchi}{a file of class aRchi containing at least a skeleton.}
 
-\item{niter}{integer. number of iterations to perform}
+\item{niter}{integer. Number of iterations to perform.}
 
-\item{th}{numeric. The distance threshold to correct the segments tips position}
+\item{th}{numeric. The distance threshold to correct the segments tips position.}
 }
 \value{
 a file of class aRchi with a smoothed skeleton
@@ -22,12 +22,19 @@ a file of class aRchi with a smoothed skeleton
 \description{
 Smooth a tree skeleton
 }
+\details{
+Smooth a skeleton or a QSM by computing the distance of a node to the segment
+         formed by its parent and child nodes of the same axis. If the distance is
+         greater than \code{th}, the node coordinates are moved on the segment.
+         This process is done \code{niter} times.
+}
 \examples{
+\donttest{
 # import aRchi file
 aRchi=system.file("extdata","Tree_2.aRchi",package = "aRchi")
 aRchi = aRchi::read_aRchi(aRchi)
 
-# plot unsmoothed skeleton
+# plot original skeleton
 plot(aRchi)
 
 # smooth skeleton
@@ -35,4 +42,5 @@ aRchi = aRchi::smooth_skeleton(aRchi)
 
 # plot smoothed skeleton
 plot(aRchi)
+}
 }

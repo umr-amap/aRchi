@@ -3,26 +3,26 @@
 \name{add_physiological_ages}
 \alias{add_physiological_ages}
 \alias{add_physiological_ages,aRchi-method}
-\title{Add the physiological age of an annual shoot based on its length}
+\title{Add the physiological age of an annual shoots based on their length}
 \usage{
 add_physiological_ages(aRchi, th = c(0.1, 0.2, 0.5), correct_PA = TRUE)
 
 \S4method{add_physiological_ages}{aRchi}(aRchi, th = c(0.1, 0.2, 0.5), correct_PA = TRUE)
 }
 \arguments{
-\item{aRchi}{an object of class aRchi containing at least a QSM}
+\item{aRchi}{an object of class aRchi containing at least a QSM.}
 
 \item{th}{numeric. The length thresholds used to segment annual shoots into physiological ages.}
 
 \item{correct_PA}{logical. Should a correction of the physiological age be performed ?
 This correction is based on the assumption that the child annual shoot can not be of lower
-order than its parent annual shoot. The parent annual shoot physiological age is modifyed.}
+order than its parent annual shoot. The parent annual shoot physiological age is modified accordingly.}
 }
 \value{
-The aRchi file with a physiological age field added in th QSM slot
+The aRchi file with a physiological age field added to the QSM slot
 }
 \description{
-Add the physiological age of an annual shoot based on its length
+Add the physiological age of an annual shoots based on their length
 }
 \examples{
 \donttest{

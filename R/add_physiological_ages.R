@@ -1,12 +1,12 @@
-#' Add the physiological age of an annual shoot based on its length
+#' Add the physiological age of an annual shoots based on their length
 #'
-#' @param aRchi an object of class aRchi containing at least a QSM
+#' @param aRchi an object of class aRchi containing at least a QSM.
 #' @param th numeric. The length thresholds used to segment annual shoots into physiological ages.
 #' @param correct_PA logical. Should a correction of the physiological age be performed ?
 #' This correction is based on the assumption that the child annual shoot can not be of lower
-#' order than its parent annual shoot. The parent annual shoot physiological age is modifyed.
+#' order than its parent annual shoot. The parent annual shoot physiological age is modified accordingly.
 #'
-#' @return The aRchi file with a physiological age field added in th QSM slot
+#' @return The aRchi file with a physiological age field added to the QSM slot
 #'
 #' @references Lecigne, B., Delagrange, S., & Taugourdeau, O. (2021). Annual Shoot Segmentation and
 #' Physiological Age Classification from TLS Data in Trees with Acrotonic Growth. Forests, 12(4), 391.
@@ -35,7 +35,6 @@
 setGeneric("add_physiological_ages",
            function(aRchi,th = c(0.1,0.2,0.5), correct_PA = TRUE){standardGeneric("add_physiological_ages")}
 )
-
 #' @rdname add_physiological_ages
 #' @export
 

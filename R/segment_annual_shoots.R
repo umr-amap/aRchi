@@ -2,24 +2,25 @@
 #' Annual shoot segmentation in tree skeleton
 #'
 #' @description Segment the annual shoots in a tree skeleton based on the detection
-#'              of the branching patterns created by the acrotony.
+#'              of the branching patterns created by acrotony.
 #'
-#' @param aRchi an object of class aRchi containing at least a QSM
-#' @param tree_age numeric, optional. The tree age. Helps to achieve correct segmentation
+#' @param aRchi an object of class aRchi containing at least a QSM.
+#' @param tree_age numeric, optional. The tree age. Helps to achieve more robust segmentation.
 #' @param segment_reiterations list of numeric values. The parameters to segment traumatic
 #'                             reiterations based on their age difference with the bearer
 #'                             annual shoot and their elevation. The list must have the
-#'                             following form: list(age_difference, elevation_angle).
+#'                             following form: list(age_difference, elevation_angle) where
+#'                             age_difference and elevation_angle are numeric vectors.
 #'                             NOTE the elevation angle is defined relative to the zenith.
 #'
 #' @return The input aRchi file with an additional field in the QSM slot being the segmented
-#'        annual shoots. NOTE that annual shoot = 1 correspond to the last growing season.
-#'        If traumatic reiteration segmentation was achieved, an additional field
-#'        labeling cylinders that belong to a reiteration is added.
+#'         annual shoots. NOTE that annual shoot = 1 correspond to the last growing season.
+#'         If traumatic reiteration segmentation was achieved, an additional field
+#'         labeling cylinders that belong to a reiteration is added.
 #'
 #' @references Lecigne, B., Delagrange, S., & Taugourdeau, O. (2021). Annual Shoot Segmentation and
-#' Physiological Age Classification from TLS Data in Trees with Acrotonic Growth. Forests, 12(4), 391.
-#' https://doi.org/10.3390/f12040391
+#'             Physiological Age Classification from TLS Data in Trees with Acrotonic Growth. Forests, 12(4), 391.
+#'             https://doi.org/10.3390/f12040391
 #'
 #' @export
 #'
@@ -41,7 +42,6 @@
 setGeneric("segment_annual_shoots",
            function(aRchi,tree_age,segment_reiterations){standardGeneric("segment_annual_shoots")}
 )
-
 #' @rdname segment_annual_shoots
 #' @export
 

@@ -56,7 +56,7 @@ add_leaves(
 
 \item{elev_error}{numeric. A random error added to leaves elevation angle.}
 
-\item{az_err}{numeric. A random error added to le leaves azimuth.}
+\item{az_err}{numeric. A random error added to leaves azimuth.}
 
 \item{phyllo}{character. The phyllotaxy used to insert the leaves along the annual shoot.
 Accepted values: "alternate", "spiral", "opposite", "opposite_decussate".}
@@ -74,7 +74,7 @@ Generate foliage to a QSM or skeleton with segmented annual shoots.
 }
 \details{
 Allometries for the leaf area, number of leaves and number of internodes are computed
-         at the annual shoot level and are of the form X = a*AS_length^b. The leaves elevation angle
+         at the annual shoot level and are of the form \emph{X = a*AS_length^b}. The leaves elevation angle
          is constant if a single value is provided for \code{elev} or is linearly interpolated based
          of the leaf relative height within the tree crown if two values are provided.
 }
@@ -98,4 +98,9 @@ aRchi = aRchi::add_leaves(aRchi)
 
 plot(aRchi,leaves=TRUE,bg="white",color="chocolate4")
 }
+}
+\references{
+Lecigne, B., Delagrange, S., Lauri, P. É., & Messier, C. (2022). Trimming influences tree light interception
+            and space exploration: contrasted responses of two cultivars of Fraxinus pennsylvanica at various scales of
+            their architecture. Trees, 1-17. https://doi.org/10.1007/s00468-022-02273-5
 }

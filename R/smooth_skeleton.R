@@ -1,18 +1,24 @@
 #' Smooth a tree skeleton
 #'
-#' @param aRchi a file of class aRchi containing at least a skeleton
-#' @param niter integer. number of iterations to perform
-#' @param th numeric. The distance threshold to correct the segments tips position
+#' @param aRchi a file of class aRchi containing at least a skeleton.
+#' @param niter integer. Number of iterations to perform.
+#' @param th numeric. The distance threshold to correct the segments tips position.
 #'
 #' @return a file of class aRchi with a smoothed skeleton
 #' @export
 #'
+#' @details Smooth a skeleton or a QSM by computing the distance of a node to the segment
+#'          formed by its parent and child nodes of the same axis. If the distance is
+#'          greater than \code{th}, the node coordinates are moved on the segment.
+#'          This process is done \code{niter} times.
+#'
 #' @examples
+#' \donttest{
 #' # import aRchi file
 #' aRchi=system.file("extdata","Tree_2.aRchi",package = "aRchi")
 #' aRchi = aRchi::read_aRchi(aRchi)
 #'
-#' # plot unsmoothed skeleton
+#' # plot original skeleton
 #' plot(aRchi)
 #'
 #' # smooth skeleton
@@ -20,12 +26,12 @@
 #'
 #' # plot smoothed skeleton
 #' plot(aRchi)
+#' }
 
 
 setGeneric("smooth_skeleton",
            function(aRchi,niter = 1,th = 0){standardGeneric("smooth_skeleton")}
 )
-
 #' @rdname smooth_skeleton
 #' @export
 

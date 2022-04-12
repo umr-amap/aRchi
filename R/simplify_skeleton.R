@@ -2,9 +2,14 @@
 #' Simplify a skeleton by removing unnecessary cylinders
 #'
 #' @param aRchi an object of class aRchi containing at least a QSM.
-#' @param seg_length numeric. The target maximal cylinder length.
+#' @param seg_length numeric. The target maximal cylinder length. See details.
 #'
-#' @return the simplified QSM.
+#' @details Simplifies a QSM by merging short cylinders into longer cylinders with
+#'          a length close to a user defined target length. Note that short cylinders are
+#'          kept if they support a branching point so that the overall QSM geometry
+#'          is not affected by the simplification process.
+#'
+#' @return a aRchi file with the simplified QSM.
 #' @export
 #'
 #' @examples
@@ -29,7 +34,6 @@
 setGeneric("simplify_skeleton",
            function(aRchi,seg_length = 0.1){standardGeneric("simplify_skeleton")}
 )
-
 #' @rdname simplify_skeleton
 #' @export
 

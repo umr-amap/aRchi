@@ -7,12 +7,14 @@
 #' @include aRchiClass.R
 #' @seealso \code{\link{aRchi}}; \code{\link{write_aRchi}}; \code{\link{read_aRchi}}
 #' @examples
+#' \donttest{
 #' file_QSM=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 #' file_pc=system.file("extdata","Tree_1_point_cloud.las",package = "aRchi")
 #' QSM=read_QSM(file_QSM,model="treeQSM")
 #' pc=lidR::readLAS(file_pc)
 #' # Make an object of class aRchi
 #' Tree1_aRchi=build_aRchi(QSM=QSM,point_cloud=pc)
+#' }
 
 
 build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
@@ -55,7 +57,7 @@ build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
                 stop("the provided QSM does not contains enought fields: must contain at least
            stratX | startY | startZ | endX | endY | endZ | radius")
               }
-              if(QSM$model=="aaa"){
+              if(QSM$model=="treeQSM"){
                 aRchi@QSM = data.table::data.table(QSM$QSM)
               }else{
 

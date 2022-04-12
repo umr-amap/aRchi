@@ -9,7 +9,7 @@
 #' @param bNin numeric. Allometric coefficient (b) for the number of internodes per annual shoot.
 #' @param elev numeric. A single value or a vector of length 2 giving the leaves elevation angles.
 #' @param elev_error numeric. A random error added to leaves elevation angle.
-#' @param az_err numeric. A random error added to le leaves azimuth.
+#' @param az_err numeric. A random error added to leaves azimuth.
 #' @param phyllo character. The phyllotaxy used to insert the leaves along the annual shoot.
 #'               Accepted values: "alternate", "spiral", "opposite", "opposite_decussate".
 #' @param simple logical. Bypass the allometry for the number of leaves per annual shoot
@@ -17,11 +17,16 @@
 #' @param petiole numeric. The petiole length given as a multiplier of the leaf length.
 #'
 #' @details Allometries for the leaf area, number of leaves and number of internodes are computed
-#'          at the annual shoot level and are of the form X = a*AS_length^b. The leaves elevation angle
+#'          at the annual shoot level and are of the form \emph{X = a*AS_length^b}. The leaves elevation angle
 #'          is constant if a single value is provided for \code{elev} or is linearly interpolated based
 #'          of the leaf relative height within the tree crown if two values are provided.
 #'
 #' @return The aRchi file now including the reconstructed foliage.
+#'
+#' @references Lecigne, B., Delagrange, S., Lauri, P. É., & Messier, C. (2022). Trimming influences tree light interception
+#'             and space exploration: contrasted responses of two cultivars of Fraxinus pennsylvanica at various scales of
+#'             their architecture. Trees, 1-17. https://doi.org/10.1007/s00468-022-02273-5
+#'
 #' @export
 #'
 #' @examples
@@ -50,7 +55,6 @@ setGeneric("add_leaves",
                     aNin = 2.1337, bNin = 0.3818, elev = c(17,45), elev_error = 5,
                     az_err = 20, phyllo = "opposite_decussate", simple = T, petiole = 0.5){standardGeneric("add_leaves")}
 )
-
 #' @rdname add_leaves
 #' @export
 

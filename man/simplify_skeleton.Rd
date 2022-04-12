@@ -12,13 +12,19 @@ simplify_skeleton(aRchi, seg_length = 0.1)
 \arguments{
 \item{aRchi}{an object of class aRchi containing at least a QSM.}
 
-\item{seg_length}{numeric. The target maximal cylinder length.}
+\item{seg_length}{numeric. The target maximal cylinder length. See details.}
 }
 \value{
-the simplified QSM.
+a aRchi file with the simplified QSM.
 }
 \description{
 Simplify a skeleton by removing unnecessary cylinders
+}
+\details{
+Simplifies a QSM by merging short cylinders into longer cylinders with
+         a length close to a user defined target length. Note that short cylinders are
+         kept if they support a branching point so that the overall QSM geometry
+         is not affected by the simplification process.
 }
 \examples{
 \donttest{

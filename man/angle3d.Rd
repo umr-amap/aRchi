@@ -7,17 +7,17 @@
 angle3d(o, a, b)
 }
 \arguments{
-\item{o}{3d coordinates of the common point of the two segments}
+\item{o}{3D coordinates of the common point of the two segments}
 
-\item{a}{3d coordinates of the other point of segment a}
+\item{a}{3D coordinates of the other point of segment a}
 
-\item{b}{3d coordinates of the other point of segment b}
+\item{b}{3D coordinates of the other point of segment b}
 }
 \value{
 The angle in degree
 }
 \description{
-Calculate a zenith angle between two segments from 3d (i.e x,y,z) coordinates
+Calculate a zenith angle between two segments from 3D (i.e X,Y,Z) coordinates
 }
 \examples{
 origin=c(0,0,0)

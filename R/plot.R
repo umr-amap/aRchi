@@ -66,7 +66,7 @@ setMethod("plot",
 
               if(show_point_cloud){
                 if(is.null(x@pointcloud)){warning("There is no point cloud to plot")}
-                lidR::plot(x@pointcloud,bg=bg,clear_artifacts=FALSE,colorPalette = pc_col,axis=T)
+                lidR::plot(x@pointcloud,bg=bg,clear_artifacts=FALSE,pal = height.colors,axis=T)
               }else{
                 # translate the data for ploting with lidR tools
                 #  dat_plot[,':='(X = X-min(X),Y = Y - min(Y),Z = Z-min(Z))]
