@@ -82,7 +82,7 @@ setMethod("SelectinQSM_3d",
               pc=QSM[startX==min(startX)|startX==max(endX)|startY==min(startY)|startY==max(endY)|startZ==min(startZ)|startZ==max(endZ),c("startX","startY","startZ")]
               names(pc)=c("X","Y","Z")
               pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg="black",colorPalette="black",size=0,clear_artifacts=FALSE,axis=T)
+              lidR::plot(pc,bg="black",size=0,clear_artifacts=FALSE,axis=T)
               ifelse(skeleton,rgl::segments3d(dat_plot,lwd=3,col="white",add=TRUE), rgl::shapelist3d(dat_plot,color="white",alpha=1,add=TRUE,lit=TRUE))
 
               valid=gtools::ask("Find and Zoom into the zone of interest, then, hit Enter:\n")
