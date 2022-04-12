@@ -13,7 +13,7 @@ LeonardoRatio(aRchi, level = "Tree", position = 10)
 \arguments{
 \item{aRchi}{an object of class aRchi with at least a QSM and the Nodes table (see function \code{\link{Make_Node}})}
 
-\item{level}{characters. At which level R_ratio has to be estimated. \code{Node} for node level, \code{Axis} for the axis level, \code{branching_orde} for branch order level and \code{Tree} for tree level (default).}
+\item{level}{characters. At which level R_ratio has to be estimated. \code{Node} for node level, \code{Axis} for the axis level, \code{branching_order} for branch order level and \code{Tree} for tree level (default).}
 
 \item{position}{At which position from the node R_ratio had to be estimated. Either a numeric or a character. Use a numeric multiple of ten to select the distance from the node in cm where R ratio has to be estimated (e.g 10 for 10cm from the node). Use the \% sign after a multiple of ten to select the distance from the node in percentage of the length of the parent and daughters segments (e.g 50\% for an estimation at mid-length of the segments). Note that 0 is accepted and correspond to the closest position from the node.}
 }

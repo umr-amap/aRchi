@@ -7,12 +7,14 @@
 #' @include aRchiClass.R
 #' @seealso \code{\link{aRchi}}; \code{\link{write_aRchi}}; \code{\link{read_aRchi}}
 #' @examples
+#' \donttest{
 #' file_QSM=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
 #' file_pc=system.file("extdata","Tree_1_point_cloud.las",package = "aRchi")
 #' QSM=read_QSM(file_QSM,model="treeQSM")
 #' pc=lidR::readLAS(file_pc)
 #' # Make an object of class aRchi
 #' Tree1_aRchi=build_aRchi(QSM=QSM,point_cloud=pc)
+#' }
 
 
 build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
@@ -81,7 +83,7 @@ build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
                   if(colnames(QSM)[8] == "branching_order"){
                     branching_orders = QSM$branching_order
                     QSM[,branching_order := NULL] # remove from table
-                    cimpute_BO = FALSE
+                    compute_BO = FALSE
                   }
                   if(colnames(QSM)[8] == "axis_ID"){
                     axis_IDs = QSM$axis_ID # remove from table

@@ -14,14 +14,14 @@ Class containing files to compute and display in three dimensions tree architect
 \section{Fields}{
 
 \describe{
-\item{\code{QSM}}{a data.table containing QSM information according to read_QSM function format}
+\item{\code{QSM}}{a data.table containing QSM information according to \code{\link{read_QSM}} function format}
 
-\item{\code{pointcloud}}{a data.table containing the point cloud used to generated the QSM}
+\item{\code{pointcloud}}{a data.table containing the point cloud used to generate the QSM}
 
-\item{\code{Paths}}{a data.table of Paths according to Make_Path function (see \code{\link{Make_Path}})}
+\item{\code{Paths}}{a data.table of Paths according to \code{\link{Make_Path}} function}
 
 \item{\code{Nodes}}{Metrics computed at the node scale (see \code{\link{Make_Node}})}
 
-\item{\code{operations}}{Record all the operations realized on the object.}
+\item{\code{operations}}{Record all the operations performed on the object.}
 }}
 

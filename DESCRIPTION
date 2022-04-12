@@ -1,10 +1,10 @@
 Package: aRchi
 Type: Package
 Title: Quantitative Structural Model ('QSM') Treatment for Tree Architecture
-Version: 1.0.6
-Author: Olivier Martin
-Maintainer: Olivier Martin <oli.martin@ntymail.com>
-Description: Provides a set of tools to manipulate, visualize and compute metrics from quantitative structural model of trees (i.e the so-called 'QSM') . It can be used in various context of forest ecology (i.e biomass estimation) and tree architecture (i.e architectural metrics), see Martin-Ducup et al. (2020) <doi:10.1111/1365-2435.13678>. The package is based on a new S4 class called 'aRchi'.
+Version: 2.1.0
+Author: Olivier Martin and Bastien Lecigne
+Maintainer: Olivier Martin <oli.martin@ntymail.com>; Bastien Lecigne <lecignebastien@gmail.com>
+Description: Provides a set of tools to make quantitative structural model of trees (i.e the so-called 'QSM') from LiDAR point cloud, to manipulate and visualize the QSMs as well as to compute metrics from them. It can be used in various context of forest ecology (i.e biomass estimation) and tree architecture (i.e architectural metrics), see Martin-Ducup et al. (2020) <doi:10.1111/1365-2435.13678>. The package is based on a new S4 class called 'aRchi'.
 License: CeCILL
 Encoding: UTF-8
 URL: https://github.com/umr-amap/aRchi
@@ -18,13 +18,18 @@ Imports:
     lidR,
     FNN,
     DiceKriging, 
-    circular,
-    pkgcond,
     stringr,
     utils,
     stats,
     progress,
-    gtools
+    gtools,
+    Rfast,
+    VoxR,
+    fastcluster,
+    pracma,
+    pkgcond,
+    svMisc,
+    circular
 Collate: 
     'nullOrnumeric.R'
     'nullOrlist.R'
@@ -40,16 +45,26 @@ Collate:
     'Make_Node.R'
     'Make_Path.R'
     'PathFraction.R'
+    'QSM2mesh.R'
     'SelectinQSM_3d.R'
     'TreeBiomass.R'
+    'TreeVolume.R'
     'Truncate_QSM.R'
     'WBEparameters.R'
     'WoodSurface.R'
     'aRchi.R'
+    'aRchi2treeQSM.R'
+    'add_diameter.R'
+    'add_leaves.R'
+    'add_non_reconstructed.R'
+    'add_physiological_ages.R'
     'add_pointcloud.R'
     'angle3d.R'
     'build_aRchi.R'
     'clean_QSM.R'
+    'clean_point_cloud.R'
+    'cross_prod_3d.R'
+    'dist2line.R'
     'get_QSM.R'
     'get_nodes.R'
     'get_operations.R'
@@ -58,4 +73,8 @@ Collate:
     'plot.R'
     'read_QSM.R'
     'read_aRchi.R'
+    'segment_annual_shoots.R'
+    'simplify_skeleton.R'
+    'skeletonize.R'
+    'smooth_skeleton.R'
     'write_aRchi.R'

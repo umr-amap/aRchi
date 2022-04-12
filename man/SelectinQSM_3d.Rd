@@ -38,7 +38,7 @@ Some details about the level of organization are given below.
 
  "branch": return the characteristics for the cylinders of the branch selected. A branch is similar to an axis but regroup also everything that is upstream the axis (i.e all that the axis carries)
 
- "Subtree": return the characteristics for the cylinders of the subtree selected. A subtree is similar to a branch but starting from the cylinder selected and not from the point of insertion of the selected axis. In other word, when the user draw a rectangle on a cylinder, the subtree selection return all that the cylinder carries. If several cylinders are selected, the subtree selection return all that the most downstream cylinder carries.
+ "subtree": return the characteristics for the cylinders of the subtree selected. A subtree is similar to a branch but starting from the cylinder selected and not from the point of insertion of the selected axis. In other word, when the user draw a rectangle on a cylinder, the subtree selection return all that the cylinder carries. If several cylinders are selected, the subtree selection return all that the most downstream cylinder carries.
 }
 \examples{
 # Read an aRchi file with at least a QSM

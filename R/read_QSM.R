@@ -225,8 +225,8 @@ read_QSM=function(file,model){
       endY = data$endY,
       endZ = data$endZ,
       radius = data$radius,
-      axis_ID = data$BranchID,
-      branching_order = data$BranchOrder
+      axis_ID = data$branchID,
+      branching_order = data$branchOrder
     )
 
     # adjust the axis_ID so it starts to 1

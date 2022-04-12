@@ -13,7 +13,9 @@
   bg = "black",
   lwd = 3,
   show_point_cloud = FALSE,
-  skeleton = TRUE
+  skeleton = TRUE,
+  leaves = FALSE,
+  lit = TRUE
 )
 }
 \arguments{
@@ -33,6 +35,10 @@
 \item{show_point_cloud}{logical (Default = \code{FALSE}). Display the point cloud ?}
 
 \item{skeleton}{logical (Default is \code{TRUE}). Display the skeleton only (i.e segments). Faster than displaying the whole QSM with the fleshed cylinders.}
+
+\item{leaves}{logical (Default is \code{FALSE}). Display the leaves ?}
+
+\item{lit}{logical (Default is \code{TRUE}). Specify if lighting calculation should take place on the geometry. Only applies if \code{skeleton = FALSE}.}
 }
 \description{
 Plot an object of class aRchi.
@@ -50,4 +56,6 @@ plot(Tree1_aRchi,color="branching_order")
 # Same with the fleshed cylinder and the point cloud
 plot(Tree1_aRchi,color="branching_order",skeleton=FALSE,show_point_cloud=TRUE)
 }
+
+
 }

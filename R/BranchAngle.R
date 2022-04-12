@@ -38,7 +38,7 @@ function(aRchi,method=NULL,A0=FALSE,level="Tree"){standardGeneric("BranchAngle")
 
 
 #' @rdname BranchAngle
-#' @export
+
 setMethod("BranchAngle",
           signature = "aRchi",
 

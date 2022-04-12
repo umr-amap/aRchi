@@ -1,10 +1,10 @@
 #' Calculate the zenith angle from xyz coordinates
 #'
-#' Calculate a zenith angle between two segments from 3d (i.e x,y,z) coordinates
+#' Calculate a zenith angle between two segments from 3D (i.e X,Y,Z) coordinates
 #'
-#' @param o 3d coordinates of the common point of the two segments
-#' @param a 3d coordinates of the other point of segment a
-#' @param b 3d coordinates of the other point of segment b
+#' @param o 3D coordinates of the common point of the two segments
+#' @param a 3D coordinates of the other point of segment a
+#' @param b 3D coordinates of the other point of segment b
 #' @return  The angle in degree
 #' @include aRchiClass.R
 #' @examples
@@ -38,4 +38,5 @@ angle3d=function (o,a,b) {
   scal_OAOB= (v_OA[1]*v_OB[1])+(v_OA[2]*v_OB[2])+(v_OA[3]*v_OB[3])
 
   theta=acos(scal_OAOB/(n_OA*n_OB))
-  return(theta=theta)}
+  return(theta=theta)
+ }
