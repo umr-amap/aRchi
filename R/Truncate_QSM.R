@@ -122,12 +122,17 @@ setMethod("Truncate_QSM",
             aRchi@QSM=TruncatedQSM
             if(length(unique(aRchi@QSM$branching_order)>1)){
             aRchi=Make_Path(aRchi)
-            message("\nPaths table has been re-estimated according to the new truncated QSM")}
-            if(length(unique(aRchi@QSM$branching_order)==1)){aRchi@Paths=NULL}
+            message("\nPaths table has been re-estimated according to the new truncated QSM")
             if(is.null(aRchi@Nodes)==FALSE){
               aRchi=Make_Node(aRchi)
 
               message("\nNodes table has been re-estimated according to the new truncated QSM")
+            }
+
+            }
+            if(length(unique(aRchi@QSM$branching_order)==1)){
+              aRchi@Paths=NULL
+              aRchi@Node=NULL
             }
 
             if(plotresult){
