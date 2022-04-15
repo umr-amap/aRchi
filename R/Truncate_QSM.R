@@ -130,8 +130,15 @@ setMethod("Truncate_QSM",
             }
 
             }
+<<<<<<< HEAD
             if(length(unique(aRchi@QSM$branching_order)==1)){aRchi@Paths=NULL
             aRchi@Nodes=NULL}
+=======
+            if(length(unique(aRchi@QSM$branching_order)==1)){
+              aRchi@Paths=NULL
+              aRchi@Node=NULL
+            }
+>>>>>>> 3341f432361f0beb3cde741dff5c1b1feb8ed8b9
 
             if(plotresult){
 
