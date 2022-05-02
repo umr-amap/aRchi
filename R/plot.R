@@ -106,11 +106,11 @@ setMethod("plot",
               if(is.null(x@pointcloud)){warning("There is no point cloud to plot")}
               lidR::plot(x@pointcloud,bg=bg,clear_artifacts=FALSE,axis=T) #plot the point cloud
             }else{
-              # empty window
+              # empty window. to check
               pc=QSM[startX==min(startX)|startX==max(startX)|startY==min(startY)|startY==max(startY)|startZ==min(startZ)|startZ==max(startZ),1:3]
               names(pc)=c("X","Y","Z")
               pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg=bg,size=0,clear_artifacts=FALSE,axis=T)
+              lidR::plot(pc,bg=bg,size=0,clear_artifacts=FALSE,axis=T,col=bg)
             }
             #rgl::shapelist3d(ls_cyl,color=col,alpha=transparency,add=TRUE,lit=lit) # plot the list
             rgl::shade3d(mesh,col=rep(col,each=32))
