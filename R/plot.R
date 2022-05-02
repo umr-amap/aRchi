@@ -110,7 +110,7 @@ setMethod("plot",
               pc=QSM[startX==min(startX)|startX==max(startX)|startY==min(startY)|startY==max(startY)|startZ==min(startZ)|startZ==max(startZ),1:3]
               names(pc)=c("X","Y","Z")
               pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
-              lidR::plot(pc,bg=bg,size=0,clear_artifacts=FALSE,axis=T,col=bg)
+              lidR::plot(pc,bg=bg,size=0,clear_artifacts=FALSE,axis=T,color="col",pal=palette.colors(n=1,alpha=0))
             }
             #rgl::shapelist3d(ls_cyl,color=col,alpha=transparency,add=TRUE,lit=lit) # plot the list
             rgl::shade3d(mesh,col=rep(col,each=32))
