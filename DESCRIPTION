@@ -1,7 +1,7 @@
 Package: aRchi
 Type: Package
 Title: Quantitative Structural Model ('QSM') Treatment for Tree Architecture
-Version: 2.1.0
+Version: 2.1.1
 Author: Olivier Martin and Bastien Lecigne
 Maintainer: Olivier Martin <oli.martin@ntymail.com>
 Description: Provides a set of tools to make quantitative structural model of trees (i.e the so-called 'QSM') from LiDAR point cloud, to manipulate and visualize the QSMs as well as to compute metrics from them. It can be used in various context of forest ecology (i.e biomass estimation) and tree architecture (i.e architectural metrics), see Martin-Ducup et al. (2020) <doi:10.1111/1365-2435.13678>. The package is based on a new S4 class called 'aRchi'.
