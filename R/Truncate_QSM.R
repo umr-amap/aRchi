@@ -130,7 +130,7 @@ setMethod("Truncate_QSM",
             }
 
             }
-            if(length(unique(aRchi@QSM$branching_order)==1)){
+            if(length(unique(aRchi@QSM$branching_order))==1){
               aRchi@Paths=NULL
             aRchi@Nodes=NULL}
 
