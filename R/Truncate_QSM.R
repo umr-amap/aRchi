@@ -113,7 +113,7 @@ setMethod("Truncate_QSM",
 
               new_segm_ID= unique(TruncatedQSM[node_ID==i]$segment_ID)
               TruncatedQSM[node_ID==i]$axis_ID=unique(TruncatedQSM[segment_ID==i]$axis_ID)
-              TruncatedQSM[node_ID==i]$branching_order=unique(TruncatedQSM[segment_ID==i]$branching_order)
+              TruncatedQSM[node_ID==i]$branching_order=min(TruncatedQSM[segment_ID==i]$branching_order)
               TruncatedQSM[node_ID==i]$node_ID=unique(TruncatedQSM[segment_ID==i]$node_ID)
               TruncatedQSM[segment_ID==i]$segment_ID=new_segm_ID
             }
