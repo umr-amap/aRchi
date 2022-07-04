@@ -120,7 +120,7 @@ setMethod("Truncate_QSM",
             if(is.null(aRchi@QSM$Mf)==FALSE){TruncatedQSM=TruncatedQSM[,-c("sub_tree_biomass","Mf","Mf_r")]}
 
             aRchi@QSM=TruncatedQSM
-            if(length(unique(aRchi@QSM$branching_order)>1)){
+            if(length(unique(aRchi@QSM$branching_order))>1){
             aRchi=Make_Path(aRchi)
             message("\nPaths table has been re-estimated according to the new truncated QSM")
             if(is.null(aRchi@Nodes)==FALSE){
