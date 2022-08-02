@@ -1,12 +1,12 @@
 #' Read a QSM
 #'
 #' @description Read a QSM file generated with treeQSM, simpletree, simpleforest or pypetree.
-#' @param file The directory to the QSM file path
+#' @param file The directory to the QSM file path.
 #' @param model \code{treeQSM}, \code{simpletree}, \code{simpleforest} or \code{pypetree} depending on the algorithm used to generate the QSM
 #' @return  a list containing a data.table with the QSM and a character with the model name. This list can be used to build an aRchi object (see function \code{\link{build_aRchi}})
 #' @seealso \code{\link{aRchi}} the aRchi class;\code{\link{build_aRchi}} to build an object of class \code{aRchi}
 #' @details
-#' For \code{treeQSM} model, please respect the format with column order provided in the last version <https://github.com/InverseTampere/TreeQSM/blob/master/README.md>
+#' For \code{treeQSM} model, .mat from treeQSM are allowed. the old format (V2.3) as well as the new format (V2.4) are allowed.
 #' @include aRchiClass.R
 #' @examples
 #' file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")
