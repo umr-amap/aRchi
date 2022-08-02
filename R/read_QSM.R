@@ -18,8 +18,8 @@ read_QSM=function(file,model){
 
 
   if(model=="treeQSM"){
-    if(str_detect(file,".mat")){
-      mat=readMat(file)
+    if(stringr::str_detect(file,".mat")){
+      mat=R.matlab::readMat(file)
 
       if(is.null(mat$OptQSM)){
         if(is.null(mat$QSM)){
@@ -28,7 +28,7 @@ read_QSM=function(file,model){
 
             warning(paste0(ncol(mat$QSM[,,]), " QSMs were found. The first one only is used. Please use select_optimum function of treeQSM matlab algorithm if you want to get the optimal QSM"))
             cylinder=mat$QSM[,,1]$cylinder
-            data=data.table(cbind(cylinder[,,]$radius,cylinder[,,]$length,cylinder[,,]$start,cylinder[,,]$axis,cylinder[,,]$parent,cylinder[,,]$extension,cylinder[,,]$added,cylinder[,,]$UnmodRadius,cylinder[,,]$branch,cylinder[,,]$BranchOrder,cylinder[,,]$PositionInBranch))
+            data=data.table::data.table(cbind(cylinder[,,]$radius,cylinder[,,]$length,cylinder[,,]$start,cylinder[,,]$axis,cylinder[,,]$parent,cylinder[,,]$extension,cylinder[,,]$added,cylinder[,,]$UnmodRadius,cylinder[,,]$branch,cylinder[,,]$BranchOrder,cylinder[,,]$PositionInBranch))
             data.table::setnames(data,c("radius","length","startX","startY","startZ","axisX","axisY","axisZ","parent_ID","extension_ID","added","UnmodRadius","branch_ID","BranchOrder","PositionInBranch_ID"))
 
           }
@@ -69,7 +69,7 @@ read_QSM=function(file,model){
   }
 
   # data[-1,c("startX","startY","startZ")]=data[data$parent_ID,c("endX","endY","endZ")] # Replace coordinates of the start of the children by  the end of the parents. AMAPstudio format.
-  data_parent=adply(data,1,function(x){data[cyl_ID==x$parent_ID]})
+  data_parent=plyr::adply(data,1,function(x){data[cyl_ID==x$parent_ID]})
   data[-1,c("startX","startY","startZ")]=data_parent[,c("endX","endY","endZ")] # Replace coordinates of the start of the children by  the end of the parents. AMAPstudio format.
   data$radius_cyl=0 # Radius of the cylinder
   data[-1,"radius_cyl"]=data[data$parent_ID,"radius"] # The radius of the cylinder is the radius of the start circle i.e the parent. Except when there is a ramification, see below
