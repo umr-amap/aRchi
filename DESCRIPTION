@@ -28,6 +28,7 @@ Imports:
     fastcluster,
     pracma,
     pkgcond,
+    R.matlab,
     svMisc,
     circular
 Collate: 
