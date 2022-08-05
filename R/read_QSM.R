@@ -65,11 +65,12 @@ read_QSM=function(file,model){
     data=data[!branch_ID%in%branch_2_remove]
     branch_2_remove=unique(c(branch_2_remove,unique(data[parent_ID%in%data[branch_ID%in%branch_2_remove]$cyl_ID]$branch_ID)))
     data=data[!branch_ID%in%branch_2_remove]
+    # data[-1,c("startX","startY","startZ")]=data[data$parent_ID,c("endX","endY","endZ")] # Replace coordinates of the start of the children by  the end of the parents. AMAPstudio format.
+    data_parent=plyr::adply(data,1,function(x){data[cyl_ID==x$parent_ID]})
     warning(paste0(length(branch_2_remove)," lost branches (not link to the rest of the tree) were removed"))
   }
 
-  # data[-1,c("startX","startY","startZ")]=data[data$parent_ID,c("endX","endY","endZ")] # Replace coordinates of the start of the children by  the end of the parents. AMAPstudio format.
-  data_parent=plyr::adply(data,1,function(x){data[cyl_ID==x$parent_ID]})
+
   data[-1,c("startX","startY","startZ")]=data_parent[,c("endX","endY","endZ")] # Replace coordinates of the start of the children by  the end of the parents. AMAPstudio format.
   data$radius_cyl=0 # Radius of the cylinder
   data[-1,"radius_cyl"]=data[data$parent_ID,"radius"] # The radius of the cylinder is the radius of the start circle i.e the parent. Except when there is a ramification, see below
