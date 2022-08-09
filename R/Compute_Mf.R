@@ -47,7 +47,7 @@ setMethod("Compute_Mf",
             cyl_ID=ID_Path=NULL
 
 
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(WoodDensity)) stop("Incorrect WooDensity argument. Please fill the WoodDensity argument with a single wood density value or with a data.table with two column (i.e cyl_ID and WoodDensity).")
             if(is.numeric(WoodDensity)==FALSE&is.data.frame(WoodDensity)==FALSE) stop("Incorrect WoodDensity argument. Please fill the WoodDensity argument with a single wood density value or with a data.table with two column (i.e cyl_ID and WoodDensity).")

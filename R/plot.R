@@ -38,7 +38,7 @@ setMethod("plot",
 
 
             # make sure the data is an aRchi file and contains a QSM
-            if(class(x) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(x,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(x@QSM)) stop("This aRchi file does not contains a QSM")
             if(skeleton){
               skel = x@QSM

@@ -46,7 +46,7 @@ setMethod("Compute_A0",
             segment_ID=ID_Path=V1=cyl_ID=A0=H_segment_rel=startX=startY=startZ=endX=endY=endZ=NULL
 
 
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(aRchi@Paths)) stop("The archi file does not contains Paths")
 
@@ -109,7 +109,7 @@ setMethod("Compute_A0",
               names(pc)=c("X","Y","Z")
               pc = pkgcond::suppress_messages( lidR::LAS(pc)) # pkgcond::supress_messages removes messages from the LAS building
 
-              lidR::plot(pc,bg="black",size=0,clear_artifacts=FALSE,axis=T)
+              lidR::plot(pc,bg="black",size=0,clear_artifacts=FALSE,axis=T,pal=palette.colors(n=1,alpha=0))
 
               ls_cyl=plyr::alply(QSM[A0==2],1,function(x){rgl::cylinder3d(rbind(as.matrix(x[,c("startX","startY","startZ")]),as.matrix(x[,c("endX","endY","endZ")])),radius= x[,"radius_cyl"][[1]],sides=8,closed=-2)}) # a list of cylinder
               rgl::shapelist3d(ls_cyl,color=2,alpha=1,add=TRUE,lit=TRUE) # plot the list

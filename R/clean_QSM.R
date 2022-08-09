@@ -35,7 +35,7 @@ setMethod("Clean_QSM",
             radius=percent_diam=segment_ID=axis_ID=V1=node_ID=startX=startY=startZ=endX=endY=endZ=NULL
 
             if(is.null(threshold)) stop("Please provide a threshold")
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(aRchi@Paths)) stop("The archi file does not contains Paths")
 

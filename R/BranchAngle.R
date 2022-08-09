@@ -46,7 +46,7 @@ setMethod("BranchAngle",
             branching_order=cyl_ID=segment_ID=Angle=axis_ID=branch_angle=.=NULL
 
 
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(aRchi@Paths)) stop("The archi file does not contains Paths")
             if(is.null(method)) stop("Please choose a method, either SegmentAngle or King98")

@@ -47,7 +47,7 @@ setMethod("add_physiological_ages",
 
             if(!is.numeric(th)) stop("th must be numeric")
 
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("This aRchi file does not contains a QSM")
             if(is.null(aRchi@QSM$AS)) stop("Annual shoots were not segmented in this QSM.")
 

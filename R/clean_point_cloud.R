@@ -29,7 +29,7 @@ setMethod("clean_point_cloud",
           signature = "aRchi",
           function(aRchi, k = 5, sigma = 1.5){
 
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@pointcloud)) stop("This aRchi file does not contains a point cloud")
 
             aRchi@pointcloud@data = VoxR::filter_noise(aRchi@pointcloud@data,k=k,sigma=sigma,

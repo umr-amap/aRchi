@@ -55,7 +55,7 @@ setMethod("SelectinQSM_3d",
 
             QSM=aRchi@QSM
             if(level %in% c("subtree","branch", "cylinder","segment","node","axis")==FALSE) stop("Incorrect level argument")
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
 
             if(level%in%c("branch","subtree")){

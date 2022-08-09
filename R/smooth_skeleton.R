@@ -42,7 +42,7 @@ setMethod("smooth_skeleton",
             # to pass CRAN check
             startX=startY=startZ=endX=endY=endZ=parent_ID=.=NULL
 
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
 
             data = aRchi@QSM
 

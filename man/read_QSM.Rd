@@ -7,7 +7,7 @@
 read_QSM(file, model)
 }
 \arguments{
-\item{file}{The directory to the QSM file path}
+\item{file}{The directory to the QSM file path.}
 
 \item{model}{\code{treeQSM}, \code{simpletree}, \code{simpleforest} or \code{pypetree} depending on the algorithm used to generate the QSM}
 }
@@ -18,7 +18,7 @@ a list containing a data.table with the QSM and a character with the model name.
 Read a QSM file generated with treeQSM, simpletree, simpleforest or pypetree.
 }
 \details{
-For \code{treeQSM} model, please respect the format with column order provided in the last version <https://github.com/InverseTampere/TreeQSM/blob/master/README.md>
+For \code{treeQSM} model, .mat from treeQSM are allowed. the old format (V2.3) as well as the new format (V2.4) are allowed.
 }
 \examples{
 file=system.file("extdata","Tree_1_TreeQSM.txt",package = "aRchi")

@@ -70,7 +70,7 @@ setMethod("add_non_reconstructed",
             X=Y=Z=startX=startY=startZ=endX=endY=endZ=axis_ID=seg=cyl_ID=dist=sec=mean_dist=.=rel_dist=cluster=tip=parent_ID=
               branching_order=dist_tip=section=bearer_ID=seg_ID=bear_length=segment_ID=node_ID=reconstructed=NULL
 
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
 
             # checking arguments
             if(is.null(aRchi@QSM)) stop("The archi file does not contains skeleton")

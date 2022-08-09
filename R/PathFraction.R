@@ -35,7 +35,7 @@ setMethod("PathFraction",
             ID_Path=NULL
             Paths=aRchi@Paths
 
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@Paths)) stop("The aRchi file does not contains Paths")
 
             PathLength=Paths[,sum(length),by=ID_Path]

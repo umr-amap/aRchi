@@ -34,7 +34,7 @@ setMethod("Truncate_QSM",
             ID_Path=radius_cyl=segment_ID=cyl_ID=node_ID=axis_ID=V1=startX=startY=startZ=endX=endY=endZ=NULL
 
             if(is.null(threshold)) stop("Please provide a threshold")
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(aRchi@Paths)) stop("The archi file does not contains Paths")
 

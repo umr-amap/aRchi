@@ -33,7 +33,7 @@ setMethod("LeonardoRatio",
           signature = "aRchi",
           function(aRchi, level, position){
             pos_parent=pos_daugthers=node_ID=NULL
-            if(class(aRchi) != "aRchi") stop("The provided data is not of class aRchi")
+            if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
             if(is.null(aRchi@QSM)) stop("The archi file does not contains a QSM")
             if(is.null(aRchi@Nodes)) stop("The archi file does not contains node tables. Please use the MakeNode function")
             test_position=as.numeric(stringr::str_extract_all(position, "\\d+"))
