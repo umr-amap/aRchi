@@ -295,7 +295,8 @@ setMethod("skeletonize_pc",
                 cl[root$ID, done := 1]
 
                 # remove the cluster from the search data
-                cl2 = cl2[ID != root$ID]
+                #cl2 = cl2[ID != root$ID]
+                cl2 = cl2[!ID %in% root$ID]
 
                 # add the segment start and tip (start and root respectively) to the skeleton data
                 skel = data.table::rbindlist(list(skel,data.table::data.table(start[,1:3],root[,1:3])),use.names = F)
@@ -328,6 +329,11 @@ setMethod("skeletonize_pc",
             #- remove the first row that only contains NAs
             skel = skel[-1,]
 
+            # segments length
+            skel[,length := sqrt( (startX - endX)^2 + (startY - endY)^2 + (startZ - endZ)^2)]
+            # keep only segments with length > 0
+            skel = skel[length > 0]
+
             ######################
             #- compute topology -#
             ######################
@@ -339,9 +345,6 @@ setMethod("skeletonize_pc",
             skel[,bearer_ID := 0]
             skel[,bearer_ID := FNN::knnx.index(data = skel[,4:6],query = skel[,1:3], algorithm = "kd_tree", k = 1)]
             skel[seg_ID == bearer_ID,bearer_ID := 0]
-
-            # segments length
-            skel[,length := sqrt( (startX - endX)^2 + (startY - endY)^2 + (startZ - endZ)^2)]
 
             # CLASS SEGMENTS INTO AXES
             ## compute total length beared by each segment
