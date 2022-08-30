@@ -1,3 +1,7 @@
+* version 2.1.3
+
+- Minor changes for skeletonyze function. Correction of a bug
+
 * version 2.1.2
 
 - Improved read_QSM to read .mat file and new version of treeQSM (2.4).
