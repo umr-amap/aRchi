@@ -1,16 +1,14 @@
 Package: aRchi
 Type: Package
 Title: Quantitative Structural Model ('QSM') Treatment for Tree Architecture
-Version: 2.1.4
-Authors@R: c(
-    person("Olivier", "Martin", email = "oli.martin@ntymail.com", role = c("aut", "cre", "cph")),
-    person("Bastien", "Lecigne", email = "", role = c("aut", "cph")),
-    person("Jean-Romain", "Roussel", email = "", role = ("ctb")))
+Version: 2.1.3
+Author: Olivier Martin and Bastien Lecigne
+Maintainer: Olivier Martin <oli.martin@ntymail.com>
 Description: Provides a set of tools to make quantitative structural model of trees (i.e the so-called 'QSM') from LiDAR point cloud, to manipulate and visualize the QSMs as well as to compute metrics from them. It can be used in various context of forest ecology (i.e biomass estimation) and tree architecture (i.e architectural metrics), see Martin-Ducup et al. (2020) <doi:10.1111/1365-2435.13678>. The package is based on a new S4 class called 'aRchi'.
 License: CeCILL
 Encoding: UTF-8
 URL: https://github.com/umr-amap/aRchi
-RoxygenNote: 7.3.2
+RoxygenNote: 7.1.1
 Imports: 
     data.table,
     dplyr,
@@ -19,7 +17,7 @@ Imports:
     methods,
     lidR,
     FNN,
-    DiceKriging,
+    DiceKriging, 
     stringr,
     utils,
     stats,
@@ -32,8 +30,7 @@ Imports:
     pkgcond,
     R.matlab,
     svMisc,
-    circular,
-    Rcpp
+    circular
 Collate: 
     'nullOrnumeric.R'
     'nullOrlist.R'
@@ -50,7 +47,6 @@ Collate:
     'Make_Path.R'
     'PathFraction.R'
     'QSM2mesh.R'
-    'RcppExports.R'
     'SelectinQSM_3d.R'
     'TreeBiomass.R'
     'TreeVolume.R'
@@ -75,7 +71,6 @@ Collate:
     'get_operations.R'
     'get_paths.R'
     'get_pointcloud.R'
-    'old_skeletonize.R'
     'plot.R'
     'read_QSM.R'
     'read_aRchi.R'
@@ -84,5 +79,3 @@ Collate:
     'skeletonize.R'
     'smooth_skeleton.R'
     'write_aRchi.R'
-LinkingTo: 
-    Rcpp, RcppArmadillo, RcppProgress
