@@ -62,7 +62,12 @@ build_aRchi=function(QSM,point_cloud,keep_original = TRUE){
               }else{
 
               # QSM is a data.table
+              model=QSM$model
               QSM = data.table::data.table(QSM$QSM)
+              if(model=="treeQSM"){
+                QSM=QSM[,c(1:6,10)]
+              }
+
 
               # does the axis_ID and branchind order must be computed by the finction ?
               compute_axis = TRUE
@@ -116,6 +121,7 @@ build_aRchi=function(QSM,point_cloud,keep_original = TRUE){
 
               # store radius separately, remaining columns are cylinders coordinates
               radius = QSM$radius
+
               QSM[,radius := NULL]
 
               ############- compute topology
