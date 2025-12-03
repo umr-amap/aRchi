@@ -93,7 +93,7 @@ read_QSM=function(file,model){
     segment_ID=rep(max(data$cyl_ID),nrow(data))
     Node_ID=rep(0,nrow(data))
     data=cbind(data,segment_ID,Node_ID)
-    message("This data is only a trunk: no ramification")
+    message("This QSM has only a trunk with no ramification. Check the QSM topology and re-compute it when building an aRchi object (build_aRchi) using the argument keep_original = TRUE")
     data$volume=(pi*(data$radius_cyl)^2)*data$length
     data$node_ID=0
     data=data[,c("startX","startY","startZ", "endX","endY","endZ","cyl_ID","parent_ID","extension_ID","radius_cyl","length","volume","branch_ID","segment_ID","node_ID","BranchOrder")]

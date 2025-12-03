@@ -17,7 +17,7 @@
 #' }
 
 
-build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
+build_aRchi=function(QSM,point_cloud,keep_original = TRUE){
   branching_order=axis_ID=cyl_ID=parent_ID=extension_ID=startX=endX=endY=startY=startZ=endZ=bear_length=segment_ID=node_ID=parentID=radius=rad1=rad2=axis_ID=NULL
 
 
@@ -57,7 +57,7 @@ build_aRchi=function(QSM,point_cloud,keep_original = FALSE){
                 stop("the provided QSM does not contains enought fields: must contain at least
            stratX | startY | startZ | endX | endY | endZ | radius")
               }
-              if(QSM$model=="treeQSM"){
+              if(QSM$model=="treeQSM"&keep_original==T){
                 aRchi@QSM = data.table::data.table(QSM$QSM)
               }else{
 
