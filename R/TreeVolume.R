@@ -4,7 +4,7 @@
 #'
 #' @export
 #' @docType methods
-#' @rdname TreeVolume
+#' @rdname Treevolume
 #' @param aRchi an object of class aRchi with at least a QSM
 #' @param level character. The level at which the wood volume is computed. \code{Tree}, \code{branching_order} or \code{Axis}.
 #' @return a numeric or data.table. The wood volume in m3 at the requested level
@@ -14,20 +14,20 @@
 #' file=system.file("extdata","Tree_1_aRchi.aRchi",package = "aRchi")
 #' Tree1_aRchi=read_aRchi(file)
 #' # Compute the whole tree wood biomass.
-#' TreeVolume(Tree1_aRchi)
+#' Treevolume(Tree1_aRchi)
 
-setGeneric("TreeVolume",
-           function(aRchi,level="Tree"){standardGeneric("TreeVolume")}
+setGeneric("Treevolume",
+           function(aRchi,level="Tree"){standardGeneric("Treevolume")}
 )
 
-#' @rdname TreeVolume
+#' @rdname Treevolume
 #' @export
 #'
-setMethod("TreeVolume",
+setMethod("Treevolume",
           signature = "aRchi",
 
           function(aRchi,level){
-            Volume=axis_ID=.=NULL
+            volume=axis_ID=.=NULL
 
 
             if(inherits(aRchi,"aRchi")==F) stop("The provided data is not of class aRchi")
@@ -38,10 +38,10 @@ setMethod("TreeVolume",
 
 
 
-            if(level=="Tree"){return(Volume=sum(QSM$Volume))}
-            if(level=="branching_order"){return(QSM[,.(Volume=sum(Volume)),by=c("branching_order")])}
-            if(level=="Axis"){Volume_branch=data.table::setorder(QSM[,.(Volume=sum(Volume)),by=c("axis_ID")],axis_ID)
-            return(Volume_branch)
+            if(level=="Tree"){return(volume=sum(QSM$volume))}
+            if(level=="branching_order"){return(QSM[,.(volume=sum(volume)),by=c("branching_order")])}
+            if(level=="Axis"){volume_branch=data.table::setorder(QSM[,.(volume=sum(volume)),by=c("axis_ID")],axis_ID)
+            return(volume_branch)
             }
           }
 )
